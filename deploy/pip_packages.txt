@@ -1,0 +1,19 @@
+# for deploy - you probably should pin to a commit
+-e git+git://github.com/aptivate/dye.git#egg=dye
+
+# core django
+Django==1.5.5
+pytz==2013.9
+MySQL-python>=1.2.3
+south==0.8.4
+
+
+
+
+
+
+# testing
+
+django-dynamic-fixture==1.6.5
+mock==1.0.1
+
