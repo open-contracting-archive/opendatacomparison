@@ -25,7 +25,7 @@ SECRET_KEY = private_settings.SECRET_KEY
 # These email addresses will get all the error email for the production server
 # (and any other servers with DEBUG = False )
 ADMINS = (
-    ('Aptivate  team', '-team@aptivate.org'),
+    ('Sarah Bird', 'sarah@aptivate.org'),
     ('', ''),  # this is in case the above email doesn't work
 )
 
@@ -33,8 +33,8 @@ MANAGERS = ADMINS
 
 # these are the settings for production. We can override in the various
 # local_settings if we want to
-DEFAULT_FROM_EMAIL = 'donotreply@'
-SERVER_EMAIL = 'server@'
+DEFAULT_FROM_EMAIL = 'sarah@aptivate.org'
+SERVER_EMAIL = 'sarah@aptivate.org'
 ########## MANAGER/EMAIL CONFIGURATION
 
 
