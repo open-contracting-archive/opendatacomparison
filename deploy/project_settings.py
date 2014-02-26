@@ -19,7 +19,8 @@ django_apps = ['project_app1', 'project_app2']
 #repository = 'https://svn.aptivate.org/svn/' + project_name + '/dev'
 
 repo_type = "git"
-repository = 'git@github.com:open-contracting/' + project_name + '.git'
+repository = 'https://github.com/open-contracting/opendatacomparison.git'
+#repository = 'git://github.com:open-contracting/' + project_name + '.git'
 
 ##################################################################
 # THESE SETTINGS MAY WELL BE CORRECT FOR A STANDARD DJANGO PROJECT
