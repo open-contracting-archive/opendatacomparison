@@ -304,10 +304,7 @@ if DEBUG is False:
     ALLOWED_HOSTS = [
         '.',
         'www.',
-        'fen-vz-.fen.aptivate.org',
-        'fen-vz--dev.fen.aptivate.org',
-        '.dev.aptivate.org',
-        '.stage.aptivate.org',
+        'fen-vz-ocds-stage.fen.aptivate.org',
     ]
     ########## END SITE CONFIGURATION
 
