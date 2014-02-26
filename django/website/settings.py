@@ -2,7 +2,7 @@
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 from os import path
-BASE_DIR = path.dirname(path.dirname(__file__))
+BASE_DIR = path.abspath(path.dirname(__file__))
 
 
 ########## DEFAULT DEBUG SETTINGS - OVERRIDE IN local_settings
@@ -65,6 +65,7 @@ USE_TZ = True
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
 MEDIA_ROOT = path.join(BASE_DIR, 'uploads')
 
+
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
@@ -122,6 +123,7 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'main',
     # Your stuff: custom apps go here
 )
 

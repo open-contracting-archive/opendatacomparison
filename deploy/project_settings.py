@@ -19,8 +19,7 @@ django_apps = ['project_app1', 'project_app2']
 #repository = 'https://svn.aptivate.org/svn/' + project_name + '/dev'
 
 repo_type = "git"
-repository = 'git@git.aptivate.org:' + project_name + '.git'
-#repository = 'git@github.com:aptivate/' + project_name + '.git'
+repository = 'git@github.com:open-contracting/' + project_name + '.git'
 
 ##################################################################
 # THESE SETTINGS MAY WELL BE CORRECT FOR A STANDARD DJANGO PROJECT
@@ -70,18 +69,18 @@ test_cmd = ' manage.py test -v0 ' + ' '.join(django_apps)
 
 # production server - if commented out then the production task will abort
 host_list = {
-    'production':   ['lin-' + project_name + '.aptivate.org:48001'],
-    'staging':      ['fen-vz-' + project_name + '.fen.aptivate.org'],
-    'staging_test': ['fen-vz-' + project_name + '.fen.aptivate.org'],
-    'dev_server':   ['fen-vz-' + project_name + '-dev.fen.aptivate.org'],
+#    'production':   ['lin-' + project_name + '.aptivate.org:48001'],
+    'staging':      ['fen-vz-' + 'ocds' + '-stage.fen.aptivate.org'],
+#    'staging_test': ['fen-vz-' + project_name + '.fen.aptivate.org'],
+#    'dev_server':   ['fen-vz-' + project_name + '-dev.fen.aptivate.org'],
 }
 
 # this is the default git branch to use on each server
 default_branch = {
-    'production':   'master',
+#    'production':   'master',
     'staging':      'master',
-    'staging_test': 'master',
-    'dev_server':   'develop',
+#    'staging_test': 'master',
+#    'dev_server':   'develop',
 }
 
 # where on the server the django apps are deployed
