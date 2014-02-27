@@ -1,7 +1,5 @@
 from django.conf.urls import patterns, url
 
-from grid import views
-
 from grid.views import (
     add_feature,
     add_grid,
@@ -14,7 +12,8 @@ from grid.views import (
     edit_grid,
     edit_feature,
     grid_detail,
-    grids
+    grids,
+    grid_detail_landscape,
 )
 
 urlpatterns = patterns("",
@@ -30,5 +29,5 @@ urlpatterns = patterns("",
     url(regex='^ajax_grid_list/$', view=ajax_grid_list, name='ajax_grid_list',),
     url(regex='^$', view=grids, name='grids',),
     url(regex='^g/(?P<slug>[-\w]+)/$', view=grid_detail, name='grid',),
-    url(regex='^g/(?P<slug>[-\w]+)/landscape/$', view=views.grid_detail_landscape, name='grid_landscape',),
+    url(regex='^g/(?P<slug>[-\w]+)/landscape/$', view=grid_detail_landscape, name='grid_landscape',),
 )

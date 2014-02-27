@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^packages/', include('package.urls')),
     url(r'^grids/', include('grid.urls')),
     url(r'^profiles/', include('profiles.urls')),
+    url(r'^publishers/', include('publisher.urls')),
     url(r'^categories/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='category'),
 
     # Uncomment the admin/doc line below to enable admin documentation:

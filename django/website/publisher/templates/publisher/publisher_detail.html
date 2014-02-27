@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block head_title %}{{ publisher.title }}{% endblock %}
+
+{% block extra_head %}
+  <meta name="description" content="{{ publisher.repo_description }}" />
+  <meta name="keywords" content="{{ publisher.grid_set.all|join:',' }}" />
+  {{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'publishers' %}">{% trans "publishers" %}</a> / {{ publisher.name }}</h2>
+        <p> {{ publisher.description }} </p>
+        <p> {{ publisher.country.name }} </p>
+        <p> {{ publisher.url|urlize }}</p>
+    </div>
+</div> 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left">{% trans "Datasets" %}</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                {% for dataset in publisher.datasets %}
+                    {{ dataset }}&nbsp;
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>    
+</div> 
+
+</div>
+{% endblock %}
+
