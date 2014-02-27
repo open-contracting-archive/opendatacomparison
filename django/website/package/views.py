@@ -1,4 +1,3 @@
-import importlib
 import json
 
 from django.conf import settings
@@ -24,14 +23,6 @@ from package.forms import PackageForm, PackageExampleForm, DocumentationForm
 from package.models import Category, Package, PackageExample
 
 from .utils import quote_plus
-
-
-def get_form_class(form_name):
-    bits = form_name.split('.')
-    form_module_name = '.'.join(bits[:-1])
-    form_module = importlib.import_module(form_module_name)
-    form_name = bits[-1]
-    return getattr(form_module, form_name)
 
 
 class CategoryView(TemplateView):
