@@ -6,6 +6,7 @@ from django.views.generic.base import TemplateView
 
 from homepage.views import HomePageView
 from package.views import CategoryView
+from profiles.views import ProfileRedirectView
 
 admin.autodiscover()
 handler404 = 'homepage.views.error_404_view'
@@ -25,7 +26,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'', include('django.contrib.auth.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/profile/$', ProfileRedirectView.as_view()),
 
     # static pages
     url(r'^about/$', TemplateView.as_view(template_name='pages/faq.html'), name='about'),

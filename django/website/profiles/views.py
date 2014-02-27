@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.views.generic.base import RedirectView
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import UpdateView
 
@@ -8,6 +9,16 @@ from braces.views import LoginRequiredMixin
 
 from profiles.forms import ProfileForm
 from profiles.models import Profile
+
+
+class ProfileRedirectView(RedirectView):
+    pattern_name = 'profile_detail'
+
+    def get_redirect_url(self, *args, **kwargs):
+        slug = self.request.user.username
+        kwargs = {'slug': slug}
+        return super(ProfileRedirectView,
+                     self).get_redirect_url(*args, **kwargs)
 
 
 class ProfileDetailView(DetailView):
