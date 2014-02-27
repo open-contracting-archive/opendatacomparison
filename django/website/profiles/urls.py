@@ -1,13 +1,13 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 
-from profiles import views
+from profiles.views import (
+    ProfileUpdateView,
+    ProfileListView,
+    ProfileDetailView,
+)
 
-urlpatterns = patterns("",
-    url(
-        regex=r"^edit/$",
-        view=views.ProfileEditUpdateView.as_view(),
-        name="profile_edit"
-    ),
-    url(r"^$", views.profile_list, name="profile_list"),
-    url(r"^(?P<github_account>[-\w]+)/$", views.profile_detail, name="profile_detail"),
+urlpatterns = patterns('',
+    url(r'^edit/(?P<slug>[-\w]+)/$', ProfileUpdateView.as_view(), name='profile_edit'),
+    url(r'^$', ProfileListView.as_view(), name='profile_list'),
+    url(r'^(?P<slug>[-\w]+)/$', ProfileDetailView.as_view(), name='profile_detail'),
 )

@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^packages/', include('package.urls')),
     url(r'^grids/', include('grid.urls')),
+    url(r'^profiles/', include('profiles.urls')),
     url(r'^categories/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='category'),
 
     # Uncomment the admin/doc line below to enable admin documentation:

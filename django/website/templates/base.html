@@ -43,9 +43,8 @@
             <!-- Main nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-                <li><a href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
                 {% if request.user.is_authenticated %}
-                    <li>{{ profile }}</li>
+                    <li><a href="{% url 'profile_detail' request.user.profile %}">{{ request.user.username|capfirst }}</a></li>
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'admin:index' %}">{% trans "Admin" %}</a></li>
                     {% endif %}
@@ -152,8 +151,6 @@
           <div class="col-12">
               &copy; 2014
               - A tool from the <a href="http://open-contracting.github.io/">Open Contracting Data Standards Project</a>
-              - <a href="{% url 'faq' %}">{% trans "FAQ" %}</a>    
-              - <a href="{% url 'syndication' %}">{% trans "RSS / Atom" %}</a>  
               - Built on <a href="http://www.opencomparison.org">OpenComparison</a>
           </div>
       </div>

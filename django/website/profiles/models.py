@@ -13,21 +13,6 @@ class Profile(BaseModel):
     def __unicode__(self):
         return self.user
 
-    def my_packages(self):
-        """Return a list of all packages the user contributes to.
-
-        List is sorted by package name.
-        """
-        from package.repos import get_repo, supported_repos
-
-        packages = []
-        for repo in supported_repos():
-            repo = get_repo(repo)
-            repo_packages = repo.packages_for_profile(self)
-            packages.extend(repo_packages)
-        packages.sort(lambda a, b: cmp(a.title, b.title))
-        return packages
-
     @property
     def can_add_package(self):
         if getattr(settings, 'RESTRICT_PACKAGE_EDITORS', False):
