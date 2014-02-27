@@ -74,6 +74,7 @@ class HomePageView(TemplateView):
 
         context.update({
             'latest_packages': Package.objects.all().order_by('-created')[:5],
+            'latest_grids': Grid.objects.all().order_by('-created')[:5],
             'random_packages': self._get_random_packages(package_count),
             'potw': potw,
             'gotw': gotw,

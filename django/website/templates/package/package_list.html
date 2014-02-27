@@ -68,14 +68,5 @@
         });                        
     });    
 
-    $('#id_q_p').autocomplete({
-      source: '{% url 'search_packages_autocomplete' %}',
-      minLength: 1,
-      open: function(event, ui) { 
-        ac_top = $('.ui-autocomplete').css('top'); 
-        $('.ui-autocomplete').css({'width': '250px', 'top': ac_top + 10 }); 
-      }
-    });
-    
 </script>      
 {% endblock %}      

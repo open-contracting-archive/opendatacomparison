@@ -1,52 +1,18 @@
 {% load i18n %}
 {% load url from future %}
-
 <div class="container">
   <div class="row">
     <div class="col-sm-4 col-lg-4">
-      <h2><i>{{ SITE_TITLE }} is a directory of open data sets, enabling comparison and assessment. It is being 
-      used by the Open Contracting Data Standards project. This site is in BETA. Expect things to be slightly strange
-      and to change!</i></h2>
+      <h2><i>Open Data Comparison is a directory of open data sets, enabling comparison and assessment. It is being 
+      used by the Open Contracting Data Standards project.</i></h2>
       <p><b>{{ package_count }}</b> {% trans "datasets and counting!" %}</p>
-
-      <!-- start We Need Your Help panel -->
-      <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-          <h3 class="panel-title pull-left">{% trans "Add datasets and grids" %}</h3>
-        </div>
-        <div class="panel-body">
-          <p>
-            {% trans "Know of any datasets not listed here?  Add them now!  It's quick and easy." %}
-          </p>
-          <p>
-            <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add dataset »" %}</a>
-          </p>
-          <p>
-            {% trans "Or add a grid comparing the features of 2 or more similar datasets." %}
-          </p>
-          <p>
-            <a class="btn btn-default" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
-          </p>
-        </div>
-      </div>
-      <!-- end We Need Your Help panel -->
+      <p class="text-danger"> This site is in BETA. Expect things to be slightly strange
+      and to change!</p>
     </div>
     
-      <!-- start python 3 releasesl -->
-      <!-- start Categories panel -->
-    <div class="col-sm-4 col-lg-4">
-    <h2>{% trans "Categories" %}</h2>
-      <div class="list-group">
-          {% for category in categories %}
-            <h3><a href="{% url 'category' category.slug %}">{{ category.title_plural }}</a> ({{ category.count }})</h3>
-            <p>{{ category.description }}</p>
-          {% endfor %}
-      </div>
-  </div>
-      <!-- end Categories panel -->
 
     <div class="col-sm-4 col-lg-4">
-      <h2>{% trans "Latest 5 Datasets Added" %}</h2>
+      <h2>{% trans "Latest " %} <a href="{% url 'category' slug='dataset' %}">{% trans "Datasets" %}</a></h2>
     
       <div class="list-group">
         {% for package in latest_packages %}
@@ -67,46 +33,71 @@
       </div>
     </div>
     
+    <div class="col-sm-4 col-lg-4">
+      <h2>{% trans "Latest " %} <a href="{% url 'grids' %}">{% trans "Grids" %}</a></h2>
+    
+      <div class="list-group">
+        {% for grid in latest_grids %}
+          <a href="{{ grid.get_absolute_url }}" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ grid.title }}</h4>
+
+            <p class="list-group-item-text">
+              {% with grid.description|truncatewords:25 as short %}
+                {% if grid.description|length > short|length %}
+                  {{ short|slice:"-3" }}...
+                {% else %}
+                  {{ short }}
+                {% endif %}
+              {% endwith %}
+            </p>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
 
 
-  </div>
+</div><!-- endrow -->
 
   <div class="row">
     <div class="col-sm-4 col-lg-4">
-        <!-- Empty column -->
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <h3 class="panel-title pull-left">{% trans "Add datasets and grids" %}</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            {% trans "Know of any datasets not listed here?  Add them now!  It's quick and easy." %}
+          </p>
+          <p>
+            <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add dataset »" %}</a>
+          </p>
+          <p>
+            {% trans "Or add a grid comparing the features of datasets." %}
+          </p>
+          <p>
+            <a class="btn btn-default" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
+          </p>
+        </div>
+      </div>
     </div>  
-    <div class="col-sm-4 col-lg-4">
      {% if potw %}
-       <!-- start POTW panel -->
-       {% comment %}
-       <div class="panel panel-default">
-         <div class="panel-heading clearfix">
-           <h3 class="panel-title pull-left">Featured Datasets</h3>
-         </div>
-         <div class="panel-body">
-           <a href="{{ potw.get_absolute_url }}">{{ potw.title }}</a>
-           <p>{{ potw.repo_description }}</p>
-           <table class="table">
-             <thead>
-               <tr>
-                 <th>{% trans "Commits" %}</th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr>
-                 <td>{{potw.commits_over_52}}</td>
-               </tr>
-             </tbody>
-           </table>
-         </div>
+    <div class="col-sm-4 col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+            <h3 class="panel-title pull-left">Featured Dataset</h3>
+            </div>
+            <div class="panel-body">
+            <a href="{{ potw.get_absolute_url }}">{{ potw.title }}</a>
+            <p>{{ potw.repo_description }}</p>
+            </div>
 
-       </div>
-       {% endcomment %}
-       <!-- end POTW panel -->
+        </div>
+    </div>
      {% endif %}
 
       {% if gotw %}
       <!-- start GOTW panel -->
+    <div class="col-sm-4 col-lg-4">
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           <h3 class="panel-title pull-left">Featured Grid</h3>
@@ -121,48 +112,10 @@
         </div>
       </div>
       <!-- end GOTW panel -->
+  </div>
       {% endif %}
     </div>
 
-    <div class="col-sm-4 col-lg-4">
-      <!-- start Categories panel -->
-      <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-          <h3 class="panel-title pull-left">{% trans "Categories" %}</h3>
-        </div>
-        <div class="panel-body">
-          {% for category in categories %}
-            <h3><a href="{% url 'category' category.slug %}">{{ category.title_plural }}</a> ({{ category.count }})</h3>
-            <p>{{ category.description }}</p>
-          {% endfor %}
-        </div>
-      </div>
-      <!-- end Categories panel -->
-      
-    </div>
 
-    {% comment %}
-    <div class="col-sm-4 col-lg-4">
-      <h2>{% trans "Random 5" %}</h2>
-      
-      <div class="list-group">
-        {% for package in random_packages %}
-          <a href="{{ package.get_absolute_url }}" class="list-group-item">
-            <h4 class="list-group-item-heading">{{ package.title }}</h4>
-
-            <p class="list-group-item-text">
-              {% with package.repo_description|truncatewords:25 as short %}
-                {% if package.repo_description|length > short|length %}
-                  {{ short|slice:"-3" }}...
-                {% else %}
-                  {{ short }}
-                {% endif %}
-              {% endwith %}
-            </p>
-          </a>
-        {% endfor %}
-      </div>
-    </div>
-    {% endcomment %}
 </div>
 </div>

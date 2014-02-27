@@ -34,6 +34,19 @@ def get_form_class(form_name):
     return getattr(form_module, form_name)
 
 
+class CategoryView(TemplateView):
+    template_name = 'package/category.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryView, self).get_context_data(**kwargs)
+        category = get_object_or_404(Category, slug=kwargs.get('slug'))
+        packages = category.package_set.annotate(usage_count=Count('usage'))
+        packages = packages.order_by('title')
+        context.update({'category': category,
+                        'packages': packages})
+        return context
+
+
 @login_required
 def add_package(request, template_name='package/package_form.html'):
 
@@ -141,18 +154,6 @@ def package_autocomplete(request):
 
     setattr(response, 'djangologging.suppress_output', True)
     return response
-
-
-class CategoryView(TemplateView):
-    template_name='package/category.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(CategoryView, self).get_context_data(**kwargs)
-        category = get_object_or_404(Category, slug=kwargs.get('slug'))
-        packages = category.package_set.select_related().annotate(usage_count=Count('usage')).order_by('title')
-        context.update({'category': category,
-                        'packages': packages})
-        return context
 
 
 def ajax_package_list(request, template_name='package/ajax_package_list.html'):
