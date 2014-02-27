@@ -14,6 +14,10 @@
   max-width: none;
 }
 
+.row {
+  margin-top: 10px;
+}
+
 /**
  * Customize default TopBar to match the site colors.
  */

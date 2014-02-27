@@ -3,8 +3,10 @@
 {% load i18n %}
 
 {% block body %}
-    <div class="content">
-        <h3>{% trans "Successfully logged out" %}</h3>
-        <p><a href="{% url 'django.contrib.auth.views.login' %}">{% trans 'Log in again' %}</a></p>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>{% trans "Successfully logged out" %}</h3>
+                <p><a href="{% url 'django.contrib.auth.views.login' %}">{% trans 'Log in again' %}</a></p>
+    </div></div></div>
 {% endblock %}
