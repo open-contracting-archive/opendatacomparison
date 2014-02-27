@@ -11,6 +11,7 @@
         {% endif %}
         <form action="{% url 'django.contrib.auth.views.login' %}" method="post" class="form-horizontal" role="form">{% csrf_token %}
             <legend><span class="col-sm-offset-1">{% trans 'Log in' %}</span></legend>
+            <input type="hidden" name="next" value="{{ next }}" />
             {% for field in form %}
                 {% include 'registration/form_field.html' %}
             {% endfor %}

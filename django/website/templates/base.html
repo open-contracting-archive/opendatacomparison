@@ -43,12 +43,12 @@
             <!-- Main nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'profile_detail' request.user.profile %}">{{ request.user.username|capfirst }}</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile_detail' user.profile %}">{{ request.user.username|capfirst }}</a></li>
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'admin:index' %}">{% trans "Admin" %}</a></li>
                     {% endif %}
-                    <li><a href="{% url 'logout' %}">{% trans "Log out" %}</a></li>
+                    <li><a href="{% url 'logout' %}{% if current_path %}?next={{ current_path }}{% endif %}">{% trans "Log out" %}</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}{% if current_path %}?next={{ current_path }}{% endif %}">{% trans "Login" %}</a></li>
                 {% endif %}
