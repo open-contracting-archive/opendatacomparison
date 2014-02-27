@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
-from django.db.models import Q, Count
+from django.db.models import Count
 from django.http import (
     HttpResponseRedirect,
     HttpResponse,
@@ -14,13 +14,14 @@ from django.http import (
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.views.generic.base import TemplateView
+from django.views.generic import DetailView, ListView
 
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from grid.models import Grid
 from homepage.models import Dpotw, Gotw
-from package.forms import PackageForm, PackageExampleForm, DocumentationForm
-from package.models import Category, Package, PackageExample
+
+from .forms import PackageForm, DocumentationForm
+from .models import Category, Package
 
 from .utils import quote_plus
 
@@ -36,6 +37,36 @@ class CategoryView(TemplateView):
         context.update({'category': category,
                         'packages': packages})
         return context
+
+
+class PackageDetailView(DetailView):
+    template_name = 'package/package.html'
+    model = Package
+
+class PackageListView(ListView):
+    model = Package
+def package_list(request, template_name='package/package_list.html'):
+
+    categories = []
+    for category in Category.objects.annotate(package_count=Count('package')):
+        element = {
+            'title': category.title,
+            'description': category.description,
+            'count': category.package_count,
+            'slug': category.slug,
+            'title_plural': category.title_plural,
+            'packages': category.package_set.annotate(usage_count=Count('usage')).order_by('title')[:9]
+        }
+        categories.append(element)
+
+    return render(
+        request,
+        template_name, {
+            'categories': categories,
+            'dpotw': Dpotw.objects.get_current(),
+            'gotw': Gotw.objects.get_current(),
+        }
+    )
 
 
 @login_required
@@ -91,102 +122,12 @@ def update_package(request, slug):
     package = get_object_or_404(Package, slug=slug)
     package.fetch_metadata()
     package.fetch_commits()
-    messages.add_message(request, messages.INFO, 'Package updated successfully')
+    messages.add_message(request,
+                         messages.INFO,
+                         'Package updated successfully')
 
-    return HttpResponseRedirect(reverse('package', kwargs={'slug': package.slug}))
-
-
-@login_required
-def add_example(request, slug, template_name='package/add_example.html'):
-
-    package = get_object_or_404(Package, slug=slug)
-    new_package_example = PackageExample()
-    form = PackageExampleForm(request.POST or None, instance=new_package_example)
-
-    if form.is_valid():
-        package_example = PackageExample(package=package,
-                title=request.POST['title'],
-                url=request.POST['url'])
-        package_example.save()
-        return HttpResponseRedirect(reverse('package', kwargs={'slug': package_example.package.slug}))
-
-    return render(request, template_name, {
-        'form': form,
-        'package': package
-        })
-
-
-@login_required
-def edit_example(request, slug, id, template_name='package/edit_example.html'):
-
-    package_example = get_object_or_404(PackageExample, id=id)
-    form = PackageExampleForm(request.POST or None, instance=package_example)
-
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('package', kwargs={'slug': package_example.package.slug}))
-
-    return render(request, template_name, {
-        'form': form,
-        'package': package_example.package
-        })
-
-
-def package_autocomplete(request):
-    '''
-    Provides Package matching based on matches of the beginning
-    '''
-    titles = []
-    q = request.GET.get('q', '')
-    if q:
-        titles = (x.title for x in Package.objects.filter(title__istartswith=q))
-
-    response = HttpResponse('\n'.join(titles))
-
-    setattr(response, 'djangologging.suppress_output', True)
-    return response
-
-
-def ajax_package_list(request, template_name='package/ajax_package_list.html'):
-    q = request.GET.get('q', '')
-    packages = []
-    if q:
-        _dash = '%s-%s' % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
-        _space = '%s %s' % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
-        _underscore = '%s_%s' % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
-        packages = Package.objects.filter(
-                        Q(title__istartswith=q) |
-                        Q(title__istartswith=_dash) |
-                        Q(title__istartswith=_space) |
-                        Q(title__istartswith=_underscore)
-                    )
-
-    packages_already_added_list = []
-    grid_slug = request.GET.get('grid', '')
-    if packages and grid_slug:
-        grids = Grid.objects.filter(slug=grid_slug)
-        if grids:
-            grid = grids[0]
-            packages_already_added_list = [x['slug'] for x in grid.packages.all().values('slug')]
-            new_packages = tuple(packages.exclude(slug__in=packages_already_added_list))[:20]
-            number_of_packages = len(new_packages)
-            if number_of_packages < 20:
-                try:
-                    old_packages = packages.filter(slug__in=packages_already_added_list)[:20 - number_of_packages]
-                except AssertionError:
-                    old_packages = None
-
-                if old_packages:
-                    old_packages = tuple(old_packages)
-                    packages = new_packages + old_packages
-            else:
-                packages = new_packages
-
-    return render(request, template_name, {
-        'packages': packages,
-        'packages_already_added_list': packages_already_added_list,
-        }
-    )
+    return HttpResponseRedirect(reverse('package',
+                                        kwargs={'slug': package.slug}))
 
 
 def usage(request, slug, action):
@@ -256,62 +197,6 @@ def usage(request, slug, action):
     return HttpResponseRedirect(next)
 
 
-def package_list(request, template_name='package/package_list.html'):
-
-    categories = []
-    for category in Category.objects.annotate(package_count=Count('package')):
-        element = {
-            'title': category.title,
-            'description': category.description,
-            'count': category.package_count,
-            'slug': category.slug,
-            'title_plural': category.title_plural,
-            'packages': category.package_set.annotate(usage_count=Count('usage')).order_by('title')[:9]
-        }
-        categories.append(element)
-
-    return render(
-        request,
-        template_name, {
-            'categories': categories,
-            'dpotw': Dpotw.objects.get_current(),
-            'gotw': Gotw.objects.get_current(),
-        }
-    )
-
-
-def package_detail(request, slug, template_name='package/package.html'):
-
-    package = get_object_or_404(Package, slug=slug)
-    no_development = package.no_development
-    try:
-        if package.category == Category.objects.get(slug='projects'):
-            # projects get a bye because they are a website
-            pypi_ancient = False
-            pypi_no_release = False
-        else:
-            pypi_ancient = package.pypi_ancient
-            pypi_no_release = package.pypi_ancient is None
-        warnings = no_development or pypi_ancient or pypi_no_release
-    except Category.DoesNotExist:
-        pypi_ancient = False
-        pypi_no_release = False
-        warnings = no_development
-
-    if request.GET.get('message'):
-        messages.add_message(request, messages.INFO, request.GET.get('message'))
-
-    return render(request, template_name,
-            dict(
-                package=package,
-                pypi_ancient=pypi_ancient,
-                no_development=no_development,
-                pypi_no_release=pypi_no_release,
-                warnings=warnings,
-                latest_version=package.last_released(),
-                repo=package.repo_url
-            )
-        )
 
 
 class PackageListAPIView(ListAPIView):
@@ -323,19 +208,9 @@ class PackageDetailAPIView(RetrieveAPIView):
     model = Package
 
 
-def int_or_0(value):
-    try:
-        return int(value)
-    except ValueError:
-        return 0
-
-
 @login_required
 def post_data(request, slug):
     package = get_object_or_404(Package, slug=slug)
-    package.fetch_pypi_data()
-    package.repo.fetch_metadata(package)
-    package.repo.fetch_commits(package)
     package.last_fetched = timezone.now()
     package.save()
     return HttpResponseRedirect(reverse('package',

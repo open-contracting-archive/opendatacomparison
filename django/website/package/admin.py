@@ -1,11 +1,7 @@
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 
-from package.models import Category, Package, PackageExample, Commit, Version
-
-
-class PackageExampleInline(admin.TabularInline):
-    model = PackageExample
+from package.models import Category, Package, Version
 
 
 class PackageAdmin(VersionAdmin):
@@ -15,18 +11,6 @@ class PackageAdmin(VersionAdmin):
     list_filter = ("category",)
     list_display = ("title", "created", )
     date_hierarchy = "created"
-    inlines = [
-        PackageExampleInline,
-    ]
-    fieldsets = (
-        (None, {
-            "fields": ("title", "slug", "category", "repo_url", "usage", "created_by", "last_modified_by",)
-        }),
-        ("Pulled data", {
-            "classes": ("collapse",),
-            "fields": ("repo_description", "commit_list", "participants")
-        }),
-    )
 
 
 class CommitAdmin(admin.ModelAdmin):
@@ -45,6 +29,4 @@ class PackageExampleAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, VersionAdmin)
 admin.site.register(Package, PackageAdmin)
-admin.site.register(Commit, CommitAdmin)
 admin.site.register(Version, VersionLocalAdmin)
-admin.site.register(PackageExample, PackageExampleAdmin)

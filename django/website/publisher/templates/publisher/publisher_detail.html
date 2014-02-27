@@ -28,8 +28,8 @@
             </div>
             <div class="panel-body">
                 <p>
-                {% for dataset in publisher.datasets %}
-                    {{ dataset }}&nbsp;
+                {% for dataset in publisher.datasets.all %}
+                    {{ dataset.name }}&nbsp;
                 {% endfor %}
                 </p>
             </div>

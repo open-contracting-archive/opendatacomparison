@@ -3,17 +3,19 @@ from django.views.generic.dates import ArchiveIndexView
 
 from package.models import Package
 from package.views import (
-    add_example,
     add_package,
     edit_package,
-    edit_example,
     update_package,
     usage,
     package_list,
-    package_detail,
     post_data,
     edit_documentation,
 )
+
+from .views import (
+    PackageDetailView,
+)
+
 
 urlpatterns = patterns('',
     url(r'^$', package_list, name='packages',),
@@ -22,9 +24,7 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/edit/$', view=edit_package, name='edit_package',),
     url(r'^(?P<slug>[-\w]+)/fetch-data/$', view=update_package, name='fetch_package_data',),
     url(r'^(?P<slug>[-\w]+)/post-data/$', view=post_data, name='post_package_data',),
-    url(r'^(?P<slug>[-\w]+)/example/add/$', view=add_example, name='add_example',),
-    url(r'^(?P<slug>[-\w]+)/example/(?P<id>\d+)/edit/$', view=edit_example, name='edit_example',),
-    url(r'^p/(?P<slug>[-\w]+)/$', view=package_detail, name='package',),
+    url(r'^p/(?P<slug>[-\w]+)/$', PackageDetailView.as_view(), name='package',),
     url(r'^usage/(?P<slug>[-\w]+)/(?P<action>add|remove)/$', view=usage, name='usage',),
     url(r'^(?P<slug>[-\w]+)/document/$', view=edit_documentation, name='edit_documentation',),
 )

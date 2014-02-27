@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load package_tags %}
+
+<table class="table">
+<thead>
+    <tr>
+    <th>{% trans "Name" %}</th>
+    <th>{% trans "Publisher" %}</th>
+    <th>{% trans "# Using This" %}</th>
+    </tr>
+</thead>
+
+<tbody>
+{% for package in packages %}
+    <tr>
+    <td><a href="{% url 'package' package.slug %}">{{ package.title }}</a></td>
+    <td><a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a></td>
+    <td class="usage-container usage-holder"> {% usage_button %} &nbsp; <span class="usage-count">{{ package.usage_count }}</span> </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>

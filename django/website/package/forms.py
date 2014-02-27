@@ -1,6 +1,6 @@
 from floppyforms import ModelForm, TextInput
 
-from package.models import Category, Package, PackageExample
+from package.models import Category, Package
 
 
 def package_help_text():
@@ -19,8 +19,8 @@ class PackageForm(ModelForm):
     def __init__(self, *args, **kwargs):
             super(PackageForm, self).__init__(*args, **kwargs)
             self.fields['category'].help_text = package_help_text()
-            self.fields['repo_url'].required = True
-            self.fields['repo_url'].widget = TextInput(attrs={
+            self.fields['url'].required = True
+            self.fields['url'].widget = TextInput(attrs={
                 'placeholder': 'ex: https://github.com/django/django'
             })
 
@@ -29,21 +29,7 @@ class PackageForm(ModelForm):
 
     class Meta:
         model = Package
-        fields = ['repo_url', 'title', 'slug', 'category', ]
-
-
-class PackageExampleForm(ModelForm):
-
-    class Meta:
-        model = PackageExample
-        fields = ['title', 'url']
-
-
-class PackageExampleModeratorForm(ModelForm):
-
-    class Meta:
-        model = PackageExample
-        fields = ['title', 'url', 'active']
+        fields = ['url', 'title', 'slug', 'category', ]
 
 
 class DocumentationForm(ModelForm):

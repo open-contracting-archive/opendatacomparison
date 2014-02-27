@@ -3,27 +3,21 @@
 {% load url from future %}
 {% load cache %}
 {% load i18n %}
-{% load package_tags %}
 
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 
 {% block body_class %}home{% endblock %}
 
 {% block body %}
-<div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h2><a href="{% url 'home' %}">{% trans "home" %}</a> / {{ category.title_plural }} ( {{ packages.count }} )</h2>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-6">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">{% trans "home" %}</a></li>
+            <li class="active">{{ category.title }} ( {{ packages.count }} )</li>
+        </ol>
       <p>{{ category.description }}</p>
-    </div>
-    <div class="col-xs-6">
       <p>
-        {% if profile.can_add_package %}
+        {% if user.profile.can_add_package %}
           <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add package »" %}</a>
         {% endif %}
       </p>
@@ -32,32 +26,8 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>{% trans "# Using This" %}</th>
-            <th>{% trans "Development Status" %}</th>
-            <th>{% trans "Name" %}</th>
-            <th>{% trans "Commits" %}</th>
-            <th>{% trans "Version" %}</th>
-          </tr>
-        </thead>
-
-        <tbody>
-        {% for package in packages %}
-          <tr>
-            <td class="usage-container usage-holder">
-                {% usage_button %}                    
-                &nbsp;
-                <span class="usage-count">{{ package.usage_count }}</span>
-            </td>
-            <td>{{ package.last_released.pretty_status }}</td>
-            <td><a href="{% url 'package' package.slug %}">{{ package.title }}</a></td>
-            <td>{{package.commits_over_52}}</td>             
-            <td>{{ package.pypi_version }}</td>
-          </tr>    
-        {% endfor %}        
-        </tbody>
-     </table>
+        {% include 'package/package_table.html' %}
+   </div>
+  </div>
 
 {% endblock %}
