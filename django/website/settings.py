@@ -331,6 +331,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     # Your stuff: custom template context processers go here
     'core.context_processors.core_values',
+    'grid.context_processors.grid_headers',
 )
 
 
