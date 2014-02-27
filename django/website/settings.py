@@ -203,6 +203,11 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 ########## END CRISPY
 
+########## OPENCOMPARISON
+LICENSES = ['MIT', 'BSD License']
+########## END OPENCOMPARISON
+
+
 ########## LOGGING CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # A sample logging configuration. The only tangible logging

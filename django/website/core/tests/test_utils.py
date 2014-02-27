@@ -16,24 +16,3 @@ class SlugifyOC(TestCase):
 
         for l in lst:
             self.assertEquals(utils.oc_slugify(l[0]), l[1])
-
-
-class GetPypiUrl(TestCase):
-
-    def test_get_pypi_url_success(self):
-
-        lst = (
-            ('django', 'http://pypi.python.org/pypi/django'),
-            ('Django Uni Form', 'http://pypi.python.org/pypi/django-uni-form'),
-        )
-        for l in lst:
-            self.assertEquals(utils.get_pypi_url(l[0].lower()), l[1].lower())
-
-    def test_get_pypi_url_fail(self):
-
-        lst = (
-            'ColdFusion is not here',
-            'php is not here'
-        )
-        for l in lst:
-            self.assertEquals(utils.get_pypi_url(l), None)

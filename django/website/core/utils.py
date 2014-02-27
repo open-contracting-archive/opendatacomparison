@@ -15,11 +15,6 @@ def oc_slugify(value):
     return slugify(value)
 
 
-def get_pypi_url(title):
-    # Keeping for compatibility
-    return None
-
-
 STATUS_CHOICES = (
     (0, "Unknown"),
     (1, "Development Status :: 1 - Planning"),

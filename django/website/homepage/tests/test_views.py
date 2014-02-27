@@ -2,11 +2,13 @@ from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.test.client import RequestFactory
 
 from grid.models import Grid
 from homepage.models import Dpotw, Gotw
 from package.models import Package, Category
 
+from homepage.views import error_500_view
 from homepage.tests import data
 
 
@@ -75,5 +77,5 @@ class TestErrorPages(TestCase):
         self.assertEquals(r.status_code, 404)
 
     def test_500_test(self):
-        r = self.client.get("/500")
+        r = error_500_view(RequestFactory())
         self.assertEquals(r.status_code, 500)

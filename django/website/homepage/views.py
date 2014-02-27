@@ -83,6 +83,7 @@ class HomePageView(TemplateView):
             'package_count': package_count})
         return context
 
+
 def error_500_view(request):
     response = render(request, '500.html')
     response.status_code = 500
