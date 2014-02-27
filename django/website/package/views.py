@@ -96,19 +96,6 @@ def edit_package(request, slug, template_name='package/package_form.html'):
         'action': 'edit', })
 
 
-@login_required
-def update_package(request, slug):
-
-    package = get_object_or_404(Package, slug=slug)
-    package.fetch_metadata()
-    package.fetch_commits()
-    messages.add_message(request,
-                         messages.INFO,
-                         'Package updated successfully')
-
-    return HttpResponseRedirect(reverse('package',
-                                        kwargs={'slug': package.slug}))
-
 
 def ajax_package_list(request, template_name="package/ajax_package_list.html"):
     q = request.GET.get("q", "")

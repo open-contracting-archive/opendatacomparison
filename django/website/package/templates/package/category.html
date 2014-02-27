@@ -19,7 +19,7 @@
       <p>{{ category.description }}</p>
       <p>
         {% if user.profile.can_add_package %}
-          <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add package »" %}</a>
+          <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add package" %} »</a>
         {% endif %}
       </p>
     </div>

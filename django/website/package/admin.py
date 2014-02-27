@@ -1,7 +1,7 @@
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 
-from package.models import Category, Package, Version
+from package.models import Category, Package, Version, Format
 
 
 class PackageAdmin(VersionAdmin):
@@ -30,3 +30,4 @@ class PackageExampleAdmin(admin.ModelAdmin):
 admin.site.register(Category, VersionAdmin)
 admin.site.register(Package, PackageAdmin)
 admin.site.register(Version, VersionLocalAdmin)
+admin.site.register(Format)

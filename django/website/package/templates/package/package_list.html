@@ -13,6 +13,11 @@
         <li><a href="{% url 'home' %}">{% trans "home" %}</a></li>
         <li class="active">{% trans 'datasets' %}</li>
     </ol>
+      <p>
+        {% if user.profile.can_add_package %}
+          <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add dataset" %} »</a>
+        {% endif %}
+      </p>
      {% for category in categories %}
         <p><a href="{% url 'category' category.slug %}">{{ category.title }}</a> ({{ category.package_count }}) - {{ category.description }}</p>
 

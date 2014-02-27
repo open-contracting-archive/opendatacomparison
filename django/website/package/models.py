@@ -30,6 +30,19 @@ class Category(BaseModel):
         return self.package_set.count()
 
 
+class Format(BaseModel):
+    title = models.CharField(_('Title'), max_length='100')
+    slug = models.SlugField(
+        _('Slug'),
+        help_text='Enter a valid "slug" consisting of letters, numbers, \
+            underscores or hyphens. Values will be converted to lowercase.',
+        unique=True)
+    description = models.TextField(_('Description'), blank=True)
+
+    def __unicode__(self):
+        return self.title
+
+
 class Package(BaseModel):
     title = models.CharField(_('Title'), max_length='100')
     slug = models.SlugField(
@@ -63,6 +76,12 @@ class Package(BaseModel):
                                         blank=True,
                                         null=True,
                                         default='')
+    ########## Dataset qualities
+    machine_readable = models.BooleanField(
+        _('Machine Readable'),
+        help_text='Is the dataset available in a machine readable, format - json, csv, xml, API',
+        blank=True)
+    formats = models.ManyToManyField(Format)
 
     class Meta:
         verbose_name = 'dataset'
