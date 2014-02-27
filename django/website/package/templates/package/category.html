@@ -13,7 +13,8 @@
     <div class="col-xs-12">
         <ol class="breadcrumb">
             <li><a href="{% url 'home' %}">{% trans "home" %}</a></li>
-            <li class="active">{{ category.title }} ( {{ packages.count }} )</li>
+            <li><a href="{% url 'packages' %}">{% trans "datasets" %}</a></li>
+            <li class="active">category - {{ category.title|lower }} ({{ category.package_count }})</li>
         </ol>
       <p>{{ category.description }}</p>
       <p>

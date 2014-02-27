@@ -5,7 +5,6 @@ from django.conf import settings
 from django.views.generic.base import TemplateView
 
 from homepage.views import HomePageView
-from package.views import CategoryView
 from profiles.views import ProfileRedirectView
 
 admin.autodiscover()
@@ -20,7 +19,6 @@ urlpatterns = patterns('',
     url(r'^grids/', include('grid.urls')),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^publishers/', include('publisher.urls')),
-    url(r'^categories/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='category'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

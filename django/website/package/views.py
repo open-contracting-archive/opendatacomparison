@@ -13,7 +13,6 @@ from django.http import (
 )
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
-from django.views.generic.base import TemplateView
 from django.views.generic import DetailView, ListView
 
 from rest_framework.generics import ListAPIView, RetrieveAPIView
@@ -26,47 +25,31 @@ from .models import Category, Package
 from .utils import quote_plus
 
 
-class CategoryView(TemplateView):
+class CategoryDetailView(DetailView):
     template_name = 'package/category.html'
+    model = Category
+    context_object_name = 'category'
 
     def get_context_data(self, **kwargs):
-        context = super(CategoryView, self).get_context_data(**kwargs)
-        category = get_object_or_404(Category, slug=kwargs.get('slug'))
-        packages = category.package_set.annotate(usage_count=Count('usage'))
-        packages = packages.order_by('title')
-        context.update({'category': category,
-                        'packages': packages})
+        context = super(CategoryDetailView, self).get_context_data(**kwargs)
+        context['packages'] = self.object.package_set.annotate(
+            usage_count=Count('usage')).order_by('title')
         return context
+
+
+class PackageListView(ListView):
+    """
+    We list all the packages by category
+    """
+    model = Category
+    template_name = 'package/package_list.html'
+    context_object_name = 'categories'
 
 
 class PackageDetailView(DetailView):
     template_name = 'package/package.html'
     model = Package
 
-class PackageListView(ListView):
-    model = Package
-def package_list(request, template_name='package/package_list.html'):
-
-    categories = []
-    for category in Category.objects.annotate(package_count=Count('package')):
-        element = {
-            'title': category.title,
-            'description': category.description,
-            'count': category.package_count,
-            'slug': category.slug,
-            'title_plural': category.title_plural,
-            'packages': category.package_set.annotate(usage_count=Count('usage')).order_by('title')[:9]
-        }
-        categories.append(element)
-
-    return render(
-        request,
-        template_name, {
-            'categories': categories,
-            'dpotw': Dpotw.objects.get_current(),
-            'gotw': Gotw.objects.get_current(),
-        }
-    )
 
 
 @login_required

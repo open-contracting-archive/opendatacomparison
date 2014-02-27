@@ -25,6 +25,10 @@ class Category(BaseModel):
     def __unicode__(self):
         return self.title
 
+    @property
+    def package_count(self):
+        return self.package_set.count()
+
 
 class Package(BaseModel):
     title = models.CharField(_('Title'), max_length='100')
