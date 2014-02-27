@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Frequently Asked Questions" %}{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10">
+      <h2>Frequently Asked Questions</h2>
+      
+      <h3>Who maintains this site?</h3>
+      
+      <p>This site is in BETA (meaning its evolving a lot at the moment) and is being run by Sarah Bird as part of the 
+      <a href="http://open-contracting.github.io">Open Contracting Data Standards project</a></p>
+
+      <h3>What's with the random references to packages, django, and other things?</h3>
+      <p>This site was built by adapting <a href="http://www.opencomparison.org">Open Comparison</a>. Open Comparison is a software
+      that is used to compare software packages, but had features that we could use to compare Open Contracting datasets. Please 
+      do <a href="http://open-contracting.github.io/pages/community.html">let us know</a> if you see a problem like this and we'll fix it.</p>
+
+      <p>Many thanks to the awesome Danny and Audrey and other contributors for creating Open Comparison. See more: <a href="http://opencomparison.readthedocs.org/en/latest/contributors.html">here</a></p>
+    
+      <h3>What are grids?</h3>
+
+      <p><a href="/grids/">Grids</a> let you compare datasets to each other. A grid comes with a number of default items compared,
+          but you can add more features in order to get a more specific comparison.</p>
+  
+      <h3>What about RSS & Atom Syndication?</h3>
+
+      <p>The <a href="{% url 'syndication' %}">Syndication page</a> has more details.</p>
+
+      <h3>How can I contribute?</h3>
+      <p>This is an open source project, and we appreciate <a href="http://open-contracting.github.io/pages/community.html">all sorts of contributions</a>.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

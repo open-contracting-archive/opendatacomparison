@@ -118,12 +118,19 @@ DJANGO_APPS = (
 )
 THIRD_PARTY_APPS = (
     'south',  # Database migration helpers:
+    'reversion',
+    'floppyforms',
+    'crispy_forms',
     #
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    # Your stuff: custom apps go here
+    'homepage',
+    'grid',
+    'package',
+    'core',
+    'profiles',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -192,6 +199,9 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 #AUTOSLUG_SLUGIFY_FUNCTION = "slugify.slugify"
 ########## END SLUGLIFIER
 
+########## CRISPY
+CRISPY_TEMPLATE_PACK = "bootstrap3"
+########## END CRISPY
 
 ########## LOGGING CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging

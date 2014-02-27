@@ -1,7 +1,25 @@
 {% extends "base.html" %}
-{% load i18n %}
-{% block title %}{% trans "Page not found" %} - {{ block.super }}{% endblock %}
 
-{% block content %}
-{% trans "The page you are looking for does not appear to exist on this site." %}
-{% endblock content %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Not Found" %}{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-12">
+    <h2>{% trans "Not Found" %}</h2>
+
+    <p>
+    {% trans "We can't find it!  Oh no!  The page isn't here!" %}
+    </p>
+
+    <p>
+   {% trans "If it's our fault, would you please do us a favor and" %} <a href="http://github.com/opencomparison/opencomparison/issues">{% trans "create a ticket?" %}</a></div>
+    </p>            
+
+    <img src="{{ STATIC_URL }}img/logo_501x316.png" />
+
+  </div>        
+</div>
+    
+{% endblock %}
