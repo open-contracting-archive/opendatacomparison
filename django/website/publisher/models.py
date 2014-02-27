@@ -15,4 +15,4 @@ class Publisher(BaseModel):
     url = models.URLField(_('website'), blank=True)
 
     def __unicode__(self):
-        return self.name
+        return '%s - %s' % (self.country, self.name)

@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
-from django.db.models import Count
+from django.db.models import Q, Count
 from django.http import (
     HttpResponseRedirect,
     HttpResponse,
@@ -16,8 +16,6 @@ from django.utils import timezone
 from django.views.generic import DetailView, ListView
 
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-
-from homepage.models import Dpotw, Gotw
 
 from .forms import PackageForm, DocumentationForm
 from .models import Category, Package
@@ -49,7 +47,6 @@ class PackageListView(ListView):
 class PackageDetailView(DetailView):
     template_name = 'package/package.html'
     model = Package
-
 
 
 @login_required
@@ -112,6 +109,47 @@ def update_package(request, slug):
     return HttpResponseRedirect(reverse('package',
                                         kwargs={'slug': package.slug}))
 
+
+def ajax_package_list(request, template_name="package/ajax_package_list.html"):
+    q = request.GET.get("q", "")
+    packages = []
+    if q:
+        _dash = "%s-%s" % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
+        _space = "%s %s" % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
+        _underscore = '%s_%s' % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
+        packages = Package.objects.filter(
+                        Q(title__istartswith=q) |
+                        Q(title__istartswith=_dash) |
+                        Q(title__istartswith=_space) |
+                        Q(title__istartswith=_underscore)
+                    )
+
+    packages_already_added_list = []
+    grid_slug = request.GET.get("grid", "")
+    if packages and grid_slug:
+        grids = Grid.objects.filter(slug=grid_slug)
+        if grids:
+            grid = grids[0]
+            packages_already_added_list = [x['slug'] for x in grid.packages.all().values('slug')]
+            new_packages = tuple(packages.exclude(slug__in=packages_already_added_list))[:20]
+            number_of_packages = len(new_packages)
+            if number_of_packages < 20:
+                try:
+                    old_packages = packages.filter(slug__in=packages_already_added_list)[:20 - number_of_packages]
+                except AssertionError:
+                    old_packages = None
+
+                if old_packages:
+                    old_packages = tuple(old_packages)
+                    packages = new_packages + old_packages
+            else:
+                packages = new_packages
+
+    return render(request, template_name, {
+        "packages": packages,
+        'packages_already_added_list': packages_already_added_list,
+        }
+    )
 
 def usage(request, slug, action):
     success = False

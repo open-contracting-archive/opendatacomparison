@@ -5,6 +5,7 @@ from package.models import Package
 from package.views import (
     add_package,
     edit_package,
+    ajax_package_list,
     update_package,
     usage,
     post_data,
@@ -31,4 +32,5 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/post-data/$', view=post_data, name='post_package_data',),
     url(r'^usage/(?P<slug>[-\w]+)/(?P<action>add|remove)/$', view=usage, name='usage',),
     url(r'^(?P<slug>[-\w]+)/document/$', view=edit_documentation, name='edit_documentation',),
+    url(r'^ajax_package_list/$', view=ajax_package_list, name='ajax_package_list',),
 )

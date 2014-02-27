@@ -6,8 +6,8 @@ from package.models import Category, Package
 def package_help_text():
     help_text = ""
     for category in Category.objects.all():
-        help_text += """<li><strong>{title_plural}</strong> {description}</li>""".format(
-                        title_plural=category.title_plural,
+        help_text += """<li><strong>{title}</strong> -  {description}</li>""".format(
+                        title=category.title,
                         description=category.description
                         )
     help_text = "<ul>{0}</ul>".format(help_text)
@@ -20,16 +20,13 @@ class PackageForm(ModelForm):
             super(PackageForm, self).__init__(*args, **kwargs)
             self.fields['category'].help_text = package_help_text()
             self.fields['url'].required = True
-            self.fields['url'].widget = TextInput(attrs={
-                'placeholder': 'ex: https://github.com/django/django'
-            })
 
     def clean_slug(self):
         return self.cleaned_data['slug'].lower()
 
     class Meta:
         model = Package
-        fields = ['url', 'title', 'slug', 'category', ]
+        fields = ['url', 'title', 'slug', 'category', 'publisher', ]
 
 
 class DocumentationForm(ModelForm):
