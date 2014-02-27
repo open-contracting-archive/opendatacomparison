@@ -30,8 +30,7 @@ class CategoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CategoryDetailView, self).get_context_data(**kwargs)
-        context['packages'] = self.object.package_set.annotate(
-            usage_count=Count('usage')).order_by('title')
+        context['packages'] = self.object.packages.order_by('title')
         return context
 
 

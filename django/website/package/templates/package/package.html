@@ -39,6 +39,12 @@
 
             <dt>{% trans "Link" %}</dt>
             <dd>{{ package.url|urlizetrunc:40 }}</dd>
+
+            <dt>{% trans "Machine Readable?" %}</dt>
+            <dd>{{ package.machine_readable|yesno|capfirst }}</dd>
+
+            <dt>{% trans "Formats" %}</dt>
+            <dd>{% for format in package.formats.all %}{{ format.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
         </dl>
     </div>
     <!-- end Description panel -->

@@ -50,7 +50,7 @@ class Package(BaseModel):
         help_text='Enter a valid "slug" consisting of letters, numbers, \
             underscores or hyphens. Values will be converted to lowercase.',
         unique=True)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, related_name='packages')
     description = models.TextField(_('Description'), blank=True)
     url = models.URLField(
         _('Link'),
@@ -90,8 +90,17 @@ class Package(BaseModel):
     def get_usage_count(self):
         return self.usage.count()
 
+    @property
+    def usage_count(self):
+        return self.usage.count()
+
     def __unicode__(self):
         return self.title
+
+    def grid_clear_detail_template_cache(self):
+        grids = (x.grid for x in self.gridpackage_set.all())
+        for grid in grids:
+            grid.clear_detail_template_cache()
 
     @models.permalink
     def get_absolute_url(self):

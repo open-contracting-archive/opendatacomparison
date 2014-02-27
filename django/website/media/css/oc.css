@@ -241,3 +241,7 @@ h3, .h3 {
 .widget-multi-select.betterselectmultiple.form-control {
     margin: 10px 0;
 }
+
+dt, dd {
+    line-height: 1.8;
+}
