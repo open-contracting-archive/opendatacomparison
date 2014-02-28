@@ -12,7 +12,7 @@ project_name = "opendatacomparison"
 
 # The django apps that are part of this project - used for running tests
 # and migrations
-django_apps = ['project_app1', 'project_app2']
+django_apps = ['core', 'grid', 'homepage', 'package', 'profiles', 'publisher', 'reversion']
 
 # repository type can be "cvs", "svn" or "git"
 #repo_type = "svn"
