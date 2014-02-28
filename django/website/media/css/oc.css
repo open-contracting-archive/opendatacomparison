@@ -245,3 +245,8 @@ h3, .h3 {
 dt, dd {
     line-height: 1.8;
 }
+
+.description {
+    line-height: 1.25;
+}
+
