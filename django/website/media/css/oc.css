@@ -120,6 +120,11 @@
     border-top: 1px solid #eee;
     background-color: #F8F8F8;
     border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.rotatingnav-control .icon-prev, .rotatingnav-control .icon-next {
+    margin-top: -22px;
 }
 
 /**

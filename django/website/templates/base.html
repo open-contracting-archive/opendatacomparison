@@ -72,7 +72,6 @@
 
 <div id="myrotatingnav" class="rotatingnav slide">
   <div class="rotatingnav-inner">
-          <br />
   {% for grid_chunk in grid_headers %}
     <div class="item">
       {% for tab in grid_chunk %}
@@ -80,22 +79,17 @@
               <a href="{% url 'grid' tab.slug %}" title="{{ tab.description }}">{{ tab.title|truncatechars:"17" }}</a><br />
           {% endif %}
           {% if forloop.parentloop.last and forloop.last %}
-          {% comment %} We don't really need this at the moment
-          <a class="gridnav-name" href="{% url 'grids' %}">{% trans "&raquo; more grids..." %}</a>
-          {% endcomment %}
-          <br />
+          <a class="gridnav-name" href="{% url 'grids' %}">{% trans "&raquo; all grids..." %}</a>
           {% endif %}
       {% endfor %}
     </div>
   {% endfor %}
-  
   <a class="left rotatingnav-control">
     <span class="icon-prev"></span>
   </a>
   <a class="right rotatingnav-control">
     <span class="icon-next"></span>
   </a>
-  
   </div>
 </div>
 
