@@ -35,7 +35,7 @@
             <dd> {{ package.usage.count }} &nbsp; {% with package as package %} {% usage_button %} {% endwith %} </dd>
 
             <dt>{% trans "Publisher" %}</dt>
-            <dd><a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a> ({{ package.publisher.country.name }})</dd>
+            <dd>{% if package.publisher %}<a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a> ({{ package.publisher.country.name }}){% endif %}</dd>
 
             <dt>{% trans "Link" %}</dt>
             <dd>{{ package.url|urlizetrunc:40 }}</dd>

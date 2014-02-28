@@ -82,6 +82,15 @@ class Package(BaseModel):
         help_text='Is the dataset available in a machine readable, format - json, csv, xml, API',
         blank=True)
     formats = models.ManyToManyField(Format)
+    nesting_depth = models.IntegerField(
+        _('Nesting Depth'),
+        help_text='How deep is the nesting of the data?',
+        blank=True,
+        null=True)
+    nesting = models.TextField(
+        _('Nesting Description'),
+        help_text='Is the data flat or nested, or available as both? Other nesting notes.',
+        blank=True)
 
     class Meta:
         verbose_name = 'dataset'

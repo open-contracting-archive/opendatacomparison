@@ -1,11 +1,10 @@
-"""views for the :mod:`grid` app"""
-
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.db.models import Count
 from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render
+from django.views.generic import DetailView
 
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
@@ -13,6 +12,32 @@ from grid.forms import ElementForm, FeatureForm, GridForm, GridPackageForm
 from grid.models import Element, Feature, Grid, GridPackage
 from package.models import Package
 from package.forms import PackageForm
+
+
+class GridDetailView(DetailView):
+    model = Grid
+
+    def get_context_data(self, **kwargs):
+        context = super(GridDetailView, self).get_context_data()
+        features = kwargs.get('object').feature_set.select_related()
+        grid_packages = kwargs.get('object').grid_packages.order_by("-package__title")
+        elements = Element.objects.filter(feature__in=features,
+                                          grid_package__in=grid_packages)
+        element_map = build_element_map(elements)
+        # These attributes are how we determine what is displayed in the grid
+        default_attributes = [('description', 'Description'),
+                              ('category', 'Category'),
+                              ('url', 'Link'),
+                              ('publisher', 'Publisher'),
+                              ('machine_readable', 'Machine Readable'),
+                              ('format', 'Formats'),
+                              ('nesting', 'Nesting'),
+                              ('nesting_depth', 'Nesting Depth')]
+        context.update({'features': features,
+                        'grid_packages': grid_packages,
+                        'attributes': default_attributes,
+                        'elements': element_map})
+        return context
 
 
 def build_element_map(elements):
@@ -320,43 +345,6 @@ def ajax_grid_list(request, template_name="grid/ajax_grid_list.html"):
     return render(request, template_name, {'grids': grids})
 
 
-def grid_detail(request, slug, template_name="grid/grid_detail.html"):
-    """displays a grid in detail
-
-    Template context:
-
-    * ``grid`` - the grid object
-    * ``elements`` - elements of the grid
-    * ``features`` - feature set used in the grid
-    * ``grid_packages`` - packages involved in the current grid
-    """
-    grid = get_object_or_404(Grid, slug=slug)
-    features = grid.feature_set.select_related()
-
-    grid_packages = grid.grid_packages.order_by("-package__title")
-
-    elements = Element.objects.filter(feature__in=features,
-                                      grid_package__in=grid_packages)
-
-    element_map = build_element_map(elements)
-
-    # These attributes are how we determine what is displayed in the grid
-    default_attributes = [('repo_description', 'Description'),
-                          ('category', 'Category'),
-                          ('last_updated', 'Last Updated'),
-                          ('pypi_version', 'Version'),
-                          ('repo', 'Repo'),
-                          ('commits_over_52', 'Commits'),
-                          ('participant_list', 'Participants'),
-                          ('license_latest', 'License')]
-
-    return render(request,
-                  template_name,
-                  {'grid': grid,
-                   'features': features,
-                   'grid_packages': grid_packages,
-                   'attributes': default_attributes,
-                   'elements': element_map, })
 
 
 class GridListAPIView(ListAPIView):

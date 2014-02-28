@@ -14,7 +14,7 @@
 {% for package in packages %}
     <tr>
     <td><a href="{% url 'package' package.slug %}">{{ package.title }}</a></td>
-    <td><a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a></td>
+    <td>{% if package.publisher %}<a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a>{% endif %}</td>
     <td class="usage-container usage-holder"> {% usage_button %} &nbsp; <span class="usage-count">{{ package.usage_count }}</span> </td>
     </tr>
 {% endfor %}
