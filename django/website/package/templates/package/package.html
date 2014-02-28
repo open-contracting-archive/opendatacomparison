@@ -10,6 +10,7 @@
   <meta name="description" content="{{ package.description }}" />
   <meta name="keywords" content="{{ package.grid_set.all|join:',' }}" />
   {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/xmltree.css" />
 {% endblock %}
 
 {% block body %}
@@ -90,14 +91,21 @@
     </div>
     <!-- end Grids panel -->
 
-  </div> <!-- end six column section -->
-</div>    <!-- end twelve_column section -->
+  </div> <!-- end column section -->
+</div>    <!-- end row section -->
+<div clas="row">
+<p>Looking for something specific ?
+<input type="text" id="search_input" tabindex="-1" ></p>
+</span>
+<div id="xmltree"></div>
+</div>
 {% endblock %}
 
 {% block javascript %}
   {{ block.super }}
   <script src="{{ STATIC_URL }}js/underscore.js" type="text/javascript"></script>
   <script src="{{ STATIC_URL }}js/gh3.js" type="text/javascript"></script>
+  <script src="{{ STATIC_URL }}js/xmltree.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block extra_body %}
@@ -129,5 +137,60 @@
         });
 
     });
+
+
+$(document).ready(function() {
+if ($('#xmltree').length > 0)
+{
+  $(function() { 
+    
+      var fpath = '{{ STATIC_URL }}xml/fields.xml';
+
+      new XMLTree({fpath: fpath, container: '#xmltree', startExpanded: true,
+      }); 
+  
+      //alert ($('ul[class="xmltree startExpanded"]').length)
+      $('ul[class="xmltree startExpanded"]').prop('id','xmltree');
+  });
+      
+  jQuery.expr[':'].Contains = function(a,i,m){
+      return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+  };
+
+  //scroll to first child when filtering
+  var container = $('body');
+        
+  $('#search_input').focus().keyup(function(e){
+      var filter = $(this).val();
+      if (filter) {
+        $('#xmltree').find("li:not(:Contains(" + filter + "))").parent().hide();
+        $('#xmltree').find("li:Contains(" + filter + ")").parent().show();
+        $("#xmltree").find("li:Contains(" + filter + ")").children().show();
+        $('#xmltree').highlight(filter);
+        
+        //scroll to first child when filtering
+        var container = $('body');
+        var scrollTo = $('#xmltree').children().find("li:Contains(" + filter + ")").first();
+        
+        console.log(scrollTo);
+        container.scrollTop(
+              scrollTo.offset().top - container.offset().top + container.scrollTop()
+          );
+        //scroll to first child when filtering- ends
+      }
+      else {
+        container.offset().top = 0;
+        $('#xmltree').find("li").children().slideDown();
+        $('#xmltree').unhighlight();
+      }
+    });
+    
+    $('#search_input').focus().keydown(function(e){
+        $('#xmltree').unhighlight();
+    });
+ }
+});
+
+
 </script>
 {% endblock %}

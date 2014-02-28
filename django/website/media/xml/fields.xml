@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-dictionary><tpsgc-pwgsc_co-ch>
+ <field>
+  <heading>amendment-number</heading>
+  <description xml:lang="en">Amendment Number: The number of amendments against a contract.</description>
+  <description xml:lang="fr">Numéro de la modification : le nombre de modifications apportées à un contrat.</description>
+ </field>
+ <field>
+  <heading>award-date</heading>
+  <description xml:lang="en">Contract Award Date: Date on which a contract came into effect.</description>
+  <description xml:lang="fr">Date d'attribution du contrat : la date à laquelle un contrat est entré en vigueur.</description>
+ </field>
+ <field>
+  <heading>competitive-tender</heading>
+  <description xml:lang="en">Competitive Tender: Indicates whether a contract was awarded by a competitive (Yes) or non-competitive (No) solicitation process.</description>
+  <description xml:lang="fr">Appel d'offres concurrentiel : indique si le contrat a été attribué dans le cadre d'un processus de demandes de soumissions concurrentiel (Oui) ou non concurrentiel (Non).</description>
+ </field>
+ <field>
+  <heading>contracting-entity-office-name_en</heading>
+  <description xml:lang="en">End User Office Name: The name of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Nom du bureau d'utilisateur final : il s'agit du nom de l'entité du gouvernement du Canada qui est l'entité contractante (l'organisation du gouvernement qui achète les biens ou services par l'entremise d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>contracting-entity-office-name_fr</heading>
+  <description xml:lang="en">End User Office Name: The name of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Nom du bureau d'utilisateur final : il s'agit du nom de l'entité du gouvernement du Canada qui est l'entité contractante (l'organisation du gouvernement qui achète les biens ou services par l'entremise d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>contract-number</heading>
+  <description xml:lang="en">Contract Number: A unique identifier assigned to a contract.</description>
+  <description xml:lang="fr">Numéro du contrat : un identificateur unique attribué à un contrat.</description>
+ </field>
+ <field>
+  <heading>contract-value</heading>
+  <description xml:lang="en">Contract Value: Specifies the monetary value of the contract.</description>
+  <description xml:lang="fr">Valeur du contrat : précise la valeur monétaire du contrat.</description>
+ </field>
+ <field>
+  <heading>expiry-date</heading>
+  <description xml:lang="en">Contract Expiry Date: Date on which a contract legally expired.</description>
+  <description xml:lang="fr">Date d'expiration du contrat : la date à laquelle un contrat est expiré sur le plan légal.</description>
+ </field>
+ <field>
+  <heading>gsin</heading>
+  <description xml:lang="en">GSIN Code: Code used by the federal government to identify generic product descriptions for its procurement activities.</description>
+  <description xml:lang="fr">Code NIBS : code utilisé par le gouvernement fédéral pour identifier les descriptions de produits génériques aux fins de ses activités d'achat.</description>
+ </field>
+ <field>
+  <heading>gsin-description_en</heading>
+  <description xml:lang="en">GSIN description: The description of the good or service that corresponds to the Goods and Services Identification Number (GSIN).</description>
+  <description xml:lang="fr">Descriptif du NIBS : la description du bien ou du service correspondant au numéro d'identification de biens et services (NIBS).</description>
+ </field>
+ <field>
+  <heading>gsin-description_fr</heading>
+  <description xml:lang="en">GSIN description: The description of the good or service that corresponds to the Goods and Services Identification Number (GSIN).</description>
+  <description xml:lang="fr">Descriptif du NIBS : la description du bien ou du service correspondant au numéro d'identification de biens et services (NIBS).</description>
+ </field>
+ <field>
+  <heading>limited-tender-reason</heading>
+  <description xml:lang="en">Limited Tender Reason Code: Specifies the code for the reason for a given contract not being awarded through competitive solicitation.</description>
+  <description xml:lang="fr">Code de la raison de l'appel d'offres restreint : précise le code de la raison pour laquelle un contrat donné n'a pas été attribué par voie concurrentielle.</description>
+ </field>
+ <field>
+  <heading>number-records</heading>
+  <description xml:lang="en">Number of Records: The total number of records, including the original contract and any of the subsequent amendments.</description>
+  <description xml:lang="fr">Nombre de dossiers : le nombre total de dossiers, y compris le contrat original, ainsi que de toute modification ultérieure.</description>
+ </field>
+ <field>
+  <heading>procurement-entity-name_en</heading>
+  <description xml:lang="en">Procurement Entity Name: The name of the Government of Canada organization that was primarily responsible for conducting a given procurement. The procurement entity may not be the organization that is purchasing items through a given contract.</description>
+  <description xml:lang="fr">Nom de l'entité responsable des achats : le nom de l'organisation du gouvernement du Canada qui était principalement responsable de réaliser un achat donné. L'entité responsable des achats n'est pas nécessairement celle qui achète des articles par l'entremise d'un contrat donné.</description>
+ </field>
+ <field>
+  <heading>procurement-entity-name_fr</heading>
+  <description xml:lang="en">Procurement Entity Name: The name of the Government of Canada organization that was primarily responsible for conducting a given procurement. The procurement entity may not be the organization that is purchasing items through a given contract.</description>
+  <description xml:lang="fr">Nom de l'entité responsable des achats : le nom de l'organisation du gouvernement du Canada qui était principalement responsable de réaliser un achat donné. L'entité responsable des achats n'est pas nécessairement celle qui achète des articles par l'entremise d'un contrat donné.</description>
+ </field>
+ <field>
+  <heading>solicitation-procedure</heading>
+  <description xml:lang="en">Solicitation Method Code: Specifies the code for the solicitation method.</description>
+  <description xml:lang="fr">Code de la méthode d'avis d'appel d'offre : précise le code de la méthode de la demande de soumissions.</description>
+ </field>
+ <field>
+  <heading>supplier-legal-name</heading>
+  <description xml:lang="en">Supplier Legal Name: Legal registered name of a business entity that is also a supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Dénomination sociale du fournisseur : dénomination sociale enregistrée d'une entité commerciale qui est également un fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>supplier-operating-name</heading>
+  <description xml:lang="en">Supplier Operating Name: Name(s) a business entity normally uses when conducting business as a supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Nom commercial du fournisseur : le nom qu'une entité commerciale utilise habituellement lorsqu'elle réalise des affaires à titre de fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>supplier-standardized-name</heading>
+  <description xml:lang="en">Supplier Standardized Name: A supplier name used to simplify search results by grouping together closely related suppliers that conduct business using different operating or legal names. The resulting search records will contain the suppliers' legal and operating names.</description>
+  <description xml:lang="fr">Nom normalisé du fournisseur : un nom du fournisseur utilisé pour simplifier les résultats de recherche en regroupant les fournisseurs étroitement liés qui font des affaires sous différents noms commerciaux ou dénominations sociales. Les dossiers de recherche subséquents contiendront les dénominations sociales ou noms commerciaux des fournisseurs.</description>
+ </field>
+ <field>
+  <heading>trade-agreement</heading>
+  <description xml:lang="en">Trade Agreement Code: Specifies the trade agreement code applicable to the contract.</description>
+  <description xml:lang="fr">Code de l'accord commercial : précise le code de l'accord commercial qui s'applique au contrat.</description>
+ </field>
+ <field>
+  <heading>contracting-address-city</heading>
+  <description xml:lang="en">End User Entity City: The city of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Adresse, ville d'utilisateur final : la ville de résidence de l'entité du gouvernement du Canada, soit l'entité contractante (l'organisation gouvernementale qui achète les biens et(ou) les services par le biais d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>contracting-address-country</heading>
+  <description xml:lang="en">End User Entity Country: The country of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Adresse, pays d'utilisateur final : le pays de résidence de l'entité du gouvernement du Canada, soit l'entité contractante (l'organisation gouvernementale qui achète les biens et(ou) les services par le biais d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>contracting-address-postal-code</heading>
+  <description xml:lang="en">End User Entity Postal Code: The postal code of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Adresse, code postal d'utilisateur final : le code postal de l'entité du gouvernement du Canada, soit l'entité contractante (l'organisation gouvernementale qui achète les biens et(ou) les services par le biais d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>contracting-address-prov-state</heading>
+  <description xml:lang="en">End User Entity Province/State: The province of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Adresse, province ou état d'utilisateur final : la province de résidence de l'entité du gouvernement du Canada, soit l'entité contractante (l'organisation gouvernementale qui achète les biens et(ou) les services par le biais d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>contracting-address-street-1</heading>
+  <description xml:lang="en">End User Entity Address: The street address of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Adresse d'utilisateur final : l'adresse civique de l'entité du gouvernement du Canada, soit l'entité contractante (l'organisation gouvernementale qui achète les biens et(ou) les services par le biais d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>contracting-address-street-2</heading>
+  <description xml:lang="en">End User Entity Address: The street address of the Government of Canada entity that is the contracting entity (the government organization that is procuring goods/services through a given contract).</description>
+  <description xml:lang="fr">Adresse d'utilisateur final : l'adresse civique de l'entité du gouvernement du Canada, soit l'entité contractante (l'organisation gouvernementale qui achète les biens et(ou) les services par le biais d'un contrat donné).</description>
+ </field>
+ <field>
+  <heading>end-user-entity_en</heading>
+  <description xml:lang="en">End User Name: The end user identifies the entity (e.g. client department, agency, Crown corporation) on whose behalf the contract has been put in place.</description>
+  <description xml:lang="fr">Nom d'utilisateur final : identifie l'entité (c.-à-d. le ministère client, l'organisme, société d'État) au nom de laquelle un contrat a été établi.</description>
+ </field>
+ <field>
+  <heading>end-user-entity_fr</heading>
+  <description xml:lang="en">End User Name: The end user identifies the entity (e.g. client department, agency, Crown corporation) on whose behalf the contract has been put in place.</description>
+  <description xml:lang="fr">Nom d'utilisateur final : identifie l'entité (c.-à-d. le ministère client, l'organisme, société d'État) au nom de laquelle un contrat a été établi.</description>
+ </field>
+ <field>
+  <heading>limited-tender-reason-description_en</heading>
+  <description xml:lang="en">Limited Tender Reason Description: Specifies a reason for a given contract not being awarded through competitive solicitation.</description>
+  <description xml:lang="fr">Description de la raison de l'appel d'offres restreint : précise la raison pour laquelle un contrat donné n'a pas été attribué par voie concurrentielle.</description>
+ </field>
+ <field>
+  <heading>limited-tender-reason-description_fr</heading>
+  <description xml:lang="en">Limited Tender Reason Description: Specifies a reason for a given contract not being awarded through competitive solicitation.</description>
+  <description xml:lang="fr">Description de la raison de l'appel d'offres restreint : précise la raison pour laquelle un contrat donné n'a pas été attribué par voie concurrentielle.</description>
+ </field>
+ <field>
+  <heading>organization-employee-count_en</heading>
+  <description xml:lang="en">Organization Employee Count: The number of employees of the supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Nombre de employés de l'organisation : le nombre d'employés du fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>organization-employee-count_fr</heading>
+  <description xml:lang="en">Organization Employee Count: The number of employees of the supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Nombre de employés de l'organisation : le nombre d'employés du fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>solicitation-procedure-description_en</heading>
+  <description xml:lang="en">Solicitation Method: Specifies the solicitation method used as a precursor to contract award.</description>
+  <description xml:lang="fr">Méthode de sollicitation : indique la méthode de demande de soumissions utilisée comme précurseur de l'attribution du contrat.</description>
+ </field>
+ <field>
+  <heading>solicitation-procedure-description_fr</heading>
+  <description xml:lang="en">Solicitation Method: Specifies the solicitation method used as a precursor to contract award.</description>
+  <description xml:lang="fr">Méthode de sollicitation : indique la méthode de demande de soumissions utilisée comme précurseur de l'attribution du contrat.</description>
+ </field>
+ <field>
+  <heading>supplier-address-city</heading>
+  <description xml:lang="en">Supplier Address City:  The city of the supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Adresse, ville du fournisseur : la ville de résidence du fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>supplier-address-country</heading>
+  <description xml:lang="en">Supplier Address Country: The country of the supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Adresse, pays du fournisseur : le pays de résidence du fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>supplier-address-postal-code</heading>
+  <description xml:lang="en">Supplier Address Postal Code: The postal code of the supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Adresse, code postal du fournisseur : le code postal du fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>supplier-address-prov-state</heading>
+  <description xml:lang="en">Supplier Address Province/State: The province or the state of the supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Adresse, province ou état du fournisseur : la province ou l'état de résidence du fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>total-contract-value</heading>
+  <description xml:lang="en">Contract Value: Specifies the cumulative monetary value of the contract.</description>
+  <description xml:lang="fr">Valeur du contrat : précise la valeur monétaire cumulative du contrat.</description>
+ </field>
+ <field>
+  <heading>trade-agreement-description_en</heading>
+  <description xml:lang="en">Trade Agreement: Specifies the trade agreement applicable to the contract.</description>
+  <description xml:lang="fr">Accord commercial : précise l'accord commercial qui s'applique au contrat.</description>
+ </field>
+ <field>
+  <heading>trade-agreement-description_fr</heading>
+  <description xml:lang="en">Trade Agreement: Specifies the trade agreement applicable to the contract.</description>
+  <description xml:lang="fr">Accord commercial : précise l'accord commercial qui s'applique au contrat.</description>
+ </field>
+</tpsgc-pwgsc_co-ch>
+<tpsgc-pwgsc_ocama-sosa>
+ <field>
+  <heading>agreement-number</heading>
+  <description xml:lang="en">Agreement Number: The standing offer or supply arrangement number. It is a unique identifier for each standing offer or supply arrangement.</description>
+  <description xml:lang="fr">Numéro d'accord : le numéro d'une offre à commandes ou d'un arrangement en matière d'approvisionnement. Il s'agit d'un code d'identification unique d'une offre à commandes ou d'un arrangement en matière d'approvisionnement.</description>
+ </field>
+ <field>
+  <heading>agreement-type_en</heading>
+  <description xml:lang="en">Agreement Type: The type of agreement, either a supply arrangement or one of the following standing offer types: National Master Standing Offer (NMSO), Departmental Individual Standing Offer (DISO), Regional Individual Standing Offer (RISO), Regional Master Standing Offer</description>
+  <description xml:lang="fr">Type d'accord : il s'agit d'un arrangement en matière d'approvisionnement ou de l'un des types d'offres à commandes suivantes : offre à commandes principale et nationale (OCPN), offre à commandes individuelle et ministérielle (OCIM), offre à commandes individuelle et régionale (OCIR), offre à commandes principale et régionale (OCPR), offre à commandes individuelle et nationale (OCIN).</description>
+ </field>
+ <field>
+  <heading>agreement-type_fr</heading>
+  <description xml:lang="en">Agreement Type: The type of agreement, either a supply arrangement or one of the following standing offer types: National Master Standing Offer (NMSO), Departmental Individual Standing Offer (DISO), Regional Individual Standing Offer (RISO), Regional Master Standing Offer</description>
+  <description xml:lang="fr">Type d'accord : il s'agit d'un arrangement en matière d'approvisionnement ou de l'un des types d'offres à commandes suivantes : offre à commandes principale et nationale (OCPN), offre à commandes individuelle et ministérielle (OCIM), offre à commandes individuelle et régionale (OCIR), offre à commandes principale et régionale (OCPR), offre à commandes individuelle et nationale (OCIN).</description>
+ </field>
+ <field>
+  <heading>delivery-point_en</heading>
+  <description xml:lang="en">Delivery Point: The geographic coverage of the standing offer or supply arrangement, which may be subject to certain delivery terms and conditions specified in the agreement, such as sub-regional delivery points, and Comprehensive Land Claim Agreements (CLCA).</description>
+  <description xml:lang="fr">Point de livraison : la couverture géographique d'une offre à commandes ou d'un arrangement en matière d'approvisionnement qui pourrait être assujettie à certaines modalités de livraison prévues au contrat, comme les points de livraison infrarégionaux, et aux ententes sur les revendications territoriales globales (ERTG).</description>
+ </field>
+ <field>
+  <heading>delivery-point_fr</heading>
+  <description xml:lang="en">Delivery Point: The geographic coverage of the standing offer or supply arrangement, which may be subject to certain delivery terms and conditions specified in the agreement, such as sub-regional delivery points, and Comprehensive Land Claim Agreements (CLCA).</description>
+  <description xml:lang="fr">Point de livraison : la couverture géographique d'une offre à commandes ou d'un arrangement en matière d'approvisionnement qui pourrait être assujettie à certaines modalités de livraison prévues au contrat, comme les points de livraison infrarégionaux, et aux ententes sur les revendications territoriales globales (ERTG).</description>
+ </field>
+ <field>
+  <heading>delivery-point-code</heading>
+  <description xml:lang="en">Delivery Point Code: A geographic code used to identify Canadian provinces and territories as defined in the International Organization for Standardization (ISO) 3166-2. Please note that the following three codes are not found in the ISO 3166-2:
+
+FD
+Foreign
+NA
+National - Canada
+NC
+National Capital</description>
+  <description xml:lang="fr">Code du point de livraison : un code géographique utilisé pour désigner les provinces et les territoires du Canada, tel que défini dans la norme 3166-2 de l'Organisation internationale de normalisation (ISO). Veuillez noter que les trois codes suivants ne figurent pas dans la norme ISO 3166-2 :
+
+FD
+Étranger
+NA
+National - Canada
+NC
+Capitale nationale</description>
+ </field>
+ <field>
+  <heading>expiry-date</heading>
+  <description xml:lang="en">End Date: The end date of a standing offer or supply arrangement.</description>
+  <description xml:lang="fr">Date de fin : la date de fin d'une offre à commandes ou d'un arrangement en matière d'approvisionnement.</description>
+ </field>
+ <field>
+  <heading>end-user-entity_en</heading>
+  <description xml:lang="en">End User: The end user identifies the entity (e.g. client department, agency, Crown corporation) on whose behalf the standing offer or supply arrangement has been put in place.</description>
+  <description xml:lang="fr">Utilisateur final : l'utilisateur final est l'entité (p. ex., le ministère client, l'organisme, la Société d'État) au nom de laquelle l'offre à commandes ou l'arrangement en matière d'approvisionnement a été établi.</description>
+ </field>
+ <field>
+  <heading>end-user-entity_fr</heading>
+  <description xml:lang="en">End User: The end user identifies the entity (e.g. client department, agency, Crown corporation) on whose behalf the standing offer or supply arrangement has been put in place.</description>
+  <description xml:lang="fr">Utilisateur final : l'utilisateur final est l'entité (p. ex., le ministère client, l'organisme, la Société d'État) au nom de laquelle l'offre à commandes ou l'arrangement en matière d'approvisionnement a été établi.</description>
+ </field>
+ <field>
+  <heading>gsin</heading>
+  <description xml:lang="en">GSIN Code: Code used by the federal government to identify generic product descriptions for its procurement activities.</description>
+  <description xml:lang="fr">Code NIBS : code utilisé par le gouvernement fédéral pour identifier les descriptions de produits génériques aux fins de ses activités d'achat.</description>
+ </field>
+ <field>
+  <heading>gsin-description_en</heading>
+  <description xml:lang="en">GSIN Description: The description of the good or service that corresponds to the Goods and Services Identification Number (GSIN).</description>
+  <description xml:lang="fr">Description du NIBS : la description du bien ou du service correspondant au numéro d'identification de biens et services (NIBS).</description>
+ </field>
+ <field>
+  <heading>gsin-description_fr</heading>
+  <description xml:lang="en">GSIN Description: The description of the good or service that corresponds to the Goods and Services Identification Number (GSIN).</description>
+  <description xml:lang="fr">Description du NIBS : la description du bien ou du service correspondant au numéro d'identification de biens et services (NIBS).</description>
+ </field>
+ <field>
+  <heading>sosa-description_en</heading>
+  <description xml:lang="en">Description: A brief description of the good or service, for example: "Armoured transportation services".</description>
+  <description xml:lang="fr">Description : une brève description du bien ou du service (par exemple, « services de transport en véhicules blindés »).</description>
+ </field>
+ <field>
+  <heading>sosa-description_fr</heading>
+  <description xml:lang="en">Description: A brief description of the good or service, for example: "Armoured transportation services".</description>
+  <description xml:lang="fr">Description : une brève description du bien ou du service (par exemple, « services de transport en véhicules blindés »).</description>
+ </field>
+ <field>
+  <heading>award-date</heading>
+  <description xml:lang="en">Start Date: The start date for the standing offer or supply arrangement.</description>
+  <description xml:lang="fr">Date de début : la date de début d'une offre à commandes ou d'un arrangement en matière d'approvisionnement.</description>
+ </field>
+ <field>
+  <heading>supplier-legal-name</heading>
+  <description xml:lang="en">Supplier Legal Name: Legal registered name of a business entity that is also a supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Dénomination sociale du fournisseur : dénomination sociale enregistrée d'une entité commerciale qui est également un fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>supplier-operating-name</heading>
+  <description xml:lang="en">Supplier Operating Name: Name(s) a business entity normally uses when conducting business as a supplier to the Government of Canada.</description>
+  <description xml:lang="fr">Nom commercial du fournisseur : le nom qu'une entité commerciale utilise habituellement lorsqu'elle fait des affaires à titre de fournisseur du gouvernement du Canada.</description>
+ </field>
+ <field>
+  <heading>supplier-standardized-name</heading>
+  <description xml:lang="en">Supplier Standardized Name: A supplier name used to simplify search results by grouping together closely related suppliers that conduct business using different operating or legal names. The resulting search records will contain the suppliers' legal and operating names.</description>
+  <description xml:lang="fr">Nom normalisé du fournisseur : un nom du fournisseur utilisé pour simplifier les résultats de recherche en regroupant les fournisseurs étroitement liés qui font des affaires sous différents noms commerciaux ou légaux. les dossiers de recherche subséquents contiendront les noms légaux ou commerciaux des fournisseurs.</description>
+ </field>
+</tpsgc-pwgsc_ocama-sosa>
+<tpsgc-pwgsc_ao-t>
+ <field>
+  <heading>amendment_number</heading>
+  <description xml:lang="en">Amendment number: The numeric count of the number of amendments against an original document.</description>
+  <description xml:lang="fr">Numéro de la modification : le décompte numérique du nombre de modifications par rapport au document original.</description>
+ </field>
+ <field>
+  <heading>attachment</heading>
+  <description xml:lang="en">Attachments: Files containing extra material (such as charts, tables, diagrams, etc.) that are attached to a tender notice.</description>
+  <description xml:lang="fr">Pièces jointes : les fichiers contenant du matériel supplémentaire (tels que des graphiques, des tableaux, des diagrammes, etc.) qui sont joint à un avis d'appel d'offres.</description>
+ </field>
+ <field>
+  <heading>date_closing</heading>
+  <description xml:lang="en">Closing date: The date of closing for a tender notice.</description>
+  <description xml:lang="fr">Date de clôture : la date de clôture d'un avis d'appel d'offres.</description>
+ </field>
+ <field>
+  <heading>description</heading>
+  <description xml:lang="en">Tender notice description: A detailed description of the tender notice. This includes items such as any introductory or purpose text, a description of the notice, background information, instructions, any mandatory text inclusions, and line item information. The information included in this description does not duplicate the information or details found in the attachments, such as clauses or sample documents.</description>
+  <description xml:lang="fr">Description de l'avis d'appel d'offres : une description détaillée de l'avis d'appel d'offres. Cela comprend des éléments tels que le texte d'introduction ou le texte décrivant l'objet, une description de l'avis, des renseignements généraux, des instructions, des inclusions de texte obligatoires, ainsi que des renseignements sur les articles d'exécution. Les renseignements contenus dans cette description ne reproduisent pas les renseignements ou les détails se trouvant dans les pièces jointes, telles que des clauses ou des modèles de documents.</description>
+ </field>
+ <field>
+  <heading>document</heading>
+  <description xml:lang="en">Solicitation documents: The main solicitation documents attached to a notice, if available. They are always presented as a pair, in English and French.</description>
+  <description xml:lang="fr">Documents d'appels d'offres : les principaux documents relatifs à la demande de soumissions qui sont joints à un avis, le cas échéant. Il y a toujours deux versions de ces documents, soit une version française et une version anglaise.</description>
+ </field>
+ <field>
+  <heading>gsin</heading>
+  <description xml:lang="en">GSIN Code: The Goods and Services Identification Number (GSIN) is the code used by the federal government to identify generic product descriptions for its procurement activities.</description>
+  <description xml:lang="fr">Code NIBS : code utilisé par le gouvernement fédéral pour identifier les descriptions de produits génériques aux fins de ses activités d'achat.</description>
+ </field>
+ <field>
+  <heading>notice_type</heading>
+  <description xml:lang="en">Tender notice type: Identification of the various types of tender notices that may be published by PWGSC and/or other government departments. Tender notice types include the following and are hyperlinked to the appropriate definition found in PWGSC's Supply Manual Glossary:
+
+        Advance Contract Award Notice (ACAN)
+        Invitation to Tender (ITT)
+        Letter of Interest (LOI)
+        Notice of Proposed Procurement (NPP)
+        Price and Availability (P&amp;A)
+        Request for Information (RFI)
+        Request for Proposal (RFP)
+        Request for Quotation (RFQ)
+        Request for Standing Offer (RFSO)
+        Request for Supply Arrangement (RFSA)</description>
+  <description xml:lang="fr">Type de l'avis d'appel d'offres : la détermination des divers types d'avis d'appel d'offres qui peuvent être publiée par TPSGC ou un autre ministère. Parmi les divers types d'avis d'appel d'offres, mentionnons les suivants. Des liens conduisent aux définitions appropriées qui figurent dans le glossaire du Guide des approvisionnements de TPSGC.
+
+        appel d'offres
+        avis de projet de marché [APM]
+        demande d'arrangement en matière d'approvisionnement [DAMA]
+        demande de prix
+        demande de propositions
+        demande de renseignements
+        demande d'offres à commandes [DOC]
+        lettre d'intérêt
+        Préavis d'adjudication de contrat [PAC]
+        prix et disponibilité</description>
+ </field>
+ <field>
+  <heading>publication_date</heading>
+  <description xml:lang="en">Date published: The date a tender notice is publicly published.</description>
+  <description xml:lang="fr">Date de publication : la date à laquelle un avis d'appel d'offres est affiché publiquement.</description>
+ </field>
+ <field>
+  <heading>publishing_status</heading>
+  <description xml:lang="en">Solicitation status: The various states that a published solicitation may potentially go through.</description>
+  <description xml:lang="fr">État de l'appel d'offres : les divers états par lesquels peut passer un appel d'offres publiée.</description>
+ </field>
+ <field>
+  <heading>reference_number</heading>
+  <description xml:lang="en">Reference number: An identifier assigned to a published tender notice.</description>
+  <description xml:lang="fr">Numéro de référence : un identificateur assigné à un avis d'appel d'offre publié</description>
+ </field>
+ <field>
+  <heading>region_delivery</heading>
+  <description xml:lang="en">Region of delivery: The applicable region(s) of delivery that apply to a particular notice.</description>
+  <description xml:lang="fr">Région de livraison : la ou les régions visées par l'exécution des travaux ou la prestation des services relativement à un avis en particulier.</description>
+ </field>
+ <field>
+  <heading>solicitation_number</heading>
+  <description xml:lang="en">Solicitation number: A solicitation identifier that is issued by a government department that is found in tender notices and award notices on GETS (ie: NPP, ACAN).</description>
+  <description xml:lang="fr">Numéro de l'appel d'offres : un identificateur de la demande de soumissions délivré par un ministère et qui se trouve dans les avis d'appel d'offres et les avis d'attribution de contrat dans le SEAOG (p. ex. des avis de projet de marché (APM), des préavis d'adjudication de contrat (PAC).</description>
+ </field>
+ <field>
+  <heading>amendment_date</heading>
+  <description xml:lang="en">Amendment date: The date a tender notice is amended. This includes the date and time published in Eastern time, according to regular publishing schedules.</description>
+  <description xml:lang="fr">Date de modification : la date à laquelle un avis d'appel d'offres est modifié. Ceci comprend la date et l'heure de publication à l'heure de l'Est, selon les horaires réguliers de publication.</description>
+ </field>
+ <field>
+  <heading>language</heading>
+  <description xml:lang="en">Language: The language of the tender notice.</description>
+  <description xml:lang="fr">Langue : Le langue de l'avis d'appel d'offres.</description>
+ </field>
+ <field>
+  <heading>contact</heading>
+  <description xml:lang="en">Contact: Contact Information for the tender notice</description>
+  <description xml:lang="fr">Personnes-ressources : personnes-ressources pour les appels d'offres</description>
+ </field>
+ <field>
+  <heading>title</heading>
+  <description xml:lang="en">Title: A succinct title, or name, that summarizes the tender notice. This title is shared with any resulting contract and tender award notice, in both official languages.</description>
+  <description xml:lang="fr">Titre : un titre succinct, ou un nom, qui résume l'avis d'appel d'offres. Ce titre est reproduit dans tout contrat subséquent et avis d'adjudication de contrat, dans les deux langues officielles.</description>
+ </field>
+ <field>
+  <heading>trade_agreement</heading>
+  <description xml:lang="en">Trade agreement: Specifies the trade agreement applicable to the tender notice.</description>
+  <description xml:lang="fr">Précise l'accord commercial reconnu qui s'applique au contrat.</description>
+ </field>
+ <field>
+  <heading>tendering_procedure</heading>
+  <description xml:lang="en">Tendering procedure: means open tendering procedures, selective tendering procedures and limited tendering procedures.</description>
+  <description xml:lang="fr">Procédure de demandes de soumissions : désigne les procédures d'appel d'offres ouvertes, les procédures d'appel d'offres sélectives et les procédures d'appel d'offres limitées.</description>
+ </field>
+ <field>
+  <heading>competitive_procurement_strategy</heading>
+  <description xml:lang="en">Competitive procurement strategy: defines how a good, service, or construction will be procured using a competitive procurement process.</description>
+  <description xml:lang="fr">Stratégie d'approvisionnement concurrentielle : la façon que des biens, des services ou des travaux en construction seront achetés, et comprendra la détermination de conclure des contrats sur une base concurrentielle.</description>
+ </field>
+ <field>
+  <heading>non_competitive_procurement_strategy</heading>
+  <description xml:lang="en">Non-competitive procurement strategy: defines how a good, service, or construction will be procured using a non-competitive procurement process.</description>
+  <description xml:lang="fr">Stratégie d'approvisionnement non concurrentielle : la façon que des biens, des services ou des travaux en construction seront achetés, et comprendra la détermination de conclure des contrats sur une base non concurrentielle.</description>
+ </field>
+ <field>
+  <heading>procurement_entity</heading>
+  <description xml:lang="en">Procurement Entity: The Government of Canada organization that was primarily responsible for conducting a given procurement. The procurement entity may not be the organization that is purchasing items through a given contract.</description>
+  <description xml:lang="fr">L'entité responsable des achats :  l'organisation du gouvernement du Canada qui était principalement responsable de réaliser un achat donné. L'entité responsable des achats n'est pas nécessairement celle qui achète des articles par l'entremise d'un contrat donné.</description>
+ </field>
+ <field>
+  <heading>end_user_entity</heading>
+  <description xml:lang="en">End User: The end user identifies the entity (e.g. client department, agency, Crown corporation) on whose behalf the standing offer or supply arrangement has been put in place.</description>
+  <description xml:lang="fr">Utilisateur final : l'utilisateur final est l'entité (p. ex., le ministère client, l'organisme, la Société d'État) au nom de laquelle l'offre à commandes ou l'arrangement en matière d'approvisionnement a été établi.</description>
+ </field>
+</tpsgc-pwgsc_ao-t>
+<tpsgc-pwgsc_aa-a>
+ <field>
+  <heading>award_date</heading>
+  <description xml:lang="en">Award date: Date on which a contract came into effect.</description>
+  <description xml:lang="fr">Date d'attribution : la date à laquelle un contrat est entré en vigueur.</description>
+ </field>
+ <field>
+  <heading>contract_number</heading>
+  <description xml:lang="en">Contract number: A unique identifier assigned to a contract.</description>
+  <description xml:lang="fr">Numéro de contrat : un identificateur unique attribué à un contrat.</description>
+ </field>
+ <field>
+  <heading>contract_sequence_number</heading>
+  <description xml:lang="en">Contract sequence number: The number of contracts that have been issued by PWGSC against a specific requisition.</description>
+  <description xml:lang="fr">Numéro de séquence du contrat : le nombre de contrats qui sont emis par TPSGC contre une demande.</description>
+ </field>
+ <field>
+  <heading>contract_value</heading>
+  <description xml:lang="en">Value: Specifies the monetary value of the contract.</description>
+  <description xml:lang="fr">Valeur : précise la valeur monétaire du contrat.</description>
+ </field>
+ <field>
+  <heading>currency</heading>
+  <description xml:lang="en">Currency: The medium of exchange as defined by reference to the geographical location of the authorities responsible for it.</description>
+  <description xml:lang="fr">Monnaie : moyen d'échange d'une unité de valeur, défini par référence à l'emplacement géographique des autorités monétaires responsables.</description>
+ </field>
+ <field>
+  <heading>description</heading>
+  <description xml:lang="en">Tender notice description: A detailed description of the tender notice. This includes items such as any introductory or purpose text, a description of the notice, background information, instructions, any mandatory text inclusions, and line item information. The information included in this description does not duplicate the information or details found in the attachments, such as clauses or sample documents.</description>
+  <description xml:lang="fr">Description de l'avis d'appel d'offres : une description détaillée de l'avis d'appel d'offres. Cela comprend des éléments tels que le texte d'introduction ou le texte décrivant l'objet, une description de l'avis, des renseignements généraux, des instructions, des inclusions de texte obligatoires, ainsi que des renseignements sur les articles d'exécution. Les renseignements contenus dans cette description ne reproduisent pas les renseignements ou les détails se trouvant dans les pièces jointes, telles que des clauses ou des modèles de documents.</description>
+ </field>
+ <field>
+  <heading>gsin</heading>
+  <description xml:lang="en">GSIN Code: The Goods and Services Identification Number (GSIN) is the code used by the federal government to identify generic product descriptions for its procurement activities.</description>
+  <description xml:lang="fr">Code NIBS : code utilisé par le gouvernement fédéral pour identifier les descriptions de produits génériques aux fins de ses activités d'achat.</description>
+ </field>
+ <field>
+  <heading>publication_date</heading>
+  <description xml:lang="en">Date published: The date a tender notice is publicly published.</description>
+  <description xml:lang="fr">Date de publication : la date à laquelle un avis d'appel d'offres est affiché publiquement.</description>
+ </field>
+ <field>
+  <heading>publishing_status</heading>
+  <description xml:lang="en">Solicitation status: The various states that a published solicitation may potentially go through.</description>
+  <description xml:lang="fr">État de l'appel d'offres : les divers états par lesquels peut passer un appel d'offres publiée.</description>
+ </field>
+ <field>
+  <heading>reference_number</heading>
+  <description xml:lang="en">Reference number: An identifier assigned to a published tender notice.</description>
+  <description xml:lang="fr">Numéro de référence : un identificateur assigné à un avis d'appel d'offre publié</description>
+ </field>
+ <field>
+  <heading>solicitation_number</heading>
+  <description xml:lang="en">Solicitation number: A solicitation identifier that is issued by a government department that is found in tender notices and award notices on GETS (ie: NPP, ACAN).</description>
+  <description xml:lang="fr">Numéro de l'appel d'offres : un identificateur de la demande de soumissions délivré par un ministère et qui se trouve dans les avis d'appel d'offres et les avis d'attribution de contrat dans le SEAOG (p. ex. des avis de projet de marché (APM), des préavis d'adjudication de contrat (PAC).</description>
+ </field>
+ <field>
+  <heading>supplier_info</heading>
+  <description xml:lang="en">Supplier information: The name and address of a supplier, who has been registered in VIM and/or SRI, to do business with a government department in supplying goods/services.</description>
+  <description xml:lang="fr">Information sur un fournisseur : le nom et l'adresse d'un fournisseur déjà enregistré dans le système d'information sur les fournisseurs (SIF) ou le Service de Données d'inscription des fournisseurs (DIF), pour faire affaire avec un ministère en fournissant des produits ou des services.</description>
+ </field>
+ <field>
+  <heading>amendment_date</heading>
+  <description xml:lang="en">Amendment date: The date a tender notice is amended. This includes the date and time published in Eastern time, according to regular publishing schedules.</description>
+  <description xml:lang="fr">Date de modification : la date à laquelle un avis d'appel d'offres est modifié. Ceci comprend la date et l'heure de publication à l'heure de l'Est, selon les horaires réguliers de publication.</description>
+ </field>
+ <field>
+  <heading>language</heading>
+  <description xml:lang="en">Language: The language of the tender notice.</description>
+  <description xml:lang="fr">Langue : le langue de l'avis d'appel d'offres.</description>
+ </field>
+ <field>
+  <heading>procurement_entity_name</heading>
+  <description xml:lang="en">Procurement Entity Name: The name of the Government of Canada organization that was primarily responsible for conducting a given procurement. The procurement entity may not be the organization that is purchasing items through a given contract.</description>
+  <description xml:lang="fr">Information sur l'utilisateur final : information sur l'entité (p. ex., le ministère client, l'organisme, la Société d'État) au nom de laquelle l'offre à commandes ou l'arrangement en matière d'approvisionnement a été établi.</description>
+ </field>
+ <field>
+  <heading>customer_info</heading>
+  <description xml:lang="en">End user information: The end user information identifies the entity (e.g. client department, agency, Crown corporation) on whose behalf the standing offer or supply arrangement has been put in place.</description>
+  <description xml:lang="fr">Information sur l'utilisateur final : information sur l'entité (p. ex., le ministère client, l'organisme, la Société d'État) au nom de laquelle l'offre à commandes ou l'arrangement en matière d'approvisionnement a été établi.</description>
+ </field>
+ <field>
+  <heading>title</heading>
+  <description xml:lang="en">Title: A succinct title, or name, that summarizes the tender notice. This title is shared with any resulting contract and tender award notice, in both official languages.</description>
+  <description xml:lang="fr">Titre : un titre succinct, ou un nom, qui résume l'avis d'appel d'offres. Ce titre est reproduit dans tout contrat subséquent et avis d'adjudication de contrat, dans les deux langues officielles.</description>
+ </field>
+ <field>
+  <heading>contract_award_procedure</heading>
+  <description xml:lang="en">Contract award procedure (procurement strategy): the process of awarding a contract to a successful bidder where the contract document will depend on the type of bid solicitation.</description>
+  <description xml:lang="fr">Processus d'adjudication d'un contrat  (stratégie d'achat) : le processus d'attribuer un contrat à un soumissionnaire retenu et le type de contrat dépendra du genre de demandes de soumissions émises.</description>
+ </field>
+ <field>
+  <heading>tendering_procedure</heading>
+  <description xml:lang="en">Tendering procedure: means open tendering procedures, selective tendering procedures and limited tendering procedures.</description>
+  <description xml:lang="fr">Procédure de demandes de soumissions : désigne les procédures d'appel d'offres ouvertes, les procédures d'appel d'offres sélectives et les procédures d'appel d'offres limitées.</description>
+ </field>
+ <field>
+  <heading>procurement_entity</heading>
+  <description xml:lang="en">Procurement Entity: The Government of Canada organization that was primarily responsible for conducting a given procurement. The procurement entity may not be the organization that is purchasing items through a given contract.</description>
+  <description xml:lang="fr">L'entité responsable des achats :  l'organisation du gouvernement du Canada qui était principalement responsable de réaliser un achat donné. L'entité responsable des achats n'est pas nécessairement celle qui achète des articles par l'entremise d'un contrat donné.</description>
+ </field>
+ <field>
+  <heading>end_user_entity</heading>
+  <description xml:lang="en">End User: The end user identifies the entity (e.g. client department, agency, Crown corporation) on whose behalf the standing offer or supply arrangement has been put in place.</description>
+  <description xml:lang="fr">Utilisateur final : l'utilisateur final est l'entité (p. ex., le ministère client, l'organisme, la Société d'État) au nom de laquelle l'offre à commandes ou l'arrangement en matière d'approvisionnement a été établi.</description>
+ </field>
+</tpsgc-pwgsc_aa-a>
+<tpsgc-pwgsc_nibs-gsin>
+ <field>
+  <heading>nibs-gsin</heading>
+  <description xml:lang="en">GSIN Code: The Goods and Services Identification Number used by the federal government to identify generic product descriptions for its procurement activities.</description>
+  <description xml:lang="fr">Code NIBS : code utilisé par le gouvernement fédéral pour identifier les descriptions de produits génériques aux fins de ses activités d'achat.</description>
+ </field>
+ <field>
+  <heading>bpr-opi</heading>
+  <description xml:lang="en">Office of Primary Interest (OPI): The division of AB responsible for the purchase of the good or service, as well as the GSINs being used to identify those goods/services.</description>
+  <description xml:lang="fr">Bureau de première responsabilité (BPR) : la division de la Direction générale des approvisionnements qui est chargée de l'achat du bien ou du service, ainsi que des NIBS utilisés pour identifier ces biens et services.</description>
+ </field>
+ <field>
+  <heading>gsin-description_en</heading>
+  <description xml:lang="en">GSIN Description: The description of the good or service that corresponds to the GSIN code.</description>
+  <description xml:lang="fr">Description du NIBS : la description du bien ou du service correspondant au numéro d'identification de biens et services (NIBS).</description>
+ </field>
+ <field>
+  <heading>gsin-description_fr</heading>
+  <description xml:lang="en">GSIN Description: The description of the good or service that corresponds to the GSIN code.</description>
+  <description xml:lang="fr">Description du NIBS : la description du bien ou du service correspondant au numéro d'identification de biens et services (NIBS).</description>
+ </field>
+ <field>
+  <heading>bpr-opi-url_en</heading>
+  <description xml:lang="en">Office of Primary Interest (OPI) URL address: A link to the contact information for that procurement division.</description>
+  <description xml:lang="fr">Bureau de première responsabilité (BPR) adresse URL : un lien aux personnes-ressources de cette division responsable des achats.</description>
+ </field>
+ <field>
+  <heading>bpr-opi-url_fr</heading>
+  <description xml:lang="en">URL of the Office of Primary Interest (OPI): A link to the contact information for that procurement division.</description>
+  <description xml:lang="fr">Adresse URL du Bureau de première responsabilité (BPR) : un lien aux personnes-ressources de cette division responsable des achats.</description>
+ </field>
+ <field>
+  <heading>gsin-code-status_en</heading>
+  <description xml:lang="en">GSIN Code Status: This field indicates whether a code is active or inactive.</description>
+  <description xml:lang="fr">État du code NIBS : indique si le code est actif ou inactif.</description>
+ </field>
+ <field>
+  <heading>gsin-code-status_fr</heading>
+  <description xml:lang="en">GSIN Code Status: This field indicates whether a code is active or inactive.</description>
+  <description xml:lang="fr">État du code NIBS : indique si le code est actif ou inactif.</description>
+ </field>
+</tpsgc-pwgsc_nibs-gsin>
+</data-dictionary>

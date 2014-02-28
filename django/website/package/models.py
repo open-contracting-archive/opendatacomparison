@@ -91,6 +91,7 @@ class Package(BaseModel):
         _('Nesting Description'),
         help_text='Is the data flat or nested, or available as both? Other nesting notes.',
         blank=True)
+    fields_xml = models.TextField(blank=True)
 
     class Meta:
         verbose_name = 'dataset'
