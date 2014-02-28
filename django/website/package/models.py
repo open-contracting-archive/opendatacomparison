@@ -27,7 +27,7 @@ class Category(BaseModel):
 
     @property
     def package_count(self):
-        return self.package_set.count()
+        return self.packages.count()
 
 
 class Format(BaseModel):

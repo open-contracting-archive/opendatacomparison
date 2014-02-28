@@ -21,7 +21,7 @@
      {% for category in categories %}
         <p><a href="{% url 'category' category.slug %}">{{ category.title }}</a> ({{ category.package_count }}) - {{ category.description }}</p>
 
-        {% with category.package_set.all as packages %}
+        {% with category.packages.all as packages %}
             {% include 'package/package_table.html' %}
         {% endwith %}
 
