@@ -43,6 +43,8 @@
             <!-- Main nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'packages' %}">{% trans "Datasets" %}</a></li>
+                <li><a href="{% url 'grids' %}">{% trans "Grids" %}</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'profile_detail' user.profile %}">{{ request.user.username|capfirst }}</a></li>
                     {% if request.user.is_staff %}
