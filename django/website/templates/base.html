@@ -43,6 +43,7 @@
             <!-- Main nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'publishers' %}">{% trans "Publishers" %}</a></li>
                 <li><a href="{% url 'packages' %}">{% trans "Datasets" %}</a></li>
                 <li><a href="{% url 'grids' %}">{% trans "Grids" %}</a></li>
                 {% if user.is_authenticated %}

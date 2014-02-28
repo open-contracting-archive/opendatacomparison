@@ -14,10 +14,19 @@
 <div class="container">
 <div class="row">
     <div class="col-lg-12">
-        <h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'publishers' %}">{% trans "publishers" %}</a> / {{ publisher.name }}</h2>
-        <p> {{ publisher.description }} </p>
-        <p> {{ publisher.country.name }} </p>
-        <p> {{ publisher.url|urlize }}</p>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
+            <li><a href="{% url 'publishers' %}">{% trans "publishers" %}</a></li> 
+            <li class="active">{{ publisher.name }}</li>
+        </ol>
+        <dl class="dl-horizontal"> 
+            <dt>{% trans "Description" %}</dt>
+            <dd>{{ publisher.description|urlize|linebreaksbr }}</dd>
+            <dt>{% trans "Country" %}</dt>
+            <dd>{{ publisher.country.name }} </dd>
+            <dt>{% trans "Link" %}</dt>
+            <dd> {{ publisher.url|urlize }}</dd>
+        </dl>
     </div>
 </div> 
 <div class="row">
@@ -28,9 +37,9 @@
             </div>
             <div class="panel-body">
                 <p>
-                {% for dataset in publisher.datasets.all %}
-                    {{ dataset.name }}&nbsp;
-                {% endfor %}
+                {% with publisher.datasets.all as packages %}
+                {% include "package/package_table.html" %}
+                {% endwith %}
                 </p>
             </div>
         </div>

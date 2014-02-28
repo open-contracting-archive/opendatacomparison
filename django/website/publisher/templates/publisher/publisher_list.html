@@ -10,13 +10,17 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
+            <li>{% trans "publishers" %}</li> 
+        </ol>
       <h2>{% trans "Publishers" %}</h2>
       <table class="table">
         <thead>
           <tr>
             <th>{% trans "Name" %}</th>
             <th>{% trans "Description" %}</th>
-            <th>{% trans "Last Modified" %}</th>
+            <th>{% trans "Datasets" %}</th>
             <th>{% trans "URL" %}</th>
           </tr>
         </thead>
@@ -24,8 +28,8 @@
           {% for publisher in object_list %}
             <tr>
               <td><a href="{% url 'publisher' publisher.slug %}">{{ publisher.name }}</a></td>
-              <td>{{ publisher.description }}</td>
-              <td>{{ publisher.modified|date:"D d M" }}</td>
+              <td>{{ publisher.description|truncatewords:25 }}</td>
+              <td>{{ publisher.datasets.count }}</td>
               <td>{{ publisher.url|urlize }}</td>
             </tr>
           {% endfor %}
