@@ -18,12 +18,15 @@
           <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add dataset" %} »</a>
         {% endif %}
       </p>
+    
      {% for category in categories %}
-        <p><a href="{% url 'category' category.slug %}">{{ category.title }}</a> ({{ category.package_count }}) - {{ category.description }}</p>
-
+     <h3><a href="{% url 'category' category.slug %}">{{ category.title }}</a> ({{ category.package_count }})</h3>
+     <p>{{ category.description }}</p>
+     {% if category.package_count > 0 %}
         {% with category.packages.all as packages %}
             {% include 'package/package_table.html' %}
         {% endwith %}
+    {% endif %}
 
      {% endfor %}
  </div></div>

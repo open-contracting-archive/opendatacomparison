@@ -42,6 +42,11 @@ class PackageListView(ListView):
     template_name = 'package/package_list.html'
     context_object_name = 'categories'
 
+    def get_queryset(self):
+        categories = Category.objects.annotate(pc=Count('packages'))
+        categories = categories.order_by('-pc')
+        return categories
+
 
 class PackageDetailView(DetailView):
     template_name = 'package/package.html'
