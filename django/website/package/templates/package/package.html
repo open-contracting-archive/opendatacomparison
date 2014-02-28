@@ -7,7 +7,7 @@
 {% block head_title %}{{ package.title }}{% endblock %}
 
 {% block extra_head %}
-  <meta name="description" content="{{ package.repo_description }}" />
+  <meta name="description" content="{{ package.description }}" />
   <meta name="keywords" content="{{ package.grid_set.all|join:',' }}" />
   {{ block.super }}
 {% endblock %}

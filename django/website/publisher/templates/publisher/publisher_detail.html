@@ -5,7 +5,7 @@
 {% block head_title %}{{ publisher.title }}{% endblock %}
 
 {% block extra_head %}
-  <meta name="description" content="{{ publisher.repo_description }}" />
+  <meta name="description" content="{{ publisher.description }}" />
   <meta name="keywords" content="{{ publisher.grid_set.all|join:',' }}" />
   {{ block.super }}
 {% endblock %}
