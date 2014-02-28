@@ -17,9 +17,10 @@ from django.views.generic import DetailView, ListView
 
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
+from grid.models import Grid
+
 from .forms import PackageForm, DocumentationForm
 from .models import Category, Package
-
 from .utils import quote_plus
 
 
@@ -105,9 +106,9 @@ def ajax_package_list(request, template_name="package/ajax_package_list.html"):
     q = request.GET.get("q", "")
     packages = []
     if q:
-        _dash = "%s-%s" % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
-        _space = "%s %s" % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
-        _underscore = '%s_%s' % (settings.PACKAGINATOR_SEARCH_PREFIX, q)
+        _dash = "%s-%s" % ('', q)
+        _space = "%s %s" % ('', q)
+        _underscore = '%s_%s' % ('', q)
         packages = Package.objects.filter(
                         Q(title__istartswith=q) |
                         Q(title__istartswith=_dash) |
