@@ -1,0 +1,4 @@
+Sarah Bird
+
+This work was based on OpenComparison, a project with many contributors:
+https://github.com/opencomparison/opencomparison/blob/develop/CONTRIBUTORS.txt
