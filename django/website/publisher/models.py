@@ -1,18 +1,26 @@
-from django.db import models
+from django.db.models import (
+    CharField,
+    SlugField,
+    TextField,
+    URLField,
+)
 from django.utils.translation import ugettext_lazy as _
 
-from django_countries.fields import CountryField
+from international.models import countries
 
 from core.models import BaseModel
 
 
 class Publisher(BaseModel):
 
-    name = models.CharField(_('Title'), max_length='50')
-    slug = models.SlugField(_('slug'), unique=True)
-    description = models.TextField(_('description'), blank=True)
-    country = CountryField(blank=True)
-    url = models.URLField(_('website'), blank=True)
+    name = CharField(_('Title'), max_length=50)
+    slug = SlugField(_('Slug'), unique=True)
+    description = TextField(_('Description'), blank=True)
+    country = CharField(_('Country'),
+                            max_length=2,
+                            choices=countries,
+                            blank=True)
+    url = URLField(_('Website'), blank=True)
 
     def __unicode__(self):
         return '%s - %s' % (self.country, self.name)

@@ -117,11 +117,12 @@ DJANGO_APPS = (
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
-    'south',  # Database migration helpers:
+    'south',  # Database migration helpers
     'reversion',
     'floppyforms',
     'crispy_forms',
-    #
+    'babel',
+    'international',
 )
 
 # Apps specific for this project go here.
