@@ -132,6 +132,7 @@ LOCAL_APPS = (
     'core',
     'profiles',
     'publisher',
+    'datamap',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
