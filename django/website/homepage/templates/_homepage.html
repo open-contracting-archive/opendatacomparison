@@ -7,6 +7,25 @@
       <p>It is being built & used by the Open Contracting Data Standards project.</p>
       <p class="text-danger"> This site is in BETA. Expect things to be slightly strange and to change!</p>
       <p><b>{{ package_count }}</b> {% trans "datasets and counting!" %}</p>
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <h3 class="panel-title pull-left">{% trans "Add datasets and grids" %}</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            {% trans "Know of any datasets not listed here?  Add them now!  It's quick and easy." %}
+          </p>
+          <p>
+            <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add dataset »" %}</a>
+          </p>
+          <p>
+            {% trans "Or add a grid comparing the features of datasets." %}
+          </p>
+          <p>
+            <a class="btn btn-default" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
+          </p>
+        </div>
+      </div>
     </div>
     
 
@@ -59,25 +78,6 @@
 
   <div class="row">
     <div class="col-sm-4 col-lg-4">
-      <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-          <h3 class="panel-title pull-left">{% trans "Add datasets and grids" %}</h3>
-        </div>
-        <div class="panel-body">
-          <p>
-            {% trans "Know of any datasets not listed here?  Add them now!  It's quick and easy." %}
-          </p>
-          <p>
-            <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add dataset »" %}</a>
-          </p>
-          <p>
-            {% trans "Or add a grid comparing the features of datasets." %}
-          </p>
-          <p>
-            <a class="btn btn-default" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
-          </p>
-        </div>
-      </div>
     </div>  
      {% if potw %}
     <div class="col-sm-4 col-lg-4">
