@@ -15,11 +15,20 @@ class Datamap(BaseModel):
     notes = TextField(_('Notes'), null=True, blank=True)
     format = ForeignKey(Format)
 
+    def __unicode__(self):
+        return '%s - $s' % (self.dataset, self.format)
+
 
 class Concept(BaseModel):
     name = CharField(_('Name'), max_length=100, unique=True)
     description = TextField(_('Description'))
     parent = ForeignKey('self', null=True, blank=True)
+
+    def __unicode__(self):
+        if self.parent:
+            return '%s - $s' % (self.parent, self.name)
+        else:
+            return self.name
 
 
 class Field(BaseModel):

@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from django.views.generic import (
+    CreateView,
+    UpdateView,
+)
 
-# Create your views here.
+from braces.views import LoginRequiredMixin
+
+from .models import Datamap, Field
+
+
+class DatamapAddView(LoginRequiredMixin, CreateView):
+    model = Datamap
+
+
+class DatamapEditView(LoginRequiredMixin, UpdateView):
+    model = Datamap

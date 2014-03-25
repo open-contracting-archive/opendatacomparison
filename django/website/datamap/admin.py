@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Field, TranslatedField
+from .models import (
+    Field,
+    TranslatedField,
+    Concept,
+    Datamap,
+)
 
 
 class TranslatedFieldInline(admin.StackedInline):
@@ -12,3 +17,5 @@ class FieldAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Field, FieldAdmin)
+admin.site.register(Concept)
+admin.site.register(Datamap)
