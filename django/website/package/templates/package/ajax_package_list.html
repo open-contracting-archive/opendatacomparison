@@ -1,6 +1,6 @@
 {% load i18n %}
 <div id="target">
-    <h2>{% if packages|length %}{% trans "Packages" %}{% else %}{% trans "No packages found" %}{% endif %}</h2>
+    <h2>{% if packages|length %}{% trans "Datasets" %}{% else %}{% trans "No datasets found" %}{% endif %}</h2>
     {% if packages|length %}
         <p class="editable-cell">{% trans "Click a package to add it to the grid." %}</p>      
     {% endif %}

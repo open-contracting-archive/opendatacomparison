@@ -1,7 +1,6 @@
 {% load i18n %}
 
-<li class="package-item" id="package-{{ package.id }}">
-  <h3>{{ package.title }} {% if package.slug in packages_already_added_list %}<span class="in-grid-already">(in grid already)</span>{% endif %}</h3> 
-  <p class="date">{% trans "Added" %} {{ package.created|timesince }} ago</p>
-  <p class="description">{{ package.description }}</p>
-</li>
+<div class="package-item" id="package-{{ package.id }}">
+    <h3>{{ package.publisher }} - {{ package.title }} {% if package.slug in packages_already_added_list %}<span class="in-grid-already">(in grid already)</span>{% endif %}</h3> 
+    <p class="description">{{ package.description }}</p>
+</div>

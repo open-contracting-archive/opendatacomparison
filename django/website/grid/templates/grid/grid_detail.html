@@ -37,7 +37,7 @@
 
     {% if features %}
         {% if request.user.is_authenticated and request.user.profile.can_add_grid_package %}
-          <p><a href="{% url 'add_grid_package' grid.slug %}"><span class="glyphicon glyphicon-plus"></span> {% trans "Add package to the grid" %}</a></p>
+          <p><a href="{% url 'add_grid_package' grid.slug %}"><span class="glyphicon glyphicon-plus"></span> {% trans "Add dataset to the grid" %}</a></p>
         {% endif %}
 
         {% if request.user.is_authenticated and request.user.profile.can_add_grid_feature %}
