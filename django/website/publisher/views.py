@@ -4,7 +4,7 @@ from .models import Publisher
 
 
 class PublisherListView(ListView):
-    model = Publisher
+    queryset = Publisher.objects.all().order_by('country', 'name')
 
 
 class PublisherDetailView(DetailView):

@@ -26,6 +26,10 @@
             <dd>{{ publisher.country.name }} </dd>
             <dt>{% trans "Link" %}</dt>
             <dd> {{ publisher.url|urlize }}</dd>
+            <dt>{% trans "Administrative Level" %}</dt>
+            <dd> {{ publisher.administrative_level }}</dd>
+            <dt>{% trans "Administrative Category" %}</dt>
+            <dd> {{ publisher.get_administrative_cat_display }}</dd>
         </dl>
     </div>
 </div> 
