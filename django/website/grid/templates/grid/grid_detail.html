@@ -150,12 +150,14 @@
                         <td>{{ feature.title }}</td>
                         {% for grid_package in grid_packages %}
                             {% with elements|hash:feature.pk|hash:grid_package.pk as element %}
-                            <td class="clickable" id="element-f{{ feature.pk }}-p{{ grid_package.pk }}">
+                            <td>
                                 {% if element %}
                                     {{ element.text|style_element|safe|urlize|linebreaksbr }}
                                 {% endif %}
                                 {% if request.user.is_authenticated and request.user.profile.can_edit_grid_element %}
-                                    <a class="edit" href="{% url 'edit_element' feature.pk grid_package.pk %}">{% trans "[edit]" %}</a>
+                                    <a class="edit" href="{% url 'edit_element' feature.pk grid_package.pk %}"> 
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
                                 {% endif %}
                             </td>
                             {% endwith %}
@@ -202,11 +204,6 @@
                 
                 // Handle element edit redirects
                 {% if request.user.profile.can_edit_grid_element %}
-                    $("td.clickable").click(function() {
-                       var array = $(this).attr("id").split("-");
-                       var url = "grids/element/" + array[1].substr(1) + "/" + array[2].substr(1) + "/";
-                       $(location).attr('href', url);
-                    });
 
                     delete_confirmation = function(e, url) {
                         // The deletes are placed in here so there is just one place needed

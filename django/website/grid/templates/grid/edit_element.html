@@ -20,8 +20,8 @@
         <fieldset>
             {{ form|crispy }}
             <div class="form_block">        
-                <input class="btn btn-default" type="submit" name="edit" value="{% trans "Edit" %}">
-                <a href="{% url 'grid' grid.slug %}">{% trans "cancel" %}</a>
+                <input class="btn btn-success" type="submit" name="edit" value="{% trans "Save" %}">
+                &nbsp <a class="btn-sm btn-danger" href="{% url 'grid' grid.slug %}">{% trans "Cancel" %}</a>
             </div>            
             
         </fieldset>
