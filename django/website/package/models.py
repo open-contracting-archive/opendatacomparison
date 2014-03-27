@@ -90,6 +90,9 @@ class Package(BaseModel):
     nesting_depth = models.IntegerField(
         _('Nesting Depth'),
         help_text='How deep is the nesting of the data?',
+        choices=((0, 'Flat'),
+                 (1, 'Low nesting'),
+                 (2, 'High nesting')),
         blank=True,
         null=True)
     nesting = models.TextField(
