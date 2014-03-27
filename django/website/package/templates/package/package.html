@@ -40,11 +40,24 @@
             <dt>{% trans "Link" %}</dt>
             <dd>{{ package.url|urlizetrunc:40 }}</dd>
 
+            <dt>{% trans "Documentation" %}</dt>
+            <dd>{{ package.documentation|yesno|capfirst }} 
+                {% if package.documentation %}
+                    - {{ package.documentation_url|urlizetrunc:40}}
+                {% endif %}
+            </dd>
+
             <dt>{% trans "Machine Readable?" %}</dt>
             <dd>{{ package.machine_readable|yesno|capfirst }}</dd>
 
             <dt>{% trans "Formats" %}</dt>
             <dd>{% for format in package.formats.all %}{{ format.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+
+            <dt>{% trans "Nesting depth" %}</dt>
+            <dd>{{ package.nesting_depth }}</dd>
+
+            <dt>{% trans "Nesting description" %}</dt>
+            <dd>{{ package.nesting }}</dd>
         </dl>
     </div>
     <!-- end Description panel -->
@@ -53,22 +66,6 @@
 
 
   <div class="col-lg-6">
-
-    <!-- start Documentation panel -->
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        <h3 class="panel-title pull-left">{% trans "Documentation" %}</h3>
-        <div class="pull-right">
-          {% if user.is_authenticated and user.profile.can_edit_package %}
-            <a href="{% url 'edit_documentation' package.slug %}"><span class="glyphicon glyphicon-plus"></span></a>
-          {% endif %}
-        </div>
-      </div>
-      <div class="panel-body">
-        <p>{{ package.documentation_url|urlizetrunc:50 }}</p>
-      </div>
-    </div>
-    <!-- end Documentation panel -->
 
     <!-- start Grids panel -->
     <div class="panel panel-default">
@@ -83,9 +80,11 @@
       </div>
 
       <div class="panel-body">
+        <ul>
         {% for grid in package.grids.all %}
-          <a href="{% url 'grid' grid.slug %}" title="{{ grid.description }}">{{ grid }}</a> &nbsp;
+        <li><a href="{% url 'grid' grid.slug %}" title="{{ grid.description }}">{{ grid }}</a></li>
         {% endfor %}
+        </ul>
       </div>
     </div>
     <!-- end Grids panel -->

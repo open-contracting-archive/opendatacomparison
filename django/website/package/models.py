@@ -72,6 +72,11 @@ class Package(BaseModel):
                                          null=True,
                                          related_name='modifier',
                                          on_delete=models.SET_NULL)
+    documentation = models.NullBooleanField(
+        _('Documentation?'),
+        help_text='Is documentation available?',
+        null=True,
+    )
     documentation_url = models.URLField(_('Documentation URL'),
                                         blank=True,
                                         null=True,
