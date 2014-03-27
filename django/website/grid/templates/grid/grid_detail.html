@@ -109,7 +109,7 @@
                 <tr>
                     <td>{% trans "Country" %}</td>
                     {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.publisher.country.name }}</td>
+                        <td>{{ grid_package.package.publisher.country_name }}</td>
                     {% endfor %}
                 </tr>
                 <tr>
@@ -130,6 +130,7 @@
                     <td>{% for format in grid_package.package.formats.all %}{{ format.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
                     {% endfor %}
                 </tr>
+                {% comment %}
                 <tr>
                     <td>{% trans "Nesting depth" %}</td>
                     {% for grid_package in grid_packages %}
@@ -142,17 +143,21 @@
                         <td>{{ grid_package.package.publisher.nesting|truncatewords:25 }}</td>
                     {% endfor %}
                 </tr>
+                {% endcomment %}
                 {% include "grid/snippets/grid_row_header.html" %}
                 {% for feature in features %}
                     <tr class="{% cycle 'even' 'odd' %}">
                         <td>{{ feature.title }}</td>
                         {% for grid_package in grid_packages %}
                             {% with elements|hash:feature.pk|hash:grid_package.pk as element %}
-                            <td class="clickable" id="element-f{{ feature.pk }}-p{{ grid_package.pk }}">{% if element %}{{ element.text|style_element|safe|urlize|linebreaksbr }}{% endif %}<noscript>
-                                    {% if request.user.is_authenticated and request.user.profile.can_edit_grid_element %}
+                            <td class="clickable" id="element-f{{ feature.pk }}-p{{ grid_package.pk }}">
+                                {% if element %}
+                                    {{ element.text|style_element|safe|urlize|linebreaksbr }}
+                                {% endif %}
+                                {% if request.user.is_authenticated and request.user.profile.can_edit_grid_element %}
                                     <a class="edit" href="{% url 'edit_element' feature.pk grid_package.pk %}">{% trans "[edit]" %}</a>
-                                    {% endif %}
-                            </noscript></td>
+                                {% endif %}
+                            </td>
                             {% endwith %}
                         {% endfor %}
                     </tr>
@@ -189,18 +194,17 @@
 {% endblock %}
 
 {% block extra_body %}
-        <script type="text/javascript" src="{{ STATIC_URL }}js/rtd.js"></script>
         <script type="text/javascript">
 
             $(function() {
 
                 {% if request.user.is_authenticated %}
-                    // Handle element edit redirects
-
+                
+                // Handle element edit redirects
                 {% if request.user.profile.can_edit_grid_element %}
                     $("td.clickable").click(function() {
                        var array = $(this).attr("id").split("-");
-                       var url = "/grids/element/" + array[1].substr(1) + "/" + array[2].substr(1) + "/";
+                       var url = "grids/element/" + array[1].substr(1) + "/" + array[2].substr(1) + "/";
                        $(location).attr('href', url);
                     });
 
