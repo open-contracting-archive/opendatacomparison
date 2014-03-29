@@ -16,7 +16,7 @@ class Datamap(BaseModel):
     format = ForeignKey(Format)
 
     def __unicode__(self):
-        return '%s - $s' % (self.dataset, self.format)
+        return '%s - %s' % (self.dataset, self.format)
 
 
 class Concept(BaseModel):
@@ -26,7 +26,7 @@ class Concept(BaseModel):
 
     def __unicode__(self):
         if self.parent:
-            return '%s - $s' % (self.parent, self.name)
+            return '%s - %s' % (self.parent, self.name)
         else:
             return self.name
 
