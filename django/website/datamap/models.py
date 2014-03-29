@@ -51,6 +51,9 @@ class Field(BaseModel):
     class Meta:
         unique_together = ('datamap', 'fieldname')
 
+    def __unicode__(self):
+        return '%s: %s' % (self.datamap, self.fieldname)
+
 
 class TranslatedField(BaseModel):
     field = ForeignKey(Field)
