@@ -9,6 +9,7 @@ from .models import (
 
 class TranslatedFieldInline(admin.StackedInline):
     model = TranslatedField
+    extra = 1
 
 
 class FieldAdmin(admin.ModelAdmin):

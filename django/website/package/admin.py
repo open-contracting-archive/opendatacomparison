@@ -1,7 +1,18 @@
 from django.contrib import admin
 from reversion.admin import VersionAdmin
 
-from package.models import Category, Package, Version, Format
+from package.models import (
+    Category,
+    Package,
+    TranslatedPackage,
+    Version,
+    Format,
+)
+
+
+class TranslatedPackageInline(admin.StackedInline):
+    model = TranslatedPackage
+    extra = 1
 
 
 class PackageAdmin(VersionAdmin):
@@ -11,6 +22,10 @@ class PackageAdmin(VersionAdmin):
     list_filter = ("category",)
     list_display = ("title", "created", )
     date_hierarchy = "created"
+
+    inlines = [
+        TranslatedPackageInline
+    ]
 
 
 class CommitAdmin(admin.ModelAdmin):

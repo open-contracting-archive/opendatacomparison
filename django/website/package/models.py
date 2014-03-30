@@ -9,6 +9,8 @@ from publisher.models import Publisher
 
 from package.utils import normalize_license
 
+from international.models import languages
+
 
 class Category(BaseModel):
     title = models.CharField(_('Title'), max_length='50')
@@ -44,6 +46,9 @@ class Format(BaseModel):
 
 
 class Package(BaseModel):
+    """
+    A package is a dataset in our revamp.
+    """
     title = models.CharField(_('Title'), max_length='100')
     slug = models.SlugField(
         _('Slug'),
@@ -84,7 +89,7 @@ class Package(BaseModel):
     ########## Dataset qualities
     machine_readable = models.BooleanField(
         _('Machine Readable'),
-        help_text='Is the dataset available in a machine readable, format - json, csv, xml, API',
+        help_text='Is the dataset available in a machine readable, format - json, csv, xml, API',  # nopep8
         blank=True)
     formats = models.ManyToManyField(Format)
     nesting_depth = models.IntegerField(
@@ -97,7 +102,7 @@ class Package(BaseModel):
         null=True)
     nesting = models.TextField(
         _('Nesting Description'),
-        help_text='Is the data flat or nested, or available as both? Other nesting notes.',
+        help_text='Is the data flat or nested, or available as both? Other nesting notes.',  # nopep8
         blank=True)
 
     class Meta:
@@ -122,6 +127,16 @@ class Package(BaseModel):
     @models.permalink
     def get_absolute_url(self):
         return ('package', [self.slug])
+
+
+class TranslatedPackage(BaseModel):
+    package = models.ForeignKey(Package)
+    language = models.CharField(_('Language'),
+                                max_length=10,
+                                choices=languages,
+                                default='en_US')
+    title = models.CharField(_('Title'), max_length='100')
+    description = models.TextField(_('Description'), blank=True)
 
 
 class VersionManager(models.Manager):
