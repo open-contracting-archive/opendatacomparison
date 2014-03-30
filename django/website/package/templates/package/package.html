@@ -25,6 +25,12 @@
     <!-- start Description panel -->
     <div class="panel panel-default">
         <dl class="dl-horizontal">
+            <dt>{% trans "Publisher" %}</dt>
+            <dd>{% if package.publisher %}<a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a> ({{ package.publisher.country_name }}){% endif %}</dd>
+
+            <dt>{% trans "Title" %}</dt>
+            <dd class="title">{{ package.title }}</dd>
+
             <dt>{% trans "Description" %}</dt>
             <dd class="description">{{ package.description|urlize|linebreaksbr }}</dd>
 
@@ -34,8 +40,6 @@
             <dt>{% trans "# Using This" %}</dt>
             <dd> {{ package.usage.count }} &nbsp; {% with package as package %} {% usage_button %} {% endwith %} </dd>
 
-            <dt>{% trans "Publisher" %}</dt>
-            <dd>{% if package.publisher %}<a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a> ({{ package.publisher.country.name }}){% endif %}</dd>
 
             <dt>{% trans "Link" %}</dt>
             <dd>{{ package.url|urlizetrunc:40 }}</dd>
@@ -61,6 +65,22 @@
         </dl>
     </div>
     <!-- end Description panel -->
+
+    <!-- start Translated Descriptions panel -->
+    {% for package in package.translations.all %}
+    <div class="panel panel-default">
+        <div class="panel-heading">{{ package.language_name|capfirst }}</div>
+        <dl class="dl-horizontal">
+            <dt>{% trans "Title" %}</dt>
+            <dd class="title">{{ package.title }}</dd>
+
+            <dt>{% trans "Description" %}</dt>
+            <dd class="description">{{ package.description|urlize|linebreaksbr }}</dd>
+
+        </dl>
+    </div>
+    {% endfor %}
+    <!-- end Translated Description panels -->
 
   </div> <!-- end six column section -->
 

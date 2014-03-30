@@ -130,13 +130,17 @@ class Package(BaseModel):
 
 
 class TranslatedPackage(BaseModel):
-    package = models.ForeignKey(Package)
+    package = models.ForeignKey(Package, related_name='translations')
     language = models.CharField(_('Language'),
                                 max_length=10,
                                 choices=languages,
                                 default='en_US')
     title = models.CharField(_('Title'), max_length='100')
     description = models.TextField(_('Description'), blank=True)
+
+    def language_name(self):
+        dc = dict(languages)
+        return dc.get(self.language)
 
 
 class VersionManager(models.Manager):
