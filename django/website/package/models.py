@@ -49,14 +49,22 @@ class Package(BaseModel):
     """
     A package is a dataset in our revamp.
     """
-    title = models.CharField(_('Title'), max_length='100')
+    title = models.CharField(
+        _('Title'),
+        max_length='100',
+        help_text='Translatable. Please provide in English here, and add translation at bottom of page'  # nopep8
+    )
     slug = models.SlugField(
         _('Slug'),
         help_text='Enter a valid "slug" consisting of letters, numbers, \
             underscores or hyphens. Values will be converted to lowercase.',
         unique=True)
     category = models.ForeignKey(Category, related_name='packages')
-    description = models.TextField(_('Description'), blank=True)
+    description = models.TextField(
+        _('Description'),
+        blank=True,
+        help_text='Translatable. Please provide in English here, and add translation at bottom of page'  # nopep8
+    )
     url = models.URLField(
         _('Link'),
         help_text='Enter the URL where the dataset is hosted.',

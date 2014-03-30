@@ -35,6 +35,21 @@
     border-top: 10px solid #75DFCA;
 }
 
+/*********************
+ *
+ * Package form
+ *
+ * *********************/
+.panel-default > .form-group {
+}
+
+.multiField {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: #DDDDDD solid 1px;
+}
+
 /**
  * Override Bootstrap v3 defaults for the top logo brand area.
  */

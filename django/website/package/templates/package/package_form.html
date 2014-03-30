@@ -16,8 +16,15 @@
         </ol>
 
         <form action="{{ request.path }}" method="post" id="package-form"> {% csrf_token %}
-            <fieldset>
+            <fieldset class="form-group">
                 {{ form|crispy }}
+            </fieldset>
+            <fieldset>
+                <h4>Add Translations</h4>
+                <p>If you want to add more, save the dataset and then edit and you will be able to add more.</p>
+                {% for form in inlines %}
+                    {{ form|crispy }}
+                {% endfor %}
             </fieldset>
             <input class="btn btn-default" type="submit" name="add" value="{% trans "save dataset" %}">
         </form>

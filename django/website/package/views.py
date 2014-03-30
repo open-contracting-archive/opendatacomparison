@@ -9,18 +9,22 @@ from django.db.models import Q, Count
 from django.http import (
     HttpResponseRedirect,
     HttpResponse,
-    HttpResponseForbidden
 )
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.views.generic import DetailView, ListView
 
+from braces.views import LoginRequiredMixin, PermissionRequiredMixin
+from extra_views import (
+    CreateWithInlinesView,
+    UpdateWithInlinesView,
+    InlineFormSet
+)
+from grid.models import Grid
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from grid.models import Grid
-
 from .forms import PackageForm, DocumentationForm
-from .models import Category, Package
+from .models import Category, Package, TranslatedPackage
 from .utils import quote_plus
 
 
@@ -54,51 +58,46 @@ class PackageDetailView(DetailView):
     model = Package
 
 
-@login_required
-def add_package(request, template_name='package/package_form.html'):
+class TranslatedPackageInline(InlineFormSet):
+    model = TranslatedPackage
 
-    if not request.user.profile.can_add_package:
-        return HttpResponseForbidden('permission denied')
 
-    new_package = Package()
-    form = PackageForm(request.POST or None, instance=new_package)
+class PackageCreateView(LoginRequiredMixin,
+                        PermissionRequiredMixin,
+                        CreateWithInlinesView):
+    template_name = 'package/package_form.html'
+    model = Package
+    inlines = [TranslatedPackageInline]
+    form_class = PackageForm
+    permission_required = 'add_package'
 
-    if form.is_valid():
+    def form_valid(self, form):
         new_package = form.save()
-        new_package.created_by = request.user
-        new_package.last_modified_by = request.user
+        new_package.created_by = self.request.user
+        new_package.last_modified_by = self.request.user
         new_package.save()
         return HttpResponseRedirect(reverse('package',
                                     kwargs={'slug': new_package.slug}))
 
-    return render(request, template_name, {
-        'form': form,
-        'action': 'add'})
 
+class PackageUpdateView(LoginRequiredMixin,
+                        PermissionRequiredMixin,
+                        UpdateWithInlinesView):
+    template_name = 'package/package_form.html'
+    model = Package
+    inlines = [TranslatedPackageInline]
+    form_class = PackageForm
+    permission_required = 'edit_package'
 
-@login_required
-def edit_package(request, slug, template_name='package/package_form.html'):
-
-    if not request.user.profile.can_edit_package:
-        return HttpResponseForbidden('permission denied')
-
-    package = get_object_or_404(Package, slug=slug)
-    form = PackageForm(request.POST or None, instance=package)
-
-    if form.is_valid():
+    def form_valid(self, form):
         modified_package = form.save()
-        modified_package.last_modified_by = request.user
+        modified_package.last_modified_by = self.request.user
         modified_package.save()
-        messages.add_message(request,
+        messages.add_message(self.request,
                              messages.INFO,
                              'Package updated successfully')
         return HttpResponseRedirect(reverse('package',
                                     kwargs={'slug': modified_package.slug}))
-
-    return render(request, template_name, {
-        'form': form,
-        'package': package,
-        'action': 'edit', })
 
 
 
