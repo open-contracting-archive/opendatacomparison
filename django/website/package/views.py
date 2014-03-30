@@ -63,13 +63,11 @@ class TranslatedPackageInline(InlineFormSet):
 
 
 class PackageCreateView(LoginRequiredMixin,
-                        PermissionRequiredMixin,
                         CreateWithInlinesView):
     template_name = 'package/package_form.html'
     model = Package
     inlines = [TranslatedPackageInline]
     form_class = PackageForm
-    permission_required = 'add_package'
 
     def form_valid(self, form):
         new_package = form.save()
@@ -81,13 +79,11 @@ class PackageCreateView(LoginRequiredMixin,
 
 
 class PackageUpdateView(LoginRequiredMixin,
-                        PermissionRequiredMixin,
                         UpdateWithInlinesView):
     template_name = 'package/package_form.html'
     model = Package
     inlines = [TranslatedPackageInline]
     form_class = PackageForm
-    permission_required = 'edit_package'
 
     def form_valid(self, form):
         modified_package = form.save()
