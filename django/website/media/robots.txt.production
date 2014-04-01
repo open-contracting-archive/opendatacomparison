@@ -1,4 +1,6 @@
 # https://projects.aptivate.org/issues/672
 User-agent: *
-Disallow: /admin/
-Disallow: /en/admin/
+Disallow: /opendatacomparison/admin/
+Disallow: /opendatacomparison/en/admin/
+Disallow: /standard-collaborator/admin/
+Disallow: /standard-collaborator/en/admin/
