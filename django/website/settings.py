@@ -1,4 +1,4 @@
-# Django settings for  project.
+#Django settings for  project.
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 from os import path
@@ -69,7 +69,7 @@ MEDIA_ROOT = path.join(BASE_DIR, 'uploads')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-MEDIA_URL = '/uploads/'
+MEDIA_URL = '/opendatacomparison/uploads/'
 ########## END MEDIA CONFIGURATION
 
 
@@ -78,11 +78,11 @@ MEDIA_URL = '/uploads/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = path.join(BASE_DIR, 'static')
+STATIC_ROOT= path.join(BASE_DIR, 'static')
 
 # URL prefix for static files.
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = '/static/'
+STATIC_URL = 'opendatacomparison/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
