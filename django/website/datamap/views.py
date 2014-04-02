@@ -1,4 +1,5 @@
 from django.views.generic import (
+    ListView,
     CreateView,
     UpdateView,
 )
@@ -6,6 +7,10 @@ from django.views.generic import (
 from braces.views import LoginRequiredMixin
 
 from .models import Datamap, Field
+
+
+class DatamapListView(ListView):
+    model = Datamap
 
 
 class DatamapAddView(LoginRequiredMixin, CreateView):

@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^grids/', include('grid.urls')),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^publishers/', include('publisher.urls')),
+    url(r'^datamap/', include('datamap.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
