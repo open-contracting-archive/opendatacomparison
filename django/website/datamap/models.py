@@ -11,7 +11,7 @@ from international.models import languages
 
 
 class Datamap(BaseModel):
-    dataset = ForeignKey(Package)
+    dataset = ForeignKey(Package, related_name='datamaps')
     notes = TextField(_('Notes'), null=True, blank=True)
     format = ForeignKey(Format)
 
@@ -32,7 +32,7 @@ class Concept(BaseModel):
 
 
 class Field(BaseModel):
-    datamap = ForeignKey(Datamap)
+    datamap = ForeignKey(Datamap, related_name='fields')
     fieldname = CharField(_('Field Name'), max_length=100)
     concept = ForeignKey(Concept, null=True, blank=True)
     mapsto = ManyToManyField('self', null=True, blank=True)
@@ -56,7 +56,7 @@ class Field(BaseModel):
 
 
 class TranslatedField(BaseModel):
-    field = ForeignKey(Field)
+    field = ForeignKey(Field, related_name='translations')
     language = CharField(_('Language'),
                          max_length=10,
                          choices=languages,
@@ -64,3 +64,7 @@ class TranslatedField(BaseModel):
     title = CharField(_('Title'), max_length=100)
     description = TextField(_('Description'))
     allowable_values = TextField(_('Allowable values'), blank=True)
+
+    def language_name(self):
+        dc = dict(languages)
+        return dc.get(self.language)
