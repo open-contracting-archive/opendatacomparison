@@ -27,13 +27,35 @@
         <dl class="dl-horizontal">
             <dt>{% trans "Publisher" %}</dt>
             <dd>{% if package.publisher %}<a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a> ({{ package.publisher.country_name }}){% endif %}</dd>
-
-            <dt>{% trans "Title" %}</dt>
-            <dd class="title">{{ package.title }}</dd>
-
-            <dt>{% trans "Description" %}</dt>
-            <dd class="description">{{ package.description|urlize|linebreaksbr }}</dd>
-
+        </dl>
+        <div class="lang-tabs">
+            <ul class="nav nav-tabs pull-right">
+                <li><a href="#tabs-en_US" title="English">EN</a></li>
+                {% for translation in package.translations.all %}
+                <li><a href="#tabs-{{ translation.language }}" title="{{ translation.language_name }}">{{ translation.language|truncatecharsbrute:2|upper }}</a></li>
+                {% endfor %}
+            </ul>
+            <div class="clearfix"></div>
+            <div id="tabs-en_US">
+            <dl class="dl-horizontal">
+                <dt>{% trans "Title" %}</dt>
+                <dd class="title">{{ package.title }}</dd>
+                <dt>{% trans "Description" %}</dt>
+                <dd class="description">{{ package.description|urlize|linebreaksbr }}</dd>
+            </dl>
+            </div>
+            {% for translation in package.translations.all %}
+            <div id="tabs-{{ translation.language }}">
+            <dl class="dl-horizontal">
+                <dt>{% trans "Title" %}</dt>
+                <dd class="title">{{ translation.title }}</dd>
+                <dt>{% trans "Description" %}</dt>
+                <dd class="description">{{ translation.description|urlize|linebreaksbr }}</dd>
+            </dl>
+            </div>
+            {% endfor %}
+        </div>
+        <dl class="dl-horizontal">
             <dt>{% trans "Category" %}</dt>
             <dd> <a href="{% url 'category' package.category.slug %}">{{ package.category }}</a> </dd>
 
@@ -65,22 +87,6 @@
         </dl>
     </div>
     <!-- end Description panel -->
-
-    <!-- start Translated Descriptions panel -->
-    {% for package in package.translations.all %}
-    <div class="panel panel-default">
-        <div class="panel-heading">{{ package.language_name|capfirst }}</div>
-        <dl class="dl-horizontal">
-            <dt>{% trans "Title" %}</dt>
-            <dd class="title">{{ package.title }}</dd>
-
-            <dt>{% trans "Description" %}</dt>
-            <dd class="description">{{ package.description|urlize|linebreaksbr }}</dd>
-
-        </dl>
-    </div>
-    {% endfor %}
-    <!-- end Translated Description panels -->
 
   </div> <!-- end six column section -->
 
@@ -124,6 +130,7 @@
   {{ block.super }}
   <script src="{{ STATIC_URL }}js/underscore.js" type="text/javascript"></script>
   <script src="{{ STATIC_URL }}js/gh3.js" type="text/javascript"></script>
+  <script src="{{ STATIC_URL }}js/jquery.tabs.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block extra_body %}
@@ -154,6 +161,7 @@
 
         });
 
+        $('.lang-tabs').tabs({event: "mouseover"});
     });
 </script>
 {% endblock %}

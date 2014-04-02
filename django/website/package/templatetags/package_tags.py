@@ -1,5 +1,5 @@
 from django import template
-
+from django.utils.text import Truncator
 
 from package.context_processors import used_packages_list
 
@@ -48,3 +48,14 @@ def usage_button(context):
         response['usage_action'] = "add"
         response['image'] = "usage_triangle_hollow"
     return response
+
+
+@register.filter
+def truncatecharsbrute(value, arg):
+    try:
+        length = int(arg)
+    except ValueError:  # Invalid literal for int().
+        return value  # Fail silently.
+    return Truncator(value).chars(length, truncate='')
+
+
