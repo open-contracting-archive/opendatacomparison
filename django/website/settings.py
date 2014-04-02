@@ -114,6 +114,7 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
+    'nested_inlines',
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
