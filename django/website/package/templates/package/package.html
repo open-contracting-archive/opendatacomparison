@@ -20,7 +20,7 @@
         <li class="active">{{ package.title }} <a href="{% url 'edit_package' package.slug %}"><span class="glyphicon glyphicon-pencil"></span></a></li>
     </ol>
   
-  <div class="col-lg-6">
+  <div class="col-md-6">
 
     <!-- start Description panel -->
     <div class="panel panel-default">
@@ -85,7 +85,7 @@
   </div> <!-- end six column section -->
 
 
-  <div class="col-lg-6">
+  <div class="col-md-6">
 
     <!-- start Grids panel -->
     <div class="panel panel-default">
@@ -111,6 +111,13 @@
 
   </div> <!-- end six column section -->
 </div>    <!-- end twelve_column section -->
+<div class="row">
+  <div class="col-md-12">
+      {% for datamap in package.datamaps.all %}
+        {% include 'datamap/datamap_snippet.html' %}
+      {% endfor %}
+  </div>
+</div>
 {% endblock %}
 
 {% block javascript %}
