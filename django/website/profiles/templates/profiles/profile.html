@@ -5,15 +5,15 @@
 {% load profile_tags %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}Profile for {{ user }}{% endblock %}
+{% block head_title %}Profile for {{ profile }}{% endblock %}
 
 {% block body %}
 <div class="container">
   <div class="row">
     <div class="col-xs-2">
-      <h2>{% blocktrans %}<span class="fn nickname">{{ user }}</span>{% endblocktrans %}</h2>
+      <h2>{% blocktrans %}<span class="fn nickname">{{ profile }}</span>{% endblocktrans %}</h2>
 
-      {% if user == profile.user %}
+      {% if user.username == profile %}
         <p><a href="{% url 'profile_edit' user.username %}">{% trans "Edit my profile" %}</a></p>
       {% endif %}    
       
@@ -37,6 +37,7 @@
               </tr>
             </thead>                    
             <tbody>
+            {% if user.username == profile %}
               {% for package in user|package_usage %}
                 <tr>
                     <td>{{ forloop.counter }}</td>                        
@@ -44,6 +45,7 @@
                     <td><a href="{{ package.repo_url }}">{{ package.repo_url }}</a></td>
                 </tr>
               {% endfor %}
+            {% endif %}
             </tbody>
           </table>                    
         </ul>
