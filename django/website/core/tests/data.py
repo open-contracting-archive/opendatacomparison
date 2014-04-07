@@ -12,9 +12,7 @@ class OpenComparisonTestCase(TestCase):
         self.make()
 
     def make(self):
-
         self.create_users()
-
         self.category, created = Category.objects.get_or_create(
             title="App",
             slug="apps",

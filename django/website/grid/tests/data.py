@@ -62,7 +62,6 @@ class GridTestCase(OpenComparisonTestCase):
         )
 
         group1, created = Group.objects.get_or_create(
-            pk=1,
             name=u'Moderators',
         )
         group1.permissions.clear()
@@ -73,7 +72,3 @@ class GridTestCase(OpenComparisonTestCase):
         cleaner_user = User.objects.get(username='cleaner')
         cleaner_user.groups = [group1]
         cleaner_user.save()
-
-        datautil.reset_sequences(Grid, Group, User, Permission, Category,
-                                 Package, Element, Feature,
-                                 GridPackage)
