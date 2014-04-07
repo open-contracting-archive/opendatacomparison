@@ -15,13 +15,13 @@ class OpenComparisonTestCase(TestCase):
 
         self.create_users()
 
-        category, created = Category.objects.get_or_create(
+        self.category, created = Category.objects.get_or_create(
             title="App",
             slug="apps",
             description="Small components used to build projects."
         )
         package, created = Package.objects.get_or_create(
-            category=category,
+            category=self.category,
             description="Increase your testing ability with this steroid free supplement.",  # nopep8
             url="https://github.com/pydanny/django-la-facebook",
             slug="testability",
@@ -29,7 +29,7 @@ class OpenComparisonTestCase(TestCase):
             machine_readable=False,
         )
         package, created = Package.objects.get_or_create(
-            category=category,
+            category=self.category,
             description="Test everything under the sun with one command!",
             url="https://github.com/pydanny/django-uni-form",
             slug="supertester",
@@ -37,7 +37,7 @@ class OpenComparisonTestCase(TestCase):
             machine_readable=False,
         )
         package, created = Package.objects.get_or_create(
-            category=category,
+            category=self.category,
             description="Make testing as painless as frozen yogurt.",
             url="https://github.com/opencomparison/opencomparison",
             slug="serious-testing",
@@ -45,7 +45,7 @@ class OpenComparisonTestCase(TestCase):
             machine_readable=False,
         )
         package, created = Package.objects.get_or_create(
-            category=category,
+            category=self.category,
             description="Yet another test package, with no grid affiliation.",  # nopep8
             url="https://github.com/djangopackages/djangopackages",
             slug="another-test",
