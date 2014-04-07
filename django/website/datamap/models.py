@@ -20,8 +20,8 @@ class Datamap(BaseModel):
 
 
 class Concept(BaseModel):
-    name = CharField(_('Name'), max_length=100, unique=True)
-    description = TextField(_('Description'))
+    name = CharField(_('Name'), max_length=100)
+    description = TextField(_('Description'), blank=True)
     parent = ForeignKey('self', null=True, blank=True)
 
     def __unicode__(self):
@@ -29,6 +29,9 @@ class Concept(BaseModel):
             return '%s - %s' % (self.parent, self.name)
         else:
             return self.name
+
+    class Meta:
+        unique_together = ("parent", "name")
 
 
 class Field(BaseModel):
