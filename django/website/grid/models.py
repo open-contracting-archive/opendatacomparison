@@ -35,7 +35,7 @@ class Grid(BaseModel):
         return elements
 
     def __unicode__(self):
-        return self.title
+        return u'%s' % self.title
 
     @property
     def grid_packages(self):
@@ -99,7 +99,7 @@ class GridPackage(BaseModel):
         super(GridPackage, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return '%s : %s' % (self.grid.slug, self.package.slug)
+        return u'%s : %s' % (self.grid.slug, self.package.slug)
 
 
 class Feature(BaseModel):
@@ -121,7 +121,7 @@ class Feature(BaseModel):
         super(Feature, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return '%s : %s' % (self.grid.slug, self.title)
+        return u'%s : %s' % (self.grid.slug, self.title)
 
 help_text = """
 Linebreaks are turned into 'br' tags<br />
@@ -155,4 +155,4 @@ class Element(BaseModel):
         super(Element, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return '%s : %s : %s' % (self.grid_package.grid.slug, self.grid_package.package.slug, self.feature.title)
+        return u'%s : %s : %s' % (self.grid_package.grid.slug, self.grid_package.package.slug, self.feature.title)

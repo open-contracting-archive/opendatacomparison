@@ -25,7 +25,7 @@ class Category(BaseModel):
         verbose_name_plural = 'Categories'
 
     def __unicode__(self):
-        return self.title
+        return u'%s' % self.title
 
     @property
     def package_count(self):
@@ -42,7 +42,7 @@ class Format(BaseModel):
     description = models.TextField(_('Description'), blank=True)
 
     def __unicode__(self):
-        return self.title
+        return u'%s' % self.title
 
 
 class Package(BaseModel):
@@ -125,7 +125,7 @@ class Package(BaseModel):
         return self.usage.count()
 
     def __unicode__(self):
-        return self.title
+        return u'%s' % self.title
 
     def grid_clear_detail_template_cache(self):
         grids = (x.grid for x in self.gridpackage_set.all())
@@ -195,4 +195,4 @@ class Version(BaseModel):
         super(Version, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return '%s: %s' % (self.package.title, self.number)
+        return u'%s: %s' % (self.package, self.number)

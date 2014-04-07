@@ -52,4 +52,4 @@ class Publisher(BaseModel):
         return dc.get(self.country)
 
     def __unicode__(self):
-        return '%s - %s' % (self.country, self.name)
+        return u'%s - %s' % (self.country, self.name)

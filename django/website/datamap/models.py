@@ -16,7 +16,7 @@ class Datamap(BaseModel):
     format = ForeignKey(Format)
 
     def __unicode__(self):
-        return '%s - %s' % (self.dataset, self.format)
+        return u'%s - %s' % (self.dataset, self.format)
 
 
 class Concept(BaseModel):
@@ -26,9 +26,9 @@ class Concept(BaseModel):
 
     def __unicode__(self):
         if self.parent:
-            return '%s - %s' % (self.parent, self.name)
+            return u'%s - %s' % (self.parent, self.name)
         else:
-            return self.name
+            return u'%s' % self.name
 
     class Meta:
         unique_together = ("parent", "name")
@@ -55,7 +55,7 @@ class Field(BaseModel):
         unique_together = ('datamap', 'fieldname')
 
     def __unicode__(self):
-        return '%s: %s' % (self.datamap, self.fieldname)
+        return u'%s: %s' % (self.datamap, self.fieldname)
 
 
 class TranslatedField(BaseModel):
@@ -65,7 +65,7 @@ class TranslatedField(BaseModel):
                          choices=languages,
                          default='en_US')
     title = CharField(_('Title'), max_length=100)
-    description = TextField(_('Description'))
+    description = TextField(_('Description'), blank=True)
     allowable_values = TextField(_('Allowable values'), blank=True)
 
     def language_name(self):
