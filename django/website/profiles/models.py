@@ -8,7 +8,7 @@ from core.models import BaseModel
 
 
 class Profile(BaseModel):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='profile')
     url = models.URLField(_('Website'), null=True, blank=True)
 
     def __unicode__(self):

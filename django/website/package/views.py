@@ -9,6 +9,7 @@ from django.db.models import Q, Count
 from django.http import (
     HttpResponseRedirect,
     HttpResponse,
+    HttpResponseForbidden,
 )
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
@@ -69,6 +70,13 @@ class PackageCreateView(LoginRequiredMixin,
     inlines = [TranslatedPackageInline]
     form_class = PackageForm
 
+    def dispatch(self, *args, **kwargs):
+        user = self.request.user
+        if user.is_authenticated() and not user.profile.can_add_package:
+            return HttpResponseForbidden("permission denied")
+        else:
+            return super(PackageCreateView, self).dispatch(*args, **kwargs)
+
     def form_valid(self, form):
         new_package = form.save()
         new_package.created_by = self.request.user
@@ -84,6 +92,13 @@ class PackageUpdateView(LoginRequiredMixin,
     model = Package
     inlines = [TranslatedPackageInline]
     form_class = PackageForm
+
+    def dispatch(self, *args, **kwargs):
+        user = self.request.user
+        if user.is_authenticated() and not user.profile.can_edit_package:
+            return HttpResponseForbidden("permission denied")
+        else:
+            return super(PackageUpdateView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
         modified_package = form.save()

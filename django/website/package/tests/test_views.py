@@ -1,22 +1,16 @@
 from django.conf import settings
 from django.contrib.auth.models import User, Permission
 from django.core.urlresolvers import reverse
-from django.test import TestCase
+from django.test.utils import override_settings
 
-from package.models import Category, Package, PackageExample
-from package.tests import initial_data
+from package.models import Category, Package
 
-from profiles.models import Profile
+from core.tests.data import STOCK_PASSWORD
+from .data import PackageTestCase
 
 
-class FunctionalPackageTest(TestCase):
-    def setUp(self):
-        initial_data.load()
-        for user in User.objects.all():
-            profile = Profile.objects.create(user=user)
-            profile.save()
-        settings.RESTRICT_PACKAGE_EDITORS = False
-        settings.RESTRICT_GRID_EDITORS = True
+@override_settings(RESTRICT_PACKAGE_EDITORS=False)
+class FunctionalPackageTest(PackageTestCase):
 
     def test_package_list_view(self):
         url = reverse('packages')
@@ -33,13 +27,9 @@ class FunctionalPackageTest(TestCase):
         self.assertTemplateUsed(response, 'package/package.html')
         p = Package.objects.get(slug='testability')
         self.assertContains(response, p.title)
-        self.assertContains(response, p.repo_description)
-        for participant in p.participant_list():
-            self.assertContains(response, participant)
-        for g in p.grids():
+        self.assertContains(response, p.description)
+        for g in p.grids.all():
             self.assertContains(response, g.title)
-        for e in p.active_examples:
-            self.assertContains(response, e.title)
 
     def test_latest_packages_view(self):
         url = reverse('latest_packages')
@@ -49,7 +39,7 @@ class FunctionalPackageTest(TestCase):
         packages = Package.objects.all()
         for p in packages:
             self.assertContains(response, p.title)
-            self.assertContains(response, p.repo_description)
+            self.assertContains(response, p.description)
 
     def test_add_package_view(self):
         url = reverse('add_package')
@@ -59,21 +49,27 @@ class FunctionalPackageTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         # Once we log in the user, we should get back the appropriate response.
-        self.assertTrue(self.client.login(username='user', password='user'))
+        self.assertTrue(self.client.login(username='user',
+                                          password=STOCK_PASSWORD))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'package/package_form.html')
         for c in Category.objects.all():
             self.assertContains(response, c.title)
         count = Package.objects.count()
+        category = Category.objects.all()[0].pk
         response = self.client.post(url, {
-            'category': Category.objects.all()[0].pk,
-            'repo_url': 'https://github.com/django/django',
-            'slug': 'django',
+            'category': category,
+            'url': 'https://github.com/django/django',
+            'slug': 'django22',
             'title': 'django',
+            'translations-TOTAL_FORMS': 0,
+            'translations-INITIAL_FORMS': 0,
+            'translations-MAX_NUM_FORMS': 1000,
         })
-        self.assertEqual(response.status_code, 302)
+        print response.content
         self.assertEqual(Package.objects.count(), count + 1)
+        self.assertEqual(response.status_code, 302)
 
     def test_edit_package_view(self):
         p = Package.objects.get(slug='testability')
@@ -84,7 +80,8 @@ class FunctionalPackageTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         # Once we log in the user, we should get back the appropriate response.
-        self.assertTrue(self.client.login(username='user', password='user'))
+        self.assertTrue(self.client.login(username='user',
+                                          password=STOCK_PASSWORD))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'package/package_form.html')
@@ -94,60 +91,18 @@ class FunctionalPackageTest(TestCase):
         # Make a test post
         response = self.client.post(url, {
             'category': Category.objects.all()[0].pk,
-            'repo_url': 'https://github.com/django/django',
+            'url': 'https://github.com/django/django',
             'slug': p.slug,
             'title': 'TEST TITLE',
+            'translations-TOTAL_FORMS': 0,
+            'translations-INITIAL_FORMS': 0,
+            'translations-MAX_NUM_FORMS': 1000,
         })
         self.assertEqual(response.status_code, 302)
 
         # Check that it actually changed the package
         p = Package.objects.get(slug='testability')
         self.assertEqual(p.title, 'TEST TITLE')
-
-    def test_add_example_view(self):
-        url = reverse('add_example', kwargs={'slug': 'testability'})
-        response = self.client.get(url)
-
-        # The response should be a redirect, since the user is not logged in.
-        self.assertEqual(response.status_code, 302)
-
-        # Once we log in the user, we should get back the appropriate response.
-        self.assertTrue(self.client.login(username='user', password='user'))
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'package/add_example.html')
-
-        count = PackageExample.objects.count()
-        response = self.client.post(url, {
-            'title': 'TEST TITLE',
-            'url': 'https://github.com',
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(PackageExample.objects.count(), count + 1)
-
-    def test_edit_example_view(self):
-        e = PackageExample.objects.all()[0]
-        id = e.pk
-        url = reverse('edit_example', kwargs={'slug': e.package.slug,
-            'id': e.pk})
-        response = self.client.get(url)
-
-        # The response should be a redirect, since the user is not logged in.
-        self.assertEqual(response.status_code, 302)
-
-        # Once we log in the user, we should get back the appropriate response.
-        self.assertTrue(self.client.login(username='user', password='user'))
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'package/edit_example.html')
-
-        response = self.client.post(url, {
-            'title': 'TEST TITLE',
-            'url': 'https://github.com',
-        })
-        self.assertEqual(response.status_code, 302)
-        e = PackageExample.objects.get(pk=id)
-        self.assertEqual(e.title, 'TEST TITLE')
 
     def test_usage_view(self):
         url = reverse('usage', kwargs={'slug': 'testability', 'action': 'add'})
@@ -158,32 +113,32 @@ class FunctionalPackageTest(TestCase):
 
         user = User.objects.get(username='user')
         count = user.package_set.count()
-        self.assertTrue(self.client.login(username='user', password='user'))
+        self.assertTrue(self.client.login(username='user',
+                                          password=STOCK_PASSWORD))
 
         # Now that the user is logged in, make sure that the number of packages
         # they use has increased by one.
         response = self.client.get(url)
         self.assertEqual(count + 1, user.package_set.count())
 
-        # Now we remove that same package from the user's list of used packages,
+        # Now we remove that same package from the user's list
+        # of used packages,
         # making sure that the total number has decreased by one.
-        url = reverse('usage', kwargs={'slug': 'testability', 'action': 'remove'})
+        url = reverse('usage', kwargs={'slug': 'testability',
+                                       'action': 'remove'})
         response = self.client.get(url)
         self.assertEqual(count, user.package_set.count())
 
 
-class PackagePermissionTest(TestCase):
+class PackagePermissionTest(PackageTestCase):
     def setUp(self):
-        initial_data.load()
-        for user in User.objects.all():
-            profile = Profile.objects.create(user=user)
-            profile.save()
-
+        super(PackagePermissionTest, self).setUp()
         settings.RESTRICT_PACKAGE_EDITORS = True
         self.test_add_url = reverse('add_package')
         self.test_edit_url = reverse('edit_package',
                                      kwargs={'slug': 'testability'})
-        self.login = self.client.login(username='user', password='user')
+        self.login = self.client.login(username='user',
+                                       password=STOCK_PASSWORD)
         self.user = User.objects.get(username='user')
 
     def test_login(self):
@@ -197,13 +152,16 @@ class PackagePermissionTest(TestCase):
         response = self.client.get(self.test_add_url)
         self.assertEqual(response.status_code, 403)
 
+    @override_settings(RESTRICT_PACKAGE_EDITORS=True)
     def test_add_package_permission_fail(self):
         response = self.client.get(self.test_add_url)
         self.assertEqual(response.status_code, 403)
 
     def test_add_package_permission_success(self):
-        add_package_perm = Permission.objects.get(codename="add_package",
-                content_type__app_label='package')
+        add_package_perm = Permission.objects.get(
+            codename="add_package",
+            content_type__app_label='package'
+        )
         self.user.user_permissions.add(add_package_perm)
         response = self.client.get(self.test_add_url)
         self.assertEqual(response.status_code, 200)
@@ -213,8 +171,9 @@ class PackagePermissionTest(TestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_edit_package_permission_success(self):
-        edit_package_perm = Permission.objects.get(codename="change_package",
-                content_type__app_label='package')
+        edit_package_perm = Permission.objects.get(
+            codename="change_package",
+            content_type__app_label='package')
         self.user.user_permissions.add(edit_package_perm)
         response = self.client.get(self.test_edit_url)
         self.assertEqual(response.status_code, 200)

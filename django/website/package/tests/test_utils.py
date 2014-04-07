@@ -1,5 +1,5 @@
 from django.test import TestCase
-
+from django.test.utils import override_settings
 from package.utils import uniquer, normalize_license
 
 
@@ -9,11 +9,12 @@ class UtilsTest(TestCase):
         unique_items = ['apple', 'banana', 'cherry']
         self.assertEqual(uniquer(items), unique_items)
 
+    @override_settings(LICENSES='License :: OSI Approved :: MIT License')
     def test_normalize_license(self):
         self.assertEqual(normalize_license(None), "UNKNOWN")
         self.assertEqual(
-                normalize_license("""License :: OSI Approved :: MIT License
-                """),
-                "License :: OSI Approved :: MIT License")
+            normalize_license("""License :: OSI Approved :: MIT License"""),
+            "License :: OSI Approved :: MIT License"
+        )
         self.assertEqual(normalize_license("Pow" * 80), "Custom")
         self.assertEqual(normalize_license("MIT"), "MIT")
