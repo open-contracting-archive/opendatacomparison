@@ -16,3 +16,5 @@ reports/*
 .pydevproject
 *.sql
 *.sql.gz
+.coverage
+*htmlcov*
