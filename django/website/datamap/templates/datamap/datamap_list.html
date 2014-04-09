@@ -8,11 +8,14 @@
 
 {% block body %}
 <div class="row">
+    <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
+        <li class="active">{% trans "datamaps" %}</li> 
+    </ol>
     <div class="col-lg-12">
-
         <ul>
         {% for datamap in object_list %}
-        <li>{{ datamap.dataset }} - {{ datamap.format }}</li>
+        <li><a href="{% url 'datamap' datamap.pk %}">{{ datamap.dataset }} - {{ datamap.format }}</a></li>
         {% endfor %}
         </ul>
 

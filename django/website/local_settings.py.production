@@ -34,4 +34,6 @@ except Exception as e:
 # used in admin template so we know which site we're looking at
 DEPLOY_ENV = "Production Server"
 
+EXTRA_INSTALLED_APPS = ()
+EXTRA_MIDDLEWARE_CLASSES = ()
 # vi: ft=python

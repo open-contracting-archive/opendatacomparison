@@ -1,0 +1,3551 @@
+{
+    "World Bank": [
+        {
+            "name": "organization", 
+            "children": [
+                {
+                    "questionkey": "contactcountry", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactemail", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactlegal-representative", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactmailing-address", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactperson-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactregion", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacttelephone", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacturl", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "name", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "meta", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "description", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "line-itemdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemid", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "performance-location", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sector", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "bid", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "CPV", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsper-unit-budget", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contract-term", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-clarification", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-closing", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-opening", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procurement-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procuring-on-behalf", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sme-friendly", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-budget", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "award", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsper-unit-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractawarded-contract-document-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contractsignatory-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-contractsigned", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-commence-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "recipientopencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "selection-method", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "total-award", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "performance", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentcurrency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-transaction", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-value", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdisbursement-channel", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentref", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymenttransaction-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentvalue", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "termination", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-termination", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-code", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-description", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "document", 
+            "children": [
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "format", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "extra", 
+            "children": [
+                {
+                    "questionkey": "borrower_contract_reference"
+                }, 
+                {
+                    "questionkey": "borrower_country"
+                }, 
+                {
+                    "questionkey": "fiscal_year"
+                }, 
+                {
+                    "questionkey": "procurement_type"
+                }, 
+                {
+                    "questionkey": "region"
+                }, 
+                {
+                    "questionkey": "supplier_country"
+                }
+            ]
+        }
+    ], 
+    "Colombia": [
+        {
+            "name": "organization", 
+            "children": [
+                {
+                    "questionkey": "contactcountry", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactemail", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactlegal-representative", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactmailing-address", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactperson-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactregion", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacttelephone", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacturl", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "name", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "meta", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "category", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "description", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "line-itemdescription", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "line-itemid", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location@encoding", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sector", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "bid", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "CPV", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsper-unit-budget", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contract-term", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-clarification", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-closing", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-opening", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-commence-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procurement-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procuring-on-behalf", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sme-friendly", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-budget", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "award", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsper-unit-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractawarded-contract-document-id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractsignatory-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-award", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-contractsigned", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-commence-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "recipientopencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "selection-method", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-award", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "performance", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-actual", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-end-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentcurrency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-transaction", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-value", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdisbursement-channel", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentref", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymenttransaction-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentvalue", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "termination", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-termination", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "termination-code", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "termination-description", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "document", 
+            "children": [
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "format", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "extra", 
+            "children": [
+                {
+                    "questionkey": "FECHAESTADOBORRADOR"
+                }, 
+                {
+                    "questionkey": "FECHAESTADOTERMANORMALDESPCONV_3"
+                }, 
+                {
+                    "questionkey": "NIVEL"
+                }, 
+                {
+                    "questionkey": "ORDEN"
+                }, 
+                {
+                    "questionkey": "TIPO_MODALIDAD"
+                }, 
+                {
+                    "questionkey": "VALOR_ADICIONES"
+                }, 
+                {
+                    "questionkey": "VALOR_CONTRATO"
+                }
+            ]
+        }
+    ], 
+    "Philippines Awards": [
+        {
+            "name": "organization", 
+            "children": [
+                {
+                    "questionkey": "contactcountry", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactemail", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactlegal-representative", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactmailing-address", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactperson-name", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactregion", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacttelephone", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacturl", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "name", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "meta", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "category", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "description", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location@encoding", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sector", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "bid", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "CPV", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsper-unit-budget", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contract-term", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-clarification", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-closing", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-opening", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procurement-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procuring-on-behalf", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sme-friendly", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-budget", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "award", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsper-unit-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractawarded-contract-document-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contractsignatory-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-award", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-contractsigned", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-agreed", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-end-agreed", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "recipientopencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "selection-method", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "total-award", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "performance", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentcurrency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-transaction", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-value", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdisbursement-channel", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentref", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymenttransaction-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentvalue", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "termination", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-termination", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-code", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-description", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "document", 
+            "children": [
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "format", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "extra", 
+            "children": [
+                {
+                    "questionkey": "award_notice_number"
+                }, 
+                {
+                    "questionkey": "award_notice_title"
+                }, 
+                {
+                    "questionkey": "award_type"
+                }, 
+                {
+                    "questionkey": "components"
+                }, 
+                {
+                    "questionkey": "date_proceed"
+                }, 
+                {
+                    "questionkey": "date_published"
+                }, 
+                {
+                    "questionkey": "solicitation_number"
+                }, 
+                {
+                    "questionkey": "status"
+                }, 
+                {
+                    "questionkey": "supplier_contact_title"
+                }
+            ]
+        }
+    ], 
+    "Philippines Bids": [
+        {
+            "name": "organization", 
+            "children": [
+                {
+                    "questionkey": "contactcountry", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactemail", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactlegal-representative", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactmailing-address", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactperson-name", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactregion", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacttelephone", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacturl", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "name", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "meta", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "category", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "description", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "line-itemdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location#text", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "performance-location@encoding", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sector", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "bid", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "CPV", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsper-unit-budget", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contract-term", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-clarification", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-closing", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-opening", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-commence-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procurement-type", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "procuring-on-behalf", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sme-friendly", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-budget", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "award", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsper-unit-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractawarded-contract-document-id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractsignatory-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-contractsigned", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "recipientopencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "selection-method", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-award", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "performance", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentcurrency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-transaction", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-value", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdisbursement-channel", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentref", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymenttransaction-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentvalue", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "termination", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-termination", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-code", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-description", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "document", 
+            "children": [
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "format", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "extra", 
+            "children": [
+                {
+                    "questionkey": "client_agency"
+                }, 
+                {
+                    "questionkey": "created_by"
+                }, 
+                {
+                    "questionkey": "delivery_period"
+                }, 
+                {
+                    "questionkey": "solicitation_number"
+                }, 
+                {
+                    "questionkey": "status"
+                }, 
+                {
+                    "questionkey": "supplements"
+                }, 
+                {
+                    "questionkey": "trade_agreement"
+                }
+            ]
+        }
+    ], 
+    "UK Bids": [
+        {
+            "name": "organization", 
+            "children": [
+                {
+                    "questionkey": "contactcountry", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactemail", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactlegal-representative", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactmailing-address", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactperson-name", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactregion", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contacttelephone", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contacturl", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "name", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "meta", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "category", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "description", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "line-itemdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location#text", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "performance-location@encoding", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sector", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "bid", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "CPV", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsper-unit-budget", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contract-term", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-clarification", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-closing", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-opening", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-scheduled", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-end-scheduled", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "procurement-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procuring-on-behalf", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "sme-friendly", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "total-budget", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "award", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsper-unit-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractawarded-contract-document-id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractsignatory-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-contractsigned", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-agreed", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "recipientopencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "selection-method", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "total-award", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "performance", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentcurrency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-transaction", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-value", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdisbursement-channel", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentref", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymenttransaction-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentvalue", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "termination", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-termination", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-code", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-description", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "document", 
+            "children": [
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "format", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "extra", 
+            "children": [
+                {
+                    "questionkey": "ADMINISTRATIVE_INFORMATION_CONTRACT_NOTICE__FILE_REFERENCE_NUMBER"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__FAX"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__ORGANISATION"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__POSTAL_CODE"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__TOWN"
+                }, 
+                {
+                    "questionkey": "COMPLEMENTARY_INFORMATION_CONTRACT_NOTICE__ADDITIONAL_INFORMATION"
+                }, 
+                {
+                    "questionkey": "COMPLEMENTARY_INFORMATION_CONTRACT_NOTICE__NO_RECURRENT_PROCUREMENT"
+                }, 
+                {
+                    "questionkey": "COMPLEMENTARY_INFORMATION_CONTRACT_NOTICE__RELATES_TO_EU_PROJECT_NO"
+                }, 
+                {
+                    "questionkey": "COMPLEMENTARY_INFORMATION_CONTRACT_NOTICE__RELATES_TO_EU_PROJECT_YES"
+                }, 
+                {
+                    "questionkey": "COSTS_RANGE_AND_CURRENCY__@CURRENCY"
+                }, 
+                {
+                    "questionkey": "CPV__CPV_ADDITIONAL"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__COUNTRY"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__COUNTY"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__POSTAL_CODE"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__TOWN"
+                }, 
+                {
+                    "questionkey": "F02_FRAMEWORK__DURATION_FRAMEWORK_MONTH"
+                }, 
+                {
+                    "questionkey": "F02_FRAMEWORK__DURATION_FRAMEWORK_YEAR"
+                }, 
+                {
+                    "questionkey": "F02_FRAMEWORK__SINGLE_OPERATOR"
+                }, 
+                {
+                    "questionkey": "FD_CONTRACT__REASON_FOR_REPLACEMENT_OR_RETRACTION"
+                }, 
+                {
+                    "questionkey": "LANGUAGE_EC__@VALUE"
+                }, 
+                {
+                    "questionkey": "NATURE_OF_PROCUREMENT__DESCRIPTION"
+                }, 
+                {
+                    "questionkey": "NATURE_OF_PROCUREMENT__OTHER_DESCRIPTION"
+                }, 
+                {
+                    "questionkey": "NOTICE_DISPATCH_DATE__DAY"
+                }, 
+                {
+                    "questionkey": "NOTICE_DISPATCH_DATE__MONTH"
+                }, 
+                {
+                    "questionkey": "NOTICE_DISPATCH_DATE__YEAR"
+                }, 
+                {
+                    "questionkey": "NOTICE_INVOLVES__@VALUE"
+                }, 
+                {
+                    "questionkey": "NOTICE_INVOLVES__FRAMEWORK_STAGE"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__CRITERIA_DEFINITION"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__HOW_TO_APPLY"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__LOCATION_ADDITIONAL_FREE_TEXT"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__OTHER_LANGUAGE_VALUE"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__REASON_FOR_REPLACEMENT_OR_RETRACTION"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__RECEIPT_LIMIT_DATE_FOR"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__SHORT_CONTRACT_DESCRIPTION"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__TITLE_CONTRACT"
+                }, 
+                {
+                    "questionkey": "PREVIOUS_PUBLICATION_INFORMATION_NOTICE_F2__NO_PREVIOUS_PUBLICATION_EXISTS_F2"
+                }, 
+                {
+                    "questionkey": "PREVIOUS_PUBLICATION_INFORMATION_NOTICE_F2__PREVIOUS_PUBLICATION_EXISTS_F2"
+                }, 
+                {
+                    "questionkey": "PROCEDURE_DEFINITION_CONTRACT_NOTICE__IS_FLAGGED_AS_VCS_FRIENDLY"
+                }, 
+                {
+                    "questionkey": "PUBLISHED_ON_SOURCE_DATE__DAY"
+                }, 
+                {
+                    "questionkey": "PUBLISHED_ON_SOURCE_DATE__MONTH"
+                }, 
+                {
+                    "questionkey": "PUBLISHED_ON_SOURCE_DATE__YEAR"
+                }, 
+                {
+                    "questionkey": "QUANTITY_SCOPE__NO_OPTIONS"
+                }, 
+                {
+                    "questionkey": "RANGE_VALUE_COST__HIGH_VALUE"
+                }, 
+                {
+                    "questionkey": "RANGE_VALUE_COST__LOW_VALUE"
+                }, 
+                {
+                    "questionkey": "RECEIPT_LIMIT_DATE__RECEIPT_LIMIT_DATE_FOR"
+                }, 
+                {
+                    "questionkey": "RECEIPT_LIMIT_DATE__TIME"
+                }, 
+                {
+                    "questionkey": "SERVICE_CATEGORY__@VALUE"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__PARENT_PROVIDER_CONTRACT_ID"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__PROVIDER_CONTRACT_ID"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__PROVIDER_CONTRACT_URL"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__SOURCE_NAME"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_GROUP"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_STATE"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_TYPE"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_TYPE_FRIENDLY_NAME"
+                }, 
+                {
+                    "questionkey": "SYSTEM__PARENT_NOTICE_ID"
+                }, 
+                {
+                    "questionkey": "SYSTEM__ROOT_NOTICE_ID"
+                }, 
+                {
+                    "questionkey": "SYSTEM__SYSTEM_NOTICE_STATE"
+                }, 
+                {
+                    "questionkey": "TYPE_CONTRACT__@VALUE"
+                }, 
+                {
+                    "questionkey": "TYPE_OF_CONTRACTING_AUTHORITY_OTHER__@VALUE"
+                }, 
+                {
+                    "questionkey": "TYPE_OF_PROCEDURE_DETAIL_FOR_CONTRACT_NOTICE__PT_OPEN"
+                }, 
+                {
+                    "questionkey": "TYPE_SUPPLIES_CONTRACT__@VALUE"
+                }, 
+                {
+                    "questionkey": "TYPE_WORK_CONTRACT__@VALUE"
+                }, 
+                {
+                    "questionkey": "__@CATEGORY"
+                }, 
+                {
+                    "questionkey": "__@CONTRACTS_FINDER_NOTICE_GROUP"
+                }, 
+                {
+                    "questionkey": "__@CONTRACTS_FINDER_VERSION"
+                }, 
+                {
+                    "questionkey": "__@FORM"
+                }, 
+                {
+                    "questionkey": "__@VERSION"
+                }, 
+                {
+                    "questionkey": "___id"
+                }
+            ]
+        }
+    ], 
+    "UK Awards": [
+        {
+            "name": "organization", 
+            "children": [
+                {
+                    "questionkey": "contactcountry", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactemail", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactlegal-representative", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactmailing-address", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactperson-name", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contactregion", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contacttelephone", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contacturl", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "name", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "meta", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "category", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "description", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "line-itemdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location#text", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "performance-location@encoding", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sector", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "bid", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "CPV", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsper-unit-budget", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contract-term", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-clarification", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-closing", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-opening", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procurement-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procuring-on-behalf", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "sme-friendly", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "total-budget", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "award", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsper-unit-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractawarded-contract-document-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "contractsignatory-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-contractsigned", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-commence-agreed", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-end-agreed", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "recipientopencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "selection-method", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "total-award", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "performance", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentcurrency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-transaction", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-value", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdisbursement-channel", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentref", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymenttransaction-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentvalue", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "termination", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-termination", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-code", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-description", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "document", 
+            "children": [
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "format", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "extra", 
+            "children": [
+                {
+                    "questionkey": "ADMINISTRATIVE_INFORMATION_CONTRACT_AWARD__FILE_REFERENCE_NUMBER"
+                }, 
+                {
+                    "questionkey": "AWARD_CRITERIA_DETAIL_F03__MOST_ECONOMICALLY_ADVANTAGEOUS_TENDER_SHORT"
+                }, 
+                {
+                    "questionkey": "AWARD_OF_CONTRACT__COMPANIES_HOUSE_URI_SUFFIX"
+                }, 
+                {
+                    "questionkey": "AWARD_OF_CONTRACT__IS_AWARDED_TO_SME"
+                }, 
+                {
+                    "questionkey": "AWARD_OF_CONTRACT__IS_AWARDED_TO_VCS"
+                }, 
+                {
+                    "questionkey": "AWARD_OF_CONTRACT__ITEM"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__FAX"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__ORGANISATION"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__POSTAL_CODE"
+                }, 
+                {
+                    "questionkey": "CA_CE_CONCESSIONAIRE_PROFILE__TOWN"
+                }, 
+                {
+                    "questionkey": "COMPLEMENTARY_INFORMATION_CONTRACT_AWARD__ADDITIONAL_INFORMATION"
+                }, 
+                {
+                    "questionkey": "COMPLEMENTARY_INFORMATION_CONTRACT_AWARD__RELATES_TO_EU_PROJECT_NO"
+                }, 
+                {
+                    "questionkey": "COMPLEMENTARY_INFORMATION_CONTRACT_AWARD__RELATES_TO_EU_PROJECT_YES"
+                }, 
+                {
+                    "questionkey": "CPV__CPV_ADDITIONAL"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__COUNTRY"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__COUNTY"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__POSTAL_CODE"
+                }, 
+                {
+                    "questionkey": "DELIVERY_LOCATION__TOWN"
+                }, 
+                {
+                    "questionkey": "ECONOMIC_OPERATOR_NAME_ADDRESS__FAX"
+                }, 
+                {
+                    "questionkey": "ECONOMIC_OPERATOR_NAME_ADDRESS__POSTAL_CODE"
+                }, 
+                {
+                    "questionkey": "ECONOMIC_OPERATOR_NAME_ADDRESS__TOWN"
+                }, 
+                {
+                    "questionkey": "FD_CONTRACT_AWARD__REASON_FOR_REPLACEMENT_OR_RETRACTION"
+                }, 
+                {
+                    "questionkey": "MORE_INFORMATION_TO_SUBCONTRACTED__CONTRACT_LIKELY_SUB_CONTRACTED"
+                }, 
+                {
+                    "questionkey": "MORE_INFORMATION_TO_SUBCONTRACTED__NO_CONTRACT_LIKELY_SUB_CONTRACTED"
+                }, 
+                {
+                    "questionkey": "NATURE_OF_PROCUREMENT__DESCRIPTION"
+                }, 
+                {
+                    "questionkey": "NATURE_OF_PROCUREMENT__OTHER_DESCRIPTION"
+                }, 
+                {
+                    "questionkey": "NOTICE_DISPATCH_DATE__DAY"
+                }, 
+                {
+                    "questionkey": "NOTICE_DISPATCH_DATE__MONTH"
+                }, 
+                {
+                    "questionkey": "NOTICE_DISPATCH_DATE__YEAR"
+                }, 
+                {
+                    "questionkey": "NOTICE_INVOLVES__@VALUE"
+                }, 
+                {
+                    "questionkey": "NOTICE_INVOLVES__FRAMEWORK_STAGE"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__CRITERIA_DEFINITION"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__HOW_TO_APPLY"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__LOCATION_ADDITIONAL_FREE_TEXT"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__OTHER_LANGUAGE_VALUE"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__REASON_FOR_REPLACEMENT_OR_RETRACTION"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__SHORT_CONTRACT_DESCRIPTION"
+                }, 
+                {
+                    "questionkey": "OTHER_LANGUAGE_FIELDS__TITLE_CONTRACT"
+                }, 
+                {
+                    "questionkey": "PERIOD_WORK_DATE_STARTING__DAYS"
+                }, 
+                {
+                    "questionkey": "PERIOD_WORK_DATE_STARTING__MONTHS"
+                }, 
+                {
+                    "questionkey": "PREVIOUS_PUBLICATION_INFORMATION_NOTICE_F3__NO_PREVIOUS_PUBLICATION_EXISTS_F3"
+                }, 
+                {
+                    "questionkey": "PREVIOUS_PUBLICATION_INFORMATION_NOTICE_F3__PREVIOUS_PUBLICATION_EXISTS_F3"
+                }, 
+                {
+                    "questionkey": "PROCEDURE_DEFINITION_CONTRACT_AWARD_NOTICE__IS_FLAGGED_AS_VCS_FRIENDLY"
+                }, 
+                {
+                    "questionkey": "PUBLISHED_ON_SOURCE_DATE__DAY"
+                }, 
+                {
+                    "questionkey": "PUBLISHED_ON_SOURCE_DATE__MONTH"
+                }, 
+                {
+                    "questionkey": "PUBLISHED_ON_SOURCE_DATE__YEAR"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__PARENT_PROVIDER_CONTRACT_ID"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__PROVIDER_CONTRACT_ID"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__PROVIDER_CONTRACT_URL"
+                }, 
+                {
+                    "questionkey": "SOURCE_SYSTEM__SOURCE_NAME"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_GROUP"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_STATE"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_TYPE"
+                }, 
+                {
+                    "questionkey": "SYSTEM__NOTICE_TYPE_FRIENDLY_NAME"
+                }, 
+                {
+                    "questionkey": "SYSTEM__PARENT_NOTICE_ID"
+                }, 
+                {
+                    "questionkey": "SYSTEM__ROOT_NOTICE_ID"
+                }, 
+                {
+                    "questionkey": "SYSTEM__SYSTEM_NOTICE_STATE"
+                }, 
+                {
+                    "questionkey": "TYPE_CONTRACT__@VALUE"
+                }, 
+                {
+                    "questionkey": "TYPE_OF_CONTRACTING_AUTHORITY_OTHER__@VALUE"
+                }, 
+                {
+                    "questionkey": "TYPE_OF_PROCEDURE_DEF__PT_OPEN"
+                }, 
+                {
+                    "questionkey": "TYPE_SUPPLIES_CONTRACT__@VALUE"
+                }, 
+                {
+                    "questionkey": "TYPE_WORK_CONTRACT__@VALUE"
+                }, 
+                {
+                    "questionkey": "__@CATEGORY"
+                }, 
+                {
+                    "questionkey": "__@CONTRACTS_FINDER_NOTICE_GROUP"
+                }, 
+                {
+                    "questionkey": "__@CONTRACTS_FINDER_VERSION"
+                }, 
+                {
+                    "questionkey": "__@FORM"
+                }, 
+                {
+                    "questionkey": "__@VERSION"
+                }, 
+                {
+                    "questionkey": "___id"
+                }
+            ]
+        }
+    ], 
+    "US (Partial)": [
+        {
+            "name": "organization", 
+            "children": [
+                {
+                    "questionkey": "contactcountry", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactemail", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactlegal-representative", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactmailing-address", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactperson-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contactregion", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacttelephone", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contacturl", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "name", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "meta", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "currency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "description", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "line-itemid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-id", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "performance-location#text", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "performance-location@encoding", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sector", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "bid", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "CPV", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsper-unit-budget", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "budget-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contract-term", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-clarification", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-closing", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-opening", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-scheduled", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procurement-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "procuring-on-behalf", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "sme-friendly", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-budget", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "award", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsid", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsper-unit-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "award-line-itemsquantity", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractawarded-contract-document-id", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "contractsignatory-name", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-award", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-contractsigned", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-commence-agreed", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "date-work-end-agreed", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id#text", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "opencontract-organization-id@organization-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "recipientopencontract-organization-contact", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "selection-method", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "total-award", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "performance", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-commence-actual", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-work-end-actual", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "paymentcurrency", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-transaction", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdate-value", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdescription", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentdisbursement-channel", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentref", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "paymenttransaction-type", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "paymentvalue", 
+                    "hasmap": "True"
+                }
+            ]
+        }, 
+        {
+            "name": "termination", 
+            "children": [
+                {
+                    "questionkey": "@last-updated-datetime", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "date-termination", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "termination-code", 
+                    "hasmap": "True"
+                }, 
+                {
+                    "questionkey": "termination-description", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "document", 
+            "children": [
+                {
+                    "questionkey": "category", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "format", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "language", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "title", 
+                    "hasmap": "False"
+                }, 
+                {
+                    "questionkey": "url", 
+                    "hasmap": "False"
+                }
+            ]
+        }, 
+        {
+            "name": "extra", 
+            "children": [
+                {
+                    "questionkey": "a76action"
+                }, 
+                {
+                    "questionkey": "account_title"
+                }, 
+                {
+                    "questionkey": "agencyid"
+                }, 
+                {
+                    "questionkey": "aiobflag"
+                }, 
+                {
+                    "questionkey": "annualrevenue"
+                }, 
+                {
+                    "questionkey": "apaobflag"
+                }, 
+                {
+                    "questionkey": "baobflag"
+                }, 
+                {
+                    "questionkey": "baseandalloptionsvalue"
+                }, 
+                {
+                    "questionkey": "baseandexercisedoptionsvalue"
+                }, 
+                {
+                    "questionkey": "ccrexception"
+                }, 
+                {
+                    "questionkey": "city"
+                }, 
+                {
+                    "questionkey": "claimantprogramcode"
+                }, 
+                {
+                    "questionkey": "clingercohenact"
+                }, 
+                {
+                    "questionkey": "commercialitemacquisitionprocedures"
+                }, 
+                {
+                    "questionkey": "commercialitemtestprogram"
+                }, 
+                {
+                    "questionkey": "competitiveprocedures"
+                }, 
+                {
+                    "questionkey": "congressionaldistrict"
+                }, 
+                {
+                    "questionkey": "consolidatedcontract"
+                }, 
+                {
+                    "questionkey": "contingencyhumanitarianpeacekeepingoperation"
+                }, 
+                {
+                    "questionkey": "contractactiontype"
+                }, 
+                {
+                    "questionkey": "contractbundling"
+                }, 
+                {
+                    "questionkey": "contractfinancing"
+                }, 
+                {
+                    "questionkey": "contractingofficeagencyid"
+                }, 
+                {
+                    "questionkey": "contractingofficeid"
+                }, 
+                {
+                    "questionkey": "contractingofficerbusinesssizedetermination"
+                }, 
+                {
+                    "questionkey": "costaccountingstandardsclause"
+                }, 
+                {
+                    "questionkey": "costorpricingdata"
+                }, 
+                {
+                    "questionkey": "countryoforigin"
+                }, 
+                {
+                    "questionkey": "davisbaconact"
+                }, 
+                {
+                    "questionkey": "descriptionofcontractrequirement"
+                }, 
+                {
+                    "questionkey": "divisionname"
+                }, 
+                {
+                    "questionkey": "divisionnumberorofficecode"
+                }, 
+                {
+                    "questionkey": "dunsnumber"
+                }, 
+                {
+                    "questionkey": "educationalinstitutionflag"
+                }, 
+                {
+                    "questionkey": "emergingsmallbusinessflag"
+                }, 
+                {
+                    "questionkey": "evaluatedpreference"
+                }, 
+                {
+                    "questionkey": "extentcompeted"
+                }, 
+                {
+                    "questionkey": "faxno"
+                }, 
+                {
+                    "questionkey": "fedbizopps"
+                }, 
+                {
+                    "questionkey": "federalgovernmentflag"
+                }, 
+                {
+                    "questionkey": "firm8aflag"
+                }, 
+                {
+                    "questionkey": "fiscal_year"
+                }, 
+                {
+                    "questionkey": "fundedbyforeignentity"
+                }, 
+                {
+                    "questionkey": "fundingrequestingagencyid"
+                }, 
+                {
+                    "questionkey": "fundingrequestingofficeid"
+                }, 
+                {
+                    "questionkey": "gfe_gfp"
+                }, 
+                {
+                    "questionkey": "haobflag"
+                }, 
+                {
+                    "questionkey": "hbcuflag"
+                }, 
+                {
+                    "questionkey": "hospitalflag"
+                }, 
+                {
+                    "questionkey": "hubzoneflag"
+                }, 
+                {
+                    "questionkey": "idvagencyid"
+                }, 
+                {
+                    "questionkey": "idvmodificationnumber"
+                }, 
+                {
+                    "questionkey": "idvpiid"
+                }, 
+                {
+                    "questionkey": "informationtechnologycommercialitemcategory"
+                }, 
+                {
+                    "questionkey": "interagencycontractingauthority"
+                }, 
+                {
+                    "questionkey": "is1862landgrantcollege"
+                }, 
+                {
+                    "questionkey": "is1890landgrantcollege"
+                }, 
+                {
+                    "questionkey": "is1994landgrantcollege"
+                }, 
+                {
+                    "questionkey": "isairportauthority"
+                }, 
+                {
+                    "questionkey": "isalaskannativeownedcorporationorfirm"
+                }, 
+                {
+                    "questionkey": "isarchitectureandengineering"
+                }, 
+                {
+                    "questionkey": "iscitylocalgovernment"
+                }, 
+                {
+                    "questionkey": "iscommunitydevelopedcorporationownedfirm"
+                }, 
+                {
+                    "questionkey": "iscommunitydevelopmentcorporation"
+                }, 
+                {
+                    "questionkey": "isconstructionfirm"
+                }, 
+                {
+                    "questionkey": "iscorporateentitynottaxexempt"
+                }, 
+                {
+                    "questionkey": "iscorporateentitytaxexempt"
+                }, 
+                {
+                    "questionkey": "iscouncilofgovernments"
+                }, 
+                {
+                    "questionkey": "iscountylocalgovernment"
+                }, 
+                {
+                    "questionkey": "isdomesticshelter"
+                }, 
+                {
+                    "questionkey": "isdotcertifieddisadvantagedbusinessenterprise"
+                }, 
+                {
+                    "questionkey": "isecondisadvwomenownedsmallbusiness"
+                }, 
+                {
+                    "questionkey": "isfederalgovernmentagency"
+                }, 
+                {
+                    "questionkey": "isfederallyfundedresearchanddevelopmentcorp"
+                }, 
+                {
+                    "questionkey": "isforeigngovernment"
+                }, 
+                {
+                    "questionkey": "isforeignownedandlocated"
+                }, 
+                {
+                    "questionkey": "isforprofitorganization"
+                }, 
+                {
+                    "questionkey": "isfoundation"
+                }, 
+                {
+                    "questionkey": "ishispanicservicinginstitution"
+                }, 
+                {
+                    "questionkey": "ishousingauthoritiespublicortribal"
+                }, 
+                {
+                    "questionkey": "isindiantribe"
+                }, 
+                {
+                    "questionkey": "isintermunicipallocalgovernment"
+                }, 
+                {
+                    "questionkey": "isinternationalorganization"
+                }, 
+                {
+                    "questionkey": "isinterstateentity"
+                }, 
+                {
+                    "questionkey": "isjointventureecondisadvwomenownedsmallbusiness"
+                }, 
+                {
+                    "questionkey": "isjointventurewomenownedsmallbusiness"
+                }, 
+                {
+                    "questionkey": "islaborsurplusareafirm"
+                }, 
+                {
+                    "questionkey": "islimitedliabilitycorporation"
+                }, 
+                {
+                    "questionkey": "islocalgovernmentowned"
+                }, 
+                {
+                    "questionkey": "ismanufacturerofgoods"
+                }, 
+                {
+                    "questionkey": "ismunicipalitylocalgovernment"
+                }, 
+                {
+                    "questionkey": "isnativehawaiianownedorganizationorfirm"
+                }, 
+                {
+                    "questionkey": "isotherbusinessororganization"
+                }, 
+                {
+                    "questionkey": "isotherminorityowned"
+                }, 
+                {
+                    "questionkey": "isothernotforprofitorganization"
+                }, 
+                {
+                    "questionkey": "ispartnershiporlimitedliabilitypartnership"
+                }, 
+                {
+                    "questionkey": "isplanningcommission"
+                }, 
+                {
+                    "questionkey": "isportauthority"
+                }, 
+                {
+                    "questionkey": "isprivateuniversityorcollege"
+                }, 
+                {
+                    "questionkey": "issbacertifiedsmalldisadvantagedbusiness"
+                }, 
+                {
+                    "questionkey": "isschooldistrictlocalgovernment"
+                }, 
+                {
+                    "questionkey": "isschoolofforestry"
+                }, 
+                {
+                    "questionkey": "isserviceprovider"
+                }, 
+                {
+                    "questionkey": "issmallagriculturalcooperative"
+                }, 
+                {
+                    "questionkey": "issoleproprietorship"
+                }, 
+                {
+                    "questionkey": "isstatecontrolledinstitutionofhigherlearning"
+                }, 
+                {
+                    "questionkey": "issubchapterscorporation"
+                }, 
+                {
+                    "questionkey": "istownshiplocalgovernment"
+                }, 
+                {
+                    "questionkey": "istransitauthority"
+                }, 
+                {
+                    "questionkey": "istribalcollege"
+                }, 
+                {
+                    "questionkey": "istriballyownedfirm"
+                }, 
+                {
+                    "questionkey": "isveterinarycollege"
+                }, 
+                {
+                    "questionkey": "isveterinaryhospital"
+                }, 
+                {
+                    "questionkey": "iswomenownedsmallbusiness"
+                }, 
+                {
+                    "questionkey": "lastdatetoorder"
+                }, 
+                {
+                    "questionkey": "lettercontract"
+                }, 
+                {
+                    "questionkey": "localareasetaside"
+                }, 
+                {
+                    "questionkey": "localgovernmentflag"
+                }, 
+                {
+                    "questionkey": "locationcode"
+                }, 
+                {
+                    "questionkey": "maj_agency_cat"
+                }, 
+                {
+                    "questionkey": "maj_fund_agency_cat"
+                }, 
+                {
+                    "questionkey": "majorprogramcode"
+                }, 
+                {
+                    "questionkey": "manufacturingorganizationtype"
+                }, 
+                {
+                    "questionkey": "minorityinstitutionflag"
+                }, 
+                {
+                    "questionkey": "minorityownedbusinessflag"
+                }, 
+                {
+                    "questionkey": "mod_agency"
+                }, 
+                {
+                    "questionkey": "mod_parent"
+                }, 
+                {
+                    "questionkey": "modnumber"
+                }, 
+                {
+                    "questionkey": "multipleorsingleawardidc"
+                }, 
+                {
+                    "questionkey": "multiyearcontract"
+                }, 
+                {
+                    "questionkey": "naobflag"
+                }, 
+                {
+                    "questionkey": "nationalinterestactioncode"
+                }, 
+                {
+                    "questionkey": "nonprofitorganizationflag"
+                }, 
+                {
+                    "questionkey": "numberofactions"
+                }, 
+                {
+                    "questionkey": "numberofemployees"
+                }, 
+                {
+                    "questionkey": "numberofoffersreceived"
+                }, 
+                {
+                    "questionkey": "organizationaltype"
+                }, 
+                {
+                    "questionkey": "otherstatutoryauthority"
+                }, 
+                {
+                    "questionkey": "parentdunsnumber"
+                }, 
+                {
+                    "questionkey": "performancebasedservicecontract"
+                }, 
+                {
+                    "questionkey": "phoneno"
+                }, 
+                {
+                    "questionkey": "placeofmanufacture"
+                }, 
+                {
+                    "questionkey": "placeofperformancecongressionaldistrict"
+                }, 
+                {
+                    "questionkey": "pop_cd"
+                }, 
+                {
+                    "questionkey": "pop_state_code"
+                }, 
+                {
+                    "questionkey": "priceevaluationpercentdifference"
+                }, 
+                {
+                    "questionkey": "principalnaicscode"
+                }, 
+                {
+                    "questionkey": "productorservicecode"
+                }, 
+                {
+                    "questionkey": "programacronym"
+                }, 
+                {
+                    "questionkey": "progsourceaccount"
+                }, 
+                {
+                    "questionkey": "progsourceagency"
+                }, 
+                {
+                    "questionkey": "progsourcesubacct"
+                }, 
+                {
+                    "questionkey": "psc_cat"
+                }, 
+                {
+                    "questionkey": "purchasecardaspaymentmethod"
+                }, 
+                {
+                    "questionkey": "reasonnotcompeted"
+                }, 
+                {
+                    "questionkey": "rec_flag"
+                }, 
+                {
+                    "questionkey": "receivescontracts"
+                }, 
+                {
+                    "questionkey": "receivescontractsandgrants"
+                }, 
+                {
+                    "questionkey": "receivesgrants"
+                }, 
+                {
+                    "questionkey": "recoveredmaterialclauses"
+                }, 
+                {
+                    "questionkey": "registrationdate"
+                }, 
+                {
+                    "questionkey": "renewaldate"
+                }, 
+                {
+                    "questionkey": "research"
+                }, 
+                {
+                    "questionkey": "saaobflag"
+                }, 
+                {
+                    "questionkey": "sdbflag"
+                }, 
+                {
+                    "questionkey": "seatransportation"
+                }, 
+                {
+                    "questionkey": "servicecontractact"
+                }, 
+                {
+                    "questionkey": "shelteredworkshopflag"
+                }, 
+                {
+                    "questionkey": "smallbusinesscompetitivenessdemonstrationprogram"
+                }, 
+                {
+                    "questionkey": "solicitationid"
+                }, 
+                {
+                    "questionkey": "solicitationprocedures"
+                }, 
+                {
+                    "questionkey": "srdvobflag"
+                }, 
+                {
+                    "questionkey": "state"
+                }, 
+                {
+                    "questionkey": "statecode"
+                }, 
+                {
+                    "questionkey": "stategovernmentflag"
+                }, 
+                {
+                    "questionkey": "statutoryexceptiontofairopportunity"
+                }, 
+                {
+                    "questionkey": "streetaddress"
+                }, 
+                {
+                    "questionkey": "streetaddress2"
+                }, 
+                {
+                    "questionkey": "streetaddress3"
+                }, 
+                {
+                    "questionkey": "subcontractplan"
+                }, 
+                {
+                    "questionkey": "systemequipmentcode"
+                }, 
+                {
+                    "questionkey": "transaction_status"
+                }, 
+                {
+                    "questionkey": "transactionnumber"
+                }, 
+                {
+                    "questionkey": "tribalgovernmentflag"
+                }, 
+                {
+                    "questionkey": "typeofcontractpricing"
+                }, 
+                {
+                    "questionkey": "typeofidc"
+                }, 
+                {
+                    "questionkey": "typeofsetaside"
+                }, 
+                {
+                    "questionkey": "useofepadesignatedproducts"
+                }, 
+                {
+                    "questionkey": "vendor_cd"
+                }, 
+                {
+                    "questionkey": "vendor_state_code"
+                }, 
+                {
+                    "questionkey": "vendoralternatename"
+                }, 
+                {
+                    "questionkey": "vendoralternatesitecode"
+                }, 
+                {
+                    "questionkey": "vendorcountrycode"
+                }, 
+                {
+                    "questionkey": "vendordoingasbusinessname"
+                }, 
+                {
+                    "questionkey": "vendorenabled"
+                }, 
+                {
+                    "questionkey": "vendorlegalorganizationname"
+                }, 
+                {
+                    "questionkey": "vendorlocationdisableflag"
+                }, 
+                {
+                    "questionkey": "vendorname"
+                }, 
+                {
+                    "questionkey": "vendorsitecode"
+                }, 
+                {
+                    "questionkey": "veteranownedflag"
+                }, 
+                {
+                    "questionkey": "walshhealyact"
+                }, 
+                {
+                    "questionkey": "womenownedflag"
+                }, 
+                {
+                    "questionkey": "zipcode"
+                }
+            ]
+        }
+    ]
+}

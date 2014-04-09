@@ -137,8 +137,6 @@ LOCAL_APPS = (
     'datamap',
 )
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
 
 
@@ -366,3 +364,5 @@ else:
 
 
 ########## Your stuff: Below this line define 3rd party libary settings
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + local_settings.EXTRA_INSTALLED_APPS

@@ -42,3 +42,9 @@ urlpatterns = patterns('',
     (r'/favicon.ico', 'django.views.generic.base.RedirectView',
         {'url':  '{0}images/favicon.ico'.format(settings.STATIC_URL)}),
 )
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += patterns('',
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )

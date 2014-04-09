@@ -18,3 +18,7 @@ babel==1.3
 -e git+https://bitbucket.org/birdsarah/django-international.git@154e255a7e1b3b510389da9de86cefa32e48d11a#egg=django-international
 django-extra-views==0.6.4
 -e git+https://github.com/silverfix/django-nested-inlines.git@88f73f70c92ef3c5bda445dfd2f8566ca10eeda1#egg=django-nested-inlines
+
+# Testing toolbar
+django-debug-toolbar
+coverage
