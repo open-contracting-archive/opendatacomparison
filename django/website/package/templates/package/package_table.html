@@ -1,9 +1,11 @@
 {% load i18n %}
 {% load package_tags %}
 
-<table class="table">
+<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+<table class="order-table table">
 <thead>
     <tr>
+    <th>{% trans "Country" %}</th>
     <th>{% trans "Publisher" %}</th>
     <th>{% trans "Name" %}</th>
     <th>{% trans "# Using This" %}</th>
@@ -13,10 +15,52 @@
 <tbody>
 {% for package in packages %}
     <tr>
-    <td>{% if package.publisher %}<a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher }}</a>{% endif %}</td>
+    <td>{% if package.publisher %}{{package.publisher.country_name}}{% endif %}</td>
+    <td>{% if package.publisher %}<a href="{% url 'publisher' package.publisher.slug %}">{{ package.publisher.name }}</a>{% endif %}</td> 
     <td><a href="{% url 'package' package.slug %}">{{ package.title }}</a></td>
-    <td class="usage-container usage-holder"> {% usage_button %} &nbsp; <span class="usage-count">{{ package.usage_count }}</span> </td>
+    <td class="usage-container usage-holder"> {% usage_button %} &nbsp; <span class="usage-count">{{ package.ucount }}</span> </td>
     </tr>
 {% endfor %}
 </tbody>
 </table>
+<script>
+(function(document) {
+    'use strict';
+
+    var LightTableFilter = (function(Arr) {
+
+        var _input;
+
+        function _onInputEvent(e) {
+            _input = e.target;
+            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+            Arr.forEach.call(tables, function(table) {
+                Arr.forEach.call(table.tBodies, function(tbody) {
+                    Arr.forEach.call(tbody.rows, _filter);
+                });
+            });
+        }
+
+        function _filter(row) {
+            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+        }
+
+        return {
+            init: function() {
+                var inputs = document.getElementsByClassName('light-table-filter');
+                Arr.forEach.call(inputs, function(input) {
+                    input.oninput = _onInputEvent;
+                });
+            }
+        };
+    })(Array.prototype);
+
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+            LightTableFilter.init();
+        }
+    });
+
+})(document);
+</script>

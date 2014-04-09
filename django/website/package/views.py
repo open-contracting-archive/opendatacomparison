@@ -15,7 +15,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.views.generic import DetailView, ListView
 
-from braces.views import LoginRequiredMixin, PermissionRequiredMixin
+from braces.views import LoginRequiredMixin
 from extra_views import (
     CreateWithInlinesView,
     UpdateWithInlinesView,
@@ -44,14 +44,14 @@ class PackageListView(ListView):
     """
     We list all the packages by category
     """
-    model = Category
+    model = Package
     template_name = 'package/package_list.html'
-    context_object_name = 'categories'
+    context_object_name = 'packages'
 
     def get_queryset(self):
-        categories = Category.objects.annotate(pc=Count('packages'))
-        categories = categories.order_by('-pc')
-        return categories
+        packages = Package.objects.select_related('publisher', 'category')
+        packages = packages.annotate(ucount=Count('usage'))
+        return packages
 
 
 class PackageDetailView(DetailView):
@@ -109,7 +109,6 @@ class PackageUpdateView(LoginRequiredMixin,
                              'Package updated successfully')
         return HttpResponseRedirect(reverse('package',
                                     kwargs={'slug': modified_package.slug}))
-
 
 
 def ajax_package_list(request, template_name="package/ajax_package_list.html"):
