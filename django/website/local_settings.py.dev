@@ -21,11 +21,11 @@ DATABASES = {
 EMAIL_HOST = 'localhost'
 
 # turn off caching
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
-}
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+#    }
+#}
 
 EXTRA_INSTALLED_APPS = ('debug_toolbar',)
 EXTRA_MIDDLEWARE_CLASSES = ('debug_toolbar.middleware.DebugToolbarMiddleware',)
