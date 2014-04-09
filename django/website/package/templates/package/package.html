@@ -104,7 +104,6 @@
           {% endif %}
         </div>
       </div>
-
       <div class="panel-body">
         <ul>
         {% for grid in package.grids.all %}
@@ -114,14 +113,22 @@
       </div>
     </div>
     <!-- end Grids panel -->
-
-  </div> <!-- end six column section -->
-</div>    <!-- end twelve_column section -->
-<div class="row">
-  <div class="col-md-12">
-      {% for datamap in package.datamaps.all %}
-        {% include 'datamap/datamap_table.html' %}
-      {% endfor %}
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left">{% trans "Datamaps" %}</h3>
+        <div class="pull-right">
+          {% if user.is_authenticated and user.profile.can_add_datamap %}
+          <a title="add datamap" href="{% url 'datamap_add' %}?dataset={{ package.pk }}"><span class="glyphicon glyphicon-plus"></span></a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="panel-body">
+        <ul>
+        {% for datamap in package.datamaps.all %}
+            <li><a href="{% url 'datamap' datamap.id %}" title="{{ datamap }}">{{ datamap.format }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
   </div>
 </div>
 {% endblock %}

@@ -1,11 +1,10 @@
-import os
-import json
 from django.views.generic import (
     ListView,
     CreateView,
     UpdateView,
     DetailView,
 )
+from django.core.urlresolvers import reverse
 
 from braces.views import LoginRequiredMixin, JSONResponseMixin
 from .models import Datamap
@@ -18,9 +17,22 @@ class DatamapListView(ListView):
 class DatamapAddView(LoginRequiredMixin, CreateView):
     model = Datamap
 
+    def get_success_url(self):
+        return reverse('datamap', kwargs={'pk': self.object.id})
+
+    def get_form(self, form_class):
+        form_kwargs = self.get_form_kwargs()
+        form_kwargs['initial'] = {'dataset': self.request.GET.get('dataset')}
+        return form_class(**form_kwargs)
+
+
+
 
 class DatamapEditView(LoginRequiredMixin, UpdateView):
     model = Datamap
+
+    def get_success_url(self):
+        return reverse('datamap', kwargs={'pk': self.object.id})
 
 
 class DatamapView(DetailView):

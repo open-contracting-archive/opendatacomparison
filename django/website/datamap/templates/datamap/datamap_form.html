@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{{ action|title }} {% trans "package" %}{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
+            <li><a href="{% url 'datamap_list' %}">{% trans "datamaps" %}</a></li> 
+            <li class="active">{% trans "edit datamap" %}</li>
+        </ol>
+
+        <form action="{{ request.path }}" method="post" id="package-form"> {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <input class="btn btn-default" type="submit" name="add" value="{% trans "save datamap" %}">
+        </form>
+    </div>
+</div>
+{% endblock %}

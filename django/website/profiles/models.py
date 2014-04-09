@@ -81,6 +81,19 @@ class Profile(BaseModel):
             return self.user.has_perm('grid.change_element')
         return True
 
+    # Datamaps
+    @property
+    def can_edit_datamap(self):
+        if getattr(settings, 'RESTRICT_PACKAGE_EDITORS', False):
+            return self.user.has_perm('datamap.change_datamap')
+        return True
+
+    @property
+    def can_add_datamap(self):
+        if getattr(settings, 'RESTRICT_PACKAGE_EDITORS', False):
+            return self.user.has_perm('datamap.add_datamap')
+        return True
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
