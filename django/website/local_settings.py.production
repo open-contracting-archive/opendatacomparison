@@ -1,6 +1,6 @@
 import private_settings
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 LOGIN_URL = '/opendatacomparison/accounts/login/'
@@ -27,7 +27,6 @@ try:
     EMAIL_PORT = 587                                                            
     SERVER_EMAIL = 'sarah@aptivate.org'                                      
     EMAIL_USE_TLS = True                                                        
-    DEBUG = False                                                               
 except Exception as e:                                                          
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 
