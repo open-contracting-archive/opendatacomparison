@@ -5,17 +5,27 @@ from django.views.generic import (
     DetailView,
 )
 from django.core.urlresolvers import reverse
-
 from braces.views import LoginRequiredMixin, JSONResponseMixin
-from .models import Datamap
+from extra_views import (
+    CreateWithInlinesView,
+    UpdateWithInlinesView,
+    InlineFormSet
+)
+from .models import Datamap, Field
+from .forms import FieldForm
 
 
 class DatamapListView(ListView):
     model = Datamap
 
 
-class DatamapAddView(LoginRequiredMixin, CreateView):
+class FieldInline(InlineFormSet):
+    model = Field
+    form_class = FieldForm
+
+class DatamapAddView(LoginRequiredMixin, CreateWithInlinesView):
     model = Datamap
+    inlines = [FieldInline,]
 
     def get_success_url(self):
         return reverse('datamap', kwargs={'pk': self.object.id})
@@ -26,10 +36,9 @@ class DatamapAddView(LoginRequiredMixin, CreateView):
         return form_class(**form_kwargs)
 
 
-
-
-class DatamapEditView(LoginRequiredMixin, UpdateView):
+class DatamapEditView(LoginRequiredMixin, UpdateWithInlinesView):
     model = Datamap
+    inlines = [FieldInline,]
 
     def get_success_url(self):
         return reverse('datamap', kwargs={'pk': self.object.id})

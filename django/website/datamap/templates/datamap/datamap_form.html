@@ -3,8 +3,20 @@
 {% load url from future %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load datamap %}
 
 {% block head_title %}{{ action|title }} {% trans "package" %}{% endblock %}
+
+{% block extra_head %}
+    <style>
+        .form-control {
+            width: auto;
+        }
+        #id_notes {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
 <div class="row">
@@ -15,10 +27,29 @@
             <li class="active">{% trans "edit datamap" %}</li>
         </ol>
 
-        <form action="{{ request.path }}" method="post" id="package-form"> {% csrf_token %}
-            <fieldset class="form-group">
-                {{ form|crispy }}
-            </fieldset>
+        <form role="form" action="{{ request.path }}" method="post" id="package-form"> {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-inline">
+                <fieldset class="form-group">
+                    {{ form.dataset.errors }}
+                    {{ form.dataset|addclass:"form-control" }}
+                    {{ form.format.errors }}
+                    {{ form.format|addclass:"form-control" }}
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="form-group">
+                    {{ form.notes.errors }}
+                    <label class="control-label">{{ form.notes.label }}</label>
+                    {{ form.notes|addattrs:"class: form-control, rows: 2" }}
+                </fieldset>
+            </div>
+            <h3>Fields</h3>
+            {% for formset in inlines %}
+                <div class="form-inline">
+                    {{ formset|crispy }}
+                </div>
+            {% endfor %}
             <input class="btn btn-default" type="submit" name="add" value="{% trans "save datamap" %}">
         </form>
     </div>
