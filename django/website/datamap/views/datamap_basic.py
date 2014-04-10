@@ -1,7 +1,5 @@
 from django.views.generic import (
     ListView,
-    CreateView,
-    UpdateView,
     DetailView,
 )
 from django.core.urlresolvers import reverse
@@ -11,8 +9,8 @@ from extra_views import (
     UpdateWithInlinesView,
     InlineFormSet
 )
-from .models import Datamap, Field
-from .forms import FieldForm
+from datamap.models import Datamap, Field
+from datamap.forms import FieldForm
 
 
 class DatamapListView(ListView):
@@ -23,12 +21,23 @@ class FieldInline(InlineFormSet):
     model = Field
     form_class = FieldForm
 
-class DatamapAddView(LoginRequiredMixin, CreateWithInlinesView):
+
+class DatamapEntryView(LoginRequiredMixin):
     model = Datamap
-    inlines = [FieldInline,]
+    inlines = [FieldInline, ]
 
     def get_success_url(self):
         return reverse('datamap', kwargs={'pk': self.object.id})
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DatamapEntryView,
+                        self).get_context_data(*args, **kwargs)
+        context['action'] = self.action
+        return context
+
+
+class DatamapAddView(DatamapEntryView, CreateWithInlinesView):
+    action = 'Add'
 
     def get_form(self, form_class):
         form_kwargs = self.get_form_kwargs()
@@ -36,12 +45,8 @@ class DatamapAddView(LoginRequiredMixin, CreateWithInlinesView):
         return form_class(**form_kwargs)
 
 
-class DatamapEditView(LoginRequiredMixin, UpdateWithInlinesView):
-    model = Datamap
-    inlines = [FieldInline,]
-
-    def get_success_url(self):
-        return reverse('datamap', kwargs={'pk': self.object.id})
+class DatamapEditView(DatamapEntryView, UpdateWithInlinesView):
+    action = 'Edit'
 
 
 class DatamapView(DetailView):
