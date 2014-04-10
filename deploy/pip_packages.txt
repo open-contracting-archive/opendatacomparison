@@ -22,3 +22,5 @@ django-extra-views==0.6.4
 # Testing toolbar
 django-debug-toolbar
 coverage
+factory_boy
+mock

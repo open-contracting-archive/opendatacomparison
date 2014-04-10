@@ -1,15 +1,19 @@
 from django.conf.urls import patterns, url
 
-from .views import (
+from datamap.views.datamap_basic import (
     DatamapAddView,
     DatamapEditView,
     DatamapListView,
     DatamapView,
     DatamapJSON,
 )
+from datamap.views.field import (
+    AddFieldView
+)
 
 urlpatterns = patterns(
     '',
+    url(r'^(?P<pk>\d+)/field/edit/$', AddFieldView.as_view(), name='datamap_field_add'),
     url(r'^(?P<pk>\d+)/data.json$', DatamapJSON.as_view(), name='datamap_json',),  # nopep8
     url(r'^(?P<pk>\d+)/$', DatamapView.as_view(), name='datamap',),
     url(r'^edit/(?P<pk>\d+)/$', DatamapEditView.as_view(), name='datamap_edit',),  # nopep8

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block body %}
+<div class="row">
+    <div class="col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
+            <li><a href="{% url 'datamap_list' %}">{% trans "datamaps" %}</a></li> 
+            <li><a href="{% url 'datamap' datamap.id %}">{{ datamap }}</a></li> 
+            <li class="active">{% trans "edit datamap" %}</li>
+        </ol>
+
+    </div>
+</div>
+{% endblock %}

@@ -43,6 +43,27 @@ if 'test' in sys.argv:
         'django.contrib.auth.hashers.MD5PasswordHasher',
     )
 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'simple_test_db',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
+    }
+
+    DEBUG = False
+    TEMPLATE_DEBUG = False
+
+    CELERY_ALWAYS_EAGER = True
+    CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+    BROKER_BACKEND = 'memory'
+
+    EXTRA_INSTALLED_APPS = ()
+    EXTRA_MIDDLEWARE_CLASSES = ()
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
