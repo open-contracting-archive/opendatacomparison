@@ -24,3 +24,4 @@ django-debug-toolbar
 coverage
 factory_boy
 mock
+needle
