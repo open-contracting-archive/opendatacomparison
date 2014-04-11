@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.formsets import BaseFormSet
 
 from .models import Field, TranslatedField
 

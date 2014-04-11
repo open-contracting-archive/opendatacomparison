@@ -6,7 +6,7 @@ from django.test.client import RequestFactory
 from package.tests.factories import FormatFactory
 from datamap.views.field import AddFieldView
 from datamap.forms import FieldForm
-from datamap.models import Field
+from datamap.models import Field, TranslatedField
 from .factories import DatamapFactory
 
 
@@ -65,18 +65,30 @@ class AddBasicFieldViewTest(TestCase):
         self.assertNotContains(response, unexpected_form_snippet)
 
     def test_post_with_fieldname_and_type_adds_new_field(self):
-        self.post = RequestFactory().post('/',
-                                          data={'fieldname': 'newfieldname',
-                                                'datatype': 'Boolean'})
+        self.post = RequestFactory().post(
+            '/',
+            data={'fieldname': 'newfieldname',
+                  'translations-TOTAL_FORMS': u'0',
+                  'translations-INITIAL_FORMS': u'0',
+                  'translations-MAX_NUM_FORMS': u'',
+                  'datatype': 'Boolean'
+                  }
+        )
         # Do the post
         self.view(self.post, pk=str(self.datamap.id))
         new_field = Field.objects.get(datamap=self.datamap.id)
         self.assertEqual(new_field.fieldname, 'newfieldname')
 
     def test_successful_post_returns_to_datamap_page(self):
-        self.post = RequestFactory().post('/',
-                                          data={'fieldname': 'newfieldname',
-                                                'datatype': 'Boolean'})
+        self.post = RequestFactory().post(
+            '/',
+            data={'fieldname': 'newfieldname',
+                  'translations-TOTAL_FORMS': u'0',
+                  'translations-INITIAL_FORMS': u'0',
+                  'translations-MAX_NUM_FORMS': u'',
+                  'datatype': 'Boolean'
+                  }
+        )
         # Do the post
         response = self.view(self.post, pk=str(self.datamap.id))
         self.assertEqual(response.url,
@@ -100,15 +112,74 @@ class AddFieldViewWithTranslationsTest(TestCase):
 
     def test_get_renders_field_form(self):
         response = self.view(self.get, pk=str(self.datamap.id))
-        expected_form_snippet = '<label for="id_form-0-language">Language:</label>'  # nopep8
-        expected_form_snippet_2 = '<label for="id_form-0-title">Title:</label>'
+        expected_form_snippet = '<label for="id_translations-0-language">Language:</label>'  # nopep8
+        expected_form_snippet_2 = '<label for="id_translations-0-title">Title:</label>'  # nopep8
         self.assertContains(response, expected_form_snippet)
         self.assertContains(response, expected_form_snippet_2)
 
     def test_get_has_hidden_field_with_field_in_it(self):
         # We will handle mapto somewhere else
         response = self.view(self.get, pk=str(self.datamap.id))
-        unexpected_form_snippet = '<label for="id_form-0-field">Field:</label>'
-        expected_form_snippet = '<input id="id_form-0-field" name="form-0-field" type="hidden" />'  # nopep8
+        unexpected_form_snippet = '<label for="id_translations-0-field">Field:</label>'  # nopep8
+        expected_form_snippet = '<input id="id_translations-0-field" name="translations-0-field" type="hidden" />'  # nopep8
         self.assertNotContains(response, unexpected_form_snippet)
         self.assertContains(response, expected_form_snippet)
+
+    def test_post_with_translated_field_adds_new_translated_fields(self):
+        self.post = RequestFactory().post(
+            '/',
+            data={'fieldname': 'newfieldname',
+                  'datatype': 'Boolean',
+                  'translations-TOTAL_FORMS': u'2',
+                  'translations-INITIAL_FORMS': u'0',
+                  'translations-MAX_NUM_FORMS': u'1000',
+                  'translations-0-language': 'en_US',
+                  'translations-0-title': 'New Field Name',
+                  'translations-1-language': 'es',
+                  'translations-1-title': 'Nuevo Nombre',
+                  })
+        # Do the post
+        self.view(self.post, pk=str(self.datamap.id))
+        transfield = TranslatedField.objects.get(
+            field__datamap=self.datamap.id,
+            language='en_US'
+        )
+        self.assertEqual(TranslatedField.objects.count(), 2)
+        self.assertEqual(transfield.field.fieldname, 'newfieldname')
+        self.assertEqual(transfield.title, 'New Field Name')
+
+    def test_post_with_missing_field_data_returns_field_form_and_formset(self):
+        self.post = RequestFactory().post(
+            '/',
+            data={'fieldname': '',  # Missing DATA
+                  'datatype': 'Boolean',
+                  'translations-TOTAL_FORMS': u'1',
+                  'translations-INITIAL_FORMS': u'0',
+                  'translations-MAX_NUM_FORMS': u'1000',
+                  'translations-0-language': 'en_US',
+                  'translations-0-title': 'New Field Name',
+                  })
+        # Do the post
+        response = self.view(self.post, pk=str(self.datamap.id))
+        expected_form_snippet_1 = '<ul class="errorlist"><li>This field is required.</li></ul>'  # nopep8
+        expected_form_snippet_2 = 'value="New Field Name"'
+        self.assertContains(response, expected_form_snippet_1)
+        self.assertContains(response, expected_form_snippet_2)
+
+    def test_post_with_missing_translation_data_returns_field_form_and_formset(self):  # nopep8
+        self.post = RequestFactory().post(
+            '/',
+            data={'fieldname': 'newfield',
+                  'datatype': 'Boolean',
+                  'translations-TOTAL_FORMS': u'1',
+                  'translations-INITIAL_FORMS': u'0',
+                  'translations-MAX_NUM_FORMS': u'1000',
+                  'translations-0-language': '',  # Missing DATA
+                  'translations-0-title': 'New Field Name',
+                  })
+        # Do the post
+        response = self.view(self.post, pk=str(self.datamap.id))
+        expected_form_snippet_1 = '<ul class="errorlist"><li>This field is required.</li></ul>'  # nopep8
+        expected_form_snippet_2 = 'value="newfield"'
+        self.assertContains(response, expected_form_snippet_1)
+        self.assertContains(response, expected_form_snippet_2)
