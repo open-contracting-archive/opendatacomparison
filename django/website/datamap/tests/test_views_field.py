@@ -161,7 +161,7 @@ class AddFieldViewWithTranslationsTest(TestCase):
                   })
         # Do the post
         response = self.view(self.post, pk=str(self.datamap.id))
-        expected_form_snippet_1 = '<ul class="errorlist"><li>This field is required.</li></ul>'  # nopep8
+        expected_form_snippet_1 = 'This field is required.'
         expected_form_snippet_2 = 'value="New Field Name"'
         self.assertContains(response, expected_form_snippet_1)
         self.assertContains(response, expected_form_snippet_2)
@@ -179,7 +179,7 @@ class AddFieldViewWithTranslationsTest(TestCase):
                   })
         # Do the post
         response = self.view(self.post, pk=str(self.datamap.id))
-        expected_form_snippet_1 = '<ul class="errorlist"><li>This field is required.</li></ul>'  # nopep8
+        expected_form_snippet_1 = 'This field is required.'
         expected_form_snippet_2 = 'value="newfield"'
         self.assertContains(response, expected_form_snippet_1)
         self.assertContains(response, expected_form_snippet_2)

@@ -33,6 +33,7 @@ class DatamapEntryView(LoginRequiredMixin):
         context = super(DatamapEntryView,
                         self).get_context_data(*args, **kwargs)
         context['action'] = self.action
+        context['package'] = self.object.dataset
         return context
 
 
@@ -51,6 +52,12 @@ class DatamapEditView(DatamapEntryView, UpdateWithInlinesView):
 
 class DatamapView(DetailView):
     model = Datamap
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DatamapView,
+                        self).get_context_data(*args, **kwargs)
+        context['package'] = self.object.dataset
+        return context
 
 
 class DatamapJSON(JSONResponseMixin, DetailView):

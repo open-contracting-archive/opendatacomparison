@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load package_tags %}
+{% load widget_tweaks %}
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/datamap.css" />
+{% endblock %}
 
 {% block body %}
 <div class="row">
@@ -11,12 +17,71 @@
             <li class="active">{% trans "edit datamap field" %}</li>
         </ol>
 
-        <form role="form" class="form" action="." method="POST">{% csrf_token %}
-        {{ form }}
-        {{ formset }}
-        <input type="submit" value="save" name="add" class="btn btn-default"> 
-        </form>
+        <div class="datamap-field-edit-form clearfix">
+            <form role="form" class="form" action="." method="POST">{% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="col-xs-4 field-section">
+                        {% for field in form %}
+                        <div class="form-group {{ field.css_classes }}" title="{{ field.errors.as_text }}">
+                            {{ field.label_tag }}<span class="pull-right">{{ field.errors.as_text }}</span>{{ field|add_class:"form-control" }}
+                        </div>
+                        {% endfor %}
+                <input type="submit" value="save" name="add" class="btn btn-default"> 
+                </div>
+                <div class="col-xs-8 lang-tabs">
+                    {{ formset.management_form }}
+                    <ul class="nav nav-tabs pull-right">
+                        {% for form in formset %}
+                        {% if forloop.first and not form.is_bound %}
+                        <li><a class="lang-tab" href="#tabs-{{ form.prefix }}" id="{{ form.prefix }}" title="English">EN</a></li>
+                        {% else %}
+                        <li><a class="lang-tab" href="#tabs-{{ form.prefix }}" id="{{ form.prefix }}">{% if form.is_bound %}{{ form.language.value|truncatecharsbrute:2 }}{% else %}+{% endif %}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <div class="clearfix"></div>
+                    {% for form in formset %}
+                    <div id="tabs-{{ form.prefix }}">
+                        {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
+                        {% for field in form.visible_fields %}
+                        <div class="form-group {{ field.css_classes }}" title="{{ field.errors.as_text }}">
+                            {% if field.name == 'language' %}
+                            {{ field.label_tag }}{{ field|add_class:"form-control lang-select" }}
+                            {% elif field.name == 'description' or field.name == 'allowable_values' %}
+                            {{ field.label_tag }}{{ field|attr:"rows:2"|add_class:"form-control" }}
+                            {% else %}
+                            {{ field.label_tag }}<span class="pull-right">{{ field.errors.as_text }}</span>{{ field|add_class:"form-control" }}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
 
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{{ STATIC_URL }}js/jquery.tabs.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block extra_body %}
+
+<script type="text/javascript">
+    $(function() {
+        $('.lang-tabs').tabs({event: "click"});
+        $('.lang-select').change(function() {
+                var lang = $(this).val(),
+                    shortened = lang.substring(0,2),
+                    id = $(this).attr("name");  
+                id = id.split('-language')[0];
+                console.log(id);
+                $('#'+ id).text(shortened);
+            })
+    });
+</script>
 {% endblock %}

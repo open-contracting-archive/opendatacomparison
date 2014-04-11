@@ -1,0 +1,24 @@
+.lang-tab {
+    text-transform: uppercase;
+}
+
+.ui-tabs-active {
+    background-color: #EEEEEE;
+}
+
+.required > label {
+    color: #A3171E;
+}
+
+.has-error {
+    color: #A3171E;
+}
+
+label {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.field-section {
+    margin-top: 41px;
+}

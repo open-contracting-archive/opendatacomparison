@@ -1,7 +1,7 @@
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from datamap.forms import FieldForm
+from datamap.forms import FieldForm, TranslatedFieldForm
 from django.forms.models import inlineformset_factory
 
 from datamap.models import Datamap, TranslatedField, Field
@@ -12,7 +12,8 @@ class AddFieldView(CreateView):
     form_class = FieldForm
     formset_class = inlineformset_factory(Field,
                                           TranslatedField,
-                                          can_delete=True)
+                                          form=TranslatedFieldForm,
+                                          can_delete=False)
 
     def get_success_url(self):
         return reverse('datamap', kwargs={'pk': self.datamap.id})
