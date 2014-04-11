@@ -124,6 +124,8 @@ THIRD_PARTY_APPS = (
     'crispy_forms',
     'babel',
     'international',
+    'widget_tweaks',
+    'django_nose',
 )
 
 # Apps specific for this project go here.
@@ -246,7 +248,7 @@ LOGGING = {
 ########## BINDER STUFF
 # Usually included by adding intranet_binder as a git submodule
 # The name of the class to use to run the test suite
-# TEST_RUNNER = 'intranet_binder.testing.SmartTestSuiteRunner'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 #MONKEY_PATCHES = ['intranet_binder.monkeypatches']
 ########## END BINDER STUFF
