@@ -1,4 +1,4 @@
-from factory import SubFactory
+from factory import SubFactory, Sequence
 from factory.django import DjangoModelFactory
 
 from package.models import Package, Format, Category
@@ -11,6 +11,8 @@ class CategoryFactory(DjangoModelFactory):
 class FormatFactory(DjangoModelFactory):
     FACTORY_FOR = Format
 
+    slug = Sequence(lambda n: 'slug{0}'.format(n))
+
 
 class DatasetFactory(DjangoModelFactory):
     """
@@ -20,3 +22,4 @@ class DatasetFactory(DjangoModelFactory):
 
     category = SubFactory(CategoryFactory)
     machine_readable = False
+    slug = Sequence(lambda n: 'slug{0}'.format(n))

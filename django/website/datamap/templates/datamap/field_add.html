@@ -8,8 +8,14 @@
             <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
             <li><a href="{% url 'datamap_list' %}">{% trans "datamaps" %}</a></li> 
             <li><a href="{% url 'datamap' datamap.id %}">{{ datamap }}</a></li> 
-            <li class="active">{% trans "edit datamap" %}</li>
+            <li class="active">{% trans "edit datamap field" %}</li>
         </ol>
+
+        <form role="form" class="form" action="." method="POST">{% csrf_token %}
+        {{ form }}
+        {{ formset }}
+        <input type="submit" value="save" name="add" class="btn btn-default"> 
+        </form>
 
     </div>
 </div>

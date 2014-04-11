@@ -1,7 +1,7 @@
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from package.tests.factories import DatasetFactory, FormatFactory
+from package.tests.factories import FormatFactory, DatasetFactory
 
 from datamap.models import Datamap
 
