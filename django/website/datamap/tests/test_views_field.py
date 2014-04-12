@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.core.urlresolvers import resolve
 from django.core.urlresolvers import reverse
@@ -8,7 +9,7 @@ from package.tests.factories import FormatFactory
 from datamap.views.field import AddFieldView, EditFieldView
 from datamap.forms import FieldForm
 from datamap.models import Field, TranslatedField
-from .factories import DatamapFactory, DatafieldFactory
+from .factories import DatamapFactory, DatafieldFactory, TranslatedFieldFactory
 
 
 class AddBasicFieldViewTest(TestCase):
@@ -231,3 +232,21 @@ class EditBasicFieldViewTest(TestCase):
         self.view(post, **self.kwargs)
         changed_field = Field.objects.get(pk=self.datafield.id)
         self.assertEqual(changed_field.fieldname, 'changedfieldname')
+
+
+class EditFieldWithTranslationsTest(TestCase):
+
+    def setUp(self):
+        self.view = EditFieldView.as_view()
+        self.get = RequestFactory().get('/')
+        self.transfield = TranslatedFieldFactory()
+        self.kwargs = {'dm' : '%s' % self.transfield.field.datamap.id,
+                       'pk' : '%s' % self.transfield.field.id}
+        super(EditFieldWithTranslationsTest, self).setUp()
+
+    def test_edit_field_view_has_translatedfield_populated(self):
+        desired_html_snippet_1 = ' id="id_translations-0-title" maxlength="100" name="translations-0-title" type="text" value="Ⓣⓨⓟⓔ ⓨⓞⓤⓡ ⓣⓔⓧⓣ ⓗⓔⓡⓔ    " />'  # nopep8
+        response = self.view(self.get, **self.kwargs)
+        response.render()
+        print response.content
+        self.assertContains(response, desired_html_snippet_1)

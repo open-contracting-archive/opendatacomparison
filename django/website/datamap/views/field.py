@@ -37,7 +37,10 @@ class AddFieldView(CreateView):
 
     def get(self, request, *args, **kwargs):
         self.form = self.form_class()
-        self.formset = self.formset_class()
+        if self.object:
+            self.formset = self.formset_class(instance=self.object)
+        else:
+            self.formset = self.formset_class()
         return super(AddFieldView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
