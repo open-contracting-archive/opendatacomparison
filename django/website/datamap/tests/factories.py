@@ -3,7 +3,7 @@ from factory.django import DjangoModelFactory
 
 from package.tests.factories import FormatFactory, DatasetFactory
 
-from datamap.models import Datamap
+from datamap.models import Datamap, Field
 
 
 class DatamapFactory(DjangoModelFactory):
@@ -11,3 +11,9 @@ class DatamapFactory(DjangoModelFactory):
 
     dataset = SubFactory(DatasetFactory)
     format = SubFactory(FormatFactory)
+
+
+class DatafieldFactory(DjangoModelFactory):
+    FACTORY_FOR = Field
+
+    datamap = SubFactory(DatamapFactory)

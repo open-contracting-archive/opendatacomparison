@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from datamap.forms import FieldForm, TranslatedFieldForm
@@ -8,6 +8,7 @@ from datamap.models import Datamap, TranslatedField, Field
 
 
 class AddFieldView(CreateView):
+    model = Field
     template_name = 'datamap/field_add.html'
     form_class = FieldForm
     formset_class = inlineformset_factory(Field,
@@ -25,8 +26,16 @@ class AddFieldView(CreateView):
             context.update({'formset': self.formset})
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        field_id = kwargs.get('pk')
+        if field_id:
+            self.object = Field.objects.get(id=field_id)
+        else:
+            self.object = None
+        self.datamap = Datamap.objects.get(id=kwargs.get('dm'))
+        return super(AddFieldView, self).dispatch(request, *args, **kwargs)
+
     def get(self, request, *args, **kwargs):
-        self.datamap = Datamap.objects.get(id=kwargs.get('pk'))
         self.form = self.form_class()
         self.formset = self.formset_class()
         return super(AddFieldView, self).get(request, *args, **kwargs)
@@ -42,8 +51,6 @@ class AddFieldView(CreateView):
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
-        self.object = None
-        self.datamap = Datamap.objects.get(id=kwargs.get('pk'))
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
@@ -59,3 +66,7 @@ class AddFieldView(CreateView):
             return self.invalid(form, formset=formset)
 
         return HttpResponseRedirect(self.get_success_url())
+
+
+class EditFieldView(AddFieldView, UpdateView):
+    model = Field

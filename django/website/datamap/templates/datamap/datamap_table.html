@@ -22,7 +22,7 @@
                 {% for fieldtrans in field.translations.all %}
                     <tr>
                         {% if forloop.first %}
-                        <td>{{ field.fieldname }}</td>
+                        <td><a href="{% url 'datamap_field_edit' datamap.id field.id %}">{{ field.fieldname }}</a></td>
                         <td>{{ field.concept }}</td>
                         <td>{{ field.datatype }}</td>
                         {% else %}

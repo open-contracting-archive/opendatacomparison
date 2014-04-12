@@ -14,7 +14,7 @@
             <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
             <li><a href="{% url 'datamap_list' %}">{% trans "datamaps" %}</a></li> 
             <li><a href="{% url 'datamap' datamap.id %}">{{ datamap }}</a></li> 
-            <li class="active">{% trans "edit datamap field" %}</li>
+            <li class="active">{% trans "edit field " %}{% if field.pk %}{{ field.fieldname }}{% endif %}</li>
         </ol>
 
         <div class="datamap-field-edit-form clearfix">
