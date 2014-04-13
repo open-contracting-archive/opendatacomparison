@@ -53,7 +53,7 @@ class AddBasicFieldViewTest(TestCase):
         response = self.view(self.get, dm=str(self.datamap.id))
         expected_form_snippet = '<label for="id_concept">Concept:</label>'
         expected_form_head = '<form role="form" class="form" action="." method="POST">'  # nopep8
-        expected_submit = '<input type="submit" value="save" name="add" class="btn btn-default">'  # nopep8
+        expected_submit = '<input type="submit" value="save" class="btn btn-default">'  # nopep8
         self.assertContains(response, expected_form_snippet)
         self.assertContains(response, expected_form_head)
         self.assertContains(response, expected_submit)
@@ -202,11 +202,11 @@ class EditBasicFieldViewTest(TestCase):
         super(EditBasicFieldViewTest, self).setUp()
 
     def test_url_passes_datamap_and_field_id_to_add_field_view(self):
-        view = resolve('/datamap/14/field/edit/12')
+        view = resolve('/datamap/14/field/edit/12/')
         self.assertEqual(view.kwargs, {'dm': '14', 'pk': '12'})
 
     def test_url_uses_editview_view(self):
-        view = resolve('/datamap/14/field/edit/12')
+        view = resolve('/datamap/14/field/edit/12/')
         self.assertEqual(view.func.func_name, 'EditFieldView')
 
     def test_edit_field_view_has_bookmarks_with_datamap(self):
@@ -233,13 +233,16 @@ class EditBasicFieldViewTest(TestCase):
         changed_field = Field.objects.get(pk=self.datafield.id)
         self.assertEqual(changed_field.fieldname, 'changedfieldname')
 
+    def test_helpful_error_message_if_same_fieldname(self):
+        pass
+
 
 class EditFieldWithTranslationsTest(TestCase):
 
     def setUp(self):
         self.view = EditFieldView.as_view()
         self.get = RequestFactory().get('/')
-        self.transfield = TranslatedFieldFactory()
+        self.transfield = TranslatedFieldFactory(language='bas')
         self.kwargs = {'dm' : '%s' % self.transfield.field.datamap.id,
                        'pk' : '%s' % self.transfield.field.id}
         super(EditFieldWithTranslationsTest, self).setUp()
@@ -250,3 +253,83 @@ class EditFieldWithTranslationsTest(TestCase):
         response.render()
         print response.content
         self.assertContains(response, desired_html_snippet_1)
+
+    def test_when_two_translated_fields_shows_all_tab_headers(self):
+        transfield_2 = TranslatedFieldFactory(field=self.transfield.field,
+                                              language='da')
+
+        tab_1 = '<a class="lang-tab" href="#tabs-translations-0" id="translations-0">ba</a>'  # nopep8
+        tab_2 = '<a class="lang-tab" href="#tabs-translations-1" id="translations-1">da</a>'  # nopep8
+        response = self.view(self.get, **self.kwargs)
+        self.assertContains(response, tab_1)
+        self.assertContains(response, tab_2)
+
+    def test_post_2_translated_field_saves_translated_fields(self):
+        transfield_2 = TranslatedFieldFactory(field=self.transfield.field,
+                                              language='da')
+        self.assertEqual(transfield_2.language, 'da')
+        post = RequestFactory().post(
+            '/',
+            data={'fieldname': 'newfieldname',
+                  'datatype': 'Boolean',
+                  'translations-TOTAL_FORMS': u'2',
+                  'translations-INITIAL_FORMS': u'2',
+                  'translations-MAX_NUM_FORMS': u'1000',
+                  'translations-0-id': self.transfield.id,
+                  'translations-0-language': 'en_US',
+                  'translations-0-title': 'New Field Name',
+                  'translations-1-id': transfield_2.id,
+                  'translations-1-language': 'es',
+                  'translations-1-title': 'Nuevo Nombre',
+                  })
+        # Do the post
+        response = self.view(post, **self.kwargs)
+        self.assertEqual(response.status_code, 302)  # should be a redirect
+        transfield_2 = TranslatedField.objects.get(id=transfield_2.id)
+        self.assertEqual(transfield_2.language, 'es')
+
+    def test_we_are_not_creating_new_field_object_and_are_adding_trans(self):
+        self.assertEqual(Field.objects.count(), 1)
+        self.assertEqual(TranslatedField.objects.count(), 1)
+        post = RequestFactory().post(
+            '/',
+            data={'concept': self.transfield.field.concept,
+                  'fieldname': self.transfield.field.fieldname,
+                  'datatype': self.transfield.field.datatype,
+
+                  'translations-TOTAL_FORMS': u'4',
+                  'translations-INITIAL_FORMS': u'1',
+                  'translations-MAX_NUM_FORMS': u'1000',
+
+                  'translations-0-id': str(self.transfield.id),
+                  'translations-0-field': str(self.transfield.field.id),
+                  'translations-0-language': self.transfield.language,
+                  'translations-0-title': self.transfield.title,
+                  'translations-0-allowable_values': '',
+                  'translations-0-description': '',
+
+                  'translations-1-id': '',
+                  'translations-1-field': str(self.transfield.field.id),
+                  'translations-1-language': 'es',
+                  'translations-1-title': 'Nuevo Nombre',
+                  'translations-1-allowable_values': '',
+                  'translations-1-description': '',
+
+                  'translations-2-id': '',
+                  'translations-2-field': str(self.transfield.field.id),
+                  'translations-2-language': 'en_US',
+                  'translations-2-title': '',
+                  'translations-2-allowable_values': '',
+                  'translations-2-description': '',
+
+                  'translations-3-id': '',
+                  'translations-3-field': str(self.transfield.field.id),
+                  'translations-3-language': 'en_US',
+                  'translations-3-title': '',
+                  'translations-3-allowable_values': '',
+                  'translations-3-description': '',
+                  })
+        # Do the post
+        response = self.view(post, **self.kwargs)
+        self.assertEqual(Field.objects.count(), 1)
+        self.assertEqual(TranslatedField.objects.count(), 2)

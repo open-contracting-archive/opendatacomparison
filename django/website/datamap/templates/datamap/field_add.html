@@ -26,16 +26,16 @@
                             {{ field.label_tag }}<span class="pull-right">{{ field.errors.as_text }}</span>{{ field|add_class:"form-control" }}
                         </div>
                         {% endfor %}
-                <input type="submit" value="save" name="add" class="btn btn-default"> 
+                <input type="submit" value="save" class="btn btn-default"> 
                 </div>
                 <div class="col-xs-8 lang-tabs">
                     {{ formset.management_form }}
                     <ul class="nav nav-tabs pull-right">
                         {% for form in formset %}
-                        {% if forloop.first and not form.is_bound %}
+                        {% if forloop.first and not form.initial %}
                         <li><a class="lang-tab" href="#tabs-{{ form.prefix }}" id="{{ form.prefix }}" title="English">EN</a></li>
                         {% else %}
-                        <li><a class="lang-tab" href="#tabs-{{ form.prefix }}" id="{{ form.prefix }}">{% if form.is_bound %}{{ form.language.value|truncatecharsbrute:2 }}{% else %}+{% endif %}</a></li>
+                        <li><a class="lang-tab" href="#tabs-{{ form.prefix }}" id="{{ form.prefix }}">{% if form.initial %}{{ form.language.value|truncatecharsbrute:2 }}{% else %}+{% endif %}</a></li>
                         {% endif %}
                         {% endfor %}
                     </ul>

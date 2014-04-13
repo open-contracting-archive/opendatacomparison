@@ -5,7 +5,7 @@ from factory.django import DjangoModelFactory
 
 from package.tests.factories import FormatFactory, DatasetFactory
 
-from datamap.models import Datamap, Field, TranslatedField
+from datamap.models import Datamap, Field, TranslatedField, Concept
 
 
 class DatamapFactory(DjangoModelFactory):
@@ -15,10 +15,17 @@ class DatamapFactory(DjangoModelFactory):
     format = SubFactory(FormatFactory)
 
 
+class ConceptFactory(DjangoModelFactory):
+    FACTORY_FOR = Concept
+
+
 class DatafieldFactory(DjangoModelFactory):
     FACTORY_FOR = Field
 
     datamap = SubFactory(DatamapFactory)
+    concept = SubFactory(ConceptFactory)
+    fieldname = 'fieldname'
+    datatype = 'Boolean'
 
 
 class TranslatedFieldFactory(DjangoModelFactory):
