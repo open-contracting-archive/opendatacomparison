@@ -12,6 +12,7 @@ DATABASES = {
         'PASSWORD': private_settings.DB_PASSWORD,                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'TEST_CHARSET': 'utf8',
         'OPTIONS': {
             "init_command": "SET storage_engine=INNODB",
         }
@@ -42,17 +43,6 @@ if 'test' in sys.argv:
     PASSWORD_HASHERS = (
         'django.contrib.auth.hashers.MD5PasswordHasher',
     )
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'simple_test_db',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
-        }
-    }
 
     DEBUG = False
     TEMPLATE_DEBUG = False
