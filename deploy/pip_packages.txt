@@ -26,3 +26,4 @@ coverage
 factory_boy
 mock
 needle
+django-nose==1.2
