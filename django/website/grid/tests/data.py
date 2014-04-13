@@ -1,6 +1,5 @@
 from django.contrib.auth.models import Group, User, Permission
 
-from core.tests import datautil
 from core.tests.data import OpenComparisonTestCase
 from grid.models import Grid
 from grid.models import Element, Feature, GridPackage
