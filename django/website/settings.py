@@ -183,8 +183,9 @@ if SECURE:
 
 ########## AUTHENTICATION CONFIGURATION
 AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
     'social.backends.twitter.TwitterOAuth',
+    'social.backends.google.GoogleOAuth2',
+    "django.contrib.auth.backends.ModelBackend",
     #"allauth.account.auth_backends.AuthenticationBackend",
 )
 
