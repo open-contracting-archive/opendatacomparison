@@ -57,11 +57,4 @@ if 'test' in sys.argv:
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-SOCIAL_AUTH_TWITTER_KEY = 'JdeFbPQC0pZ2T3gDYnGZmLQ1W'
-SOCIAL_AUTH_TWITTER_SECRET = 'X5oQ8SyVJIfbq7aEb0AfEovKrXllFyjHtcvG5epQcF3CK49dpD'
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '361090357088-qujap8rnhl2td23tabs75o5jv7i6bf3p.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '-9unDQQJCsSzaot0SiEnIYrG'
-
 # vi: ft=python

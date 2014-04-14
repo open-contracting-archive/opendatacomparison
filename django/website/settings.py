@@ -18,6 +18,14 @@ TEMPLATE_DEBUG = DEBUG
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 import private_settings
 SECRET_KEY = private_settings.SECRET_KEY
+
+# http://psa.matiasaguirre.net/docs/backends/twitter.html
+SOCIAL_AUTH_TWITTER_KEY = private_settings.SOCIAL_AUTH_TWITTER_KEY
+SOCIAL_AUTH_TWITTER_SECRET = private_settings.SOCIAL_AUTH_TWITTER_SECRET
+
+# http://psa.matiasaguirre.net/docs/backends/google.html#google-oauth2
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = private_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = private_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
 ########## END SECRET CONFIGURATION
 
 
