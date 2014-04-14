@@ -25,9 +25,14 @@
             <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
             <li><a href="{% url 'packages' %}">{% trans "datasets" %}</a></li> 
             <li><a href="{% url 'package' package.slug %}">{{ package.title }}</a></li>
+            {% if datamap %}
             <li><a href="{% url 'datamap' datamap.pk %}">{{ datamap }}</a></li>
             <li class="active">{% trans "edit datamap" %}</li>
+            {% else %}
+            <li class="active">{% trans "add datamap" %}</li>
+            {% endif %}
         </ol>
+
 
         <form role="form" action="{{ request.path }}" method="post" id="package-form"> {% csrf_token %}
             {{ form.non_field_errors }}

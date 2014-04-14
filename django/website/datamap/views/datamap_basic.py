@@ -1,7 +1,7 @@
 from django.views.generic import (
     ListView,
     DetailView,
-)
+    CreateView, UpdateView)
 from django.core.urlresolvers import reverse
 from braces.views import LoginRequiredMixin, JSONResponseMixin
 from extra_views import (
@@ -11,6 +11,7 @@ from extra_views import (
 )
 from datamap.models import Datamap, Field
 from datamap.forms import FieldForm
+from package.models import Package, Format
 
 
 class DatamapListView(ListView):
@@ -22,32 +23,51 @@ class FieldInline(InlineFormSet):
     form_class = FieldForm
 
 
-class DatamapEntryView(LoginRequiredMixin):
+class DatamapAddView(CreateView):
+    action = 'Add'
     model = Datamap
-    inlines = [FieldInline, ]
+
+    def get(self, request, *args, **kwargs):
+        self.dataset = Package.objects.get(pk=self.request.GET.get('dataset'))
+        return super(DatamapAddView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.dataset = Package.objects.get(pk=self.request.POST.get('dataset'))
+        return super(DatamapAddView, self).post(request, *args, **kwargs)
+
+    def get_form(self, form_class):
+        form_kwargs = self.get_form_kwargs()
+        form_kwargs['initial'] = {'dataset': self.dataset.id}
+        return form_class(**form_kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DatamapAddView, self).get_context_data(*args, **kwargs)
+
+        package = self.dataset
+        context['package'] = package
+        return context
+
+    def get_success_url(self):
+        return reverse('package', kwargs={'slug': self.dataset.slug})
+
+
+class DatamapEditView(UpdateView):
+    action = 'Edit'
+
+    model = Datamap
 
     def get_success_url(self):
         return reverse('datamap', kwargs={'pk': self.object.id})
 
     def get_context_data(self, *args, **kwargs):
-        context = super(DatamapEntryView,
+        context = super(DatamapEditView,
                         self).get_context_data(*args, **kwargs)
+
         context['action'] = self.action
         context['package'] = self.object.dataset
+        context['datamap'] = self.object
+
         return context
-
-
-class DatamapAddView(DatamapEntryView, CreateWithInlinesView):
-    action = 'Add'
-
-    def get_form(self, form_class):
-        form_kwargs = self.get_form_kwargs()
-        form_kwargs['initial'] = {'dataset': self.request.GET.get('dataset')}
-        return form_class(**form_kwargs)
-
-
-class DatamapEditView(DatamapEntryView, UpdateWithInlinesView):
-    action = 'Edit'
 
 
 class DatamapView(DetailView):
