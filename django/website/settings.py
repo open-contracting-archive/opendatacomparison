@@ -126,6 +126,8 @@ THIRD_PARTY_APPS = (
     'international',
     'widget_tweaks',
     'django_nose',
+    'social.apps.django_app.default',
+    'django_extensions',
 )
 
 # Apps specific for this project go here.
@@ -182,6 +184,7 @@ if SECURE:
 ########## AUTHENTICATION CONFIGURATION
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
+    'social.backends.twitter.TwitterOAuth',
     #"allauth.account.auth_backends.AuthenticationBackend",
 )
 
@@ -342,6 +345,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'core.context_processors.core_values',
     'core.context_processors.current_path',
     'grid.context_processors.grid_headers',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 
@@ -368,3 +373,4 @@ else:
 ########## Your stuff: Below this line define 3rd party libary settings
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + local_settings.EXTRA_INSTALLED_APPS
+

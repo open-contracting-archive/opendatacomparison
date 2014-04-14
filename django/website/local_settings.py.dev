@@ -57,4 +57,8 @@ if 'test' in sys.argv:
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
+SOCIAL_AUTH_TWITTER_KEY = 'JdeFbPQC0pZ2T3gDYnGZmLQ1W'
+SOCIAL_AUTH_TWITTER_SECRET = 'X5oQ8SyVJIfbq7aEb0AfEovKrXllFyjHtcvG5epQcF3CK49dpD'
+
 # vi: ft=python
