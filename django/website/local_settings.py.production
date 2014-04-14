@@ -19,16 +19,16 @@ DATABASES = {
     }
 }
 
-try:                                                                            
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'               
-    EMAIL_HOST = 'smtp.sendgrid.net'                                            
-    EMAIL_HOST_PASSWORD = private_settings.SENDGRID_PASSWORD                    
-    EMAIL_HOST_USER = private_settings.SENDGRID_USERNAME                    
-    EMAIL_PORT = 587                                                            
-    SERVER_EMAIL = 'sarah@aptivate.org'                                      
-    EMAIL_USE_TLS = True                                                        
-except Exception as e:                                                          
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
+try:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_PASSWORD = private_settings.SENDGRID_PASSWORD
+    EMAIL_HOST_USER = private_settings.SENDGRID_USERNAME
+    EMAIL_PORT = 587
+    SERVER_EMAIL = 'sarah@aptivate.org'
+    EMAIL_USE_TLS = True
+except Exception as e:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # used in admin template so we know which site we're looking at
 DEPLOY_ENV = "Production Server"
@@ -36,4 +36,14 @@ DEPLOY_ENV = "Production Server"
 EXTRA_INSTALLED_APPS = ()
 EXTRA_MIDDLEWARE_CLASSES = ()
 INTERNAL_IPS = private_settings.INTERNAL_IPS
+
+
+# http://psa.matiasaguirre.net/docs/backends/twitter.html
+SOCIAL_AUTH_TWITTER_KEY = ''
+SOCIAL_AUTH_TWITTER_SECRET = ''
+
+# http://psa.matiasaguirre.net/docs/backends/google.html#google-oauth2
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+
 # vi: ft=python
