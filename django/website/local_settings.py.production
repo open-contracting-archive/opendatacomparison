@@ -39,11 +39,11 @@ INTERNAL_IPS = private_settings.INTERNAL_IPS
 
 
 # http://psa.matiasaguirre.net/docs/backends/twitter.html
-SOCIAL_AUTH_TWITTER_KEY = ''
-SOCIAL_AUTH_TWITTER_SECRET = ''
+SOCIAL_AUTH_TWITTER_KEY = private_settings.SOCIAL_AUTH_TWITTER_KEY
+SOCIAL_AUTH_TWITTER_SECRET = private_settings.SOCIAL_AUTH_TWITTER_SECRET
 
 # http://psa.matiasaguirre.net/docs/backends/google.html#google-oauth2
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = private_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = private_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
 
 # vi: ft=python
