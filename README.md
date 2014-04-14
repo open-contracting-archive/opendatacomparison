@@ -7,7 +7,7 @@ Django application for comparing datsets, built on Open Comparison
 install
 =======
 
-To create your database MySQL with utf-8:
+To create your database in MySQL with utf-8:
 
     CREATE DATABASE opendatacomparison CHARACTER SET utf8
 
