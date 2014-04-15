@@ -44,8 +44,6 @@ class DatamapAddViewTest(TestCase):
         response = self.view(get_request)
         response.render()
 
-        print response
-
         self.assertContains(response, breadcrumb_snippet)
         self.assertContains(response, dataset_select_snippet)
         self.assertContains(response, format_select_snippet)
