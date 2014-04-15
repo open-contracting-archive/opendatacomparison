@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^myapp/', include('myapp.urls')),
     url(r'^$', HomePageView.as_view(), name='home'),
-    url('', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^datasets/', include('package.urls')),
     url(r'^grids/', include('grid.urls')),
     url(r'^profiles/', include('profiles.urls')),
