@@ -2,6 +2,10 @@
 {% load url from future %}
 {% load i18n %}
 
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/login.css">
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">
@@ -36,16 +40,15 @@
             <div class="col-lg-6">
                 <h2>{% trans 'Register' %}</h2>
                     <p>You may register using an existing Twitter or Google Account.</p>
-                    <div class="col-sm-4">
-                        <a class="btn btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}">
+                    <div class="row">
+                        <a class="btn btn-social btn-twitter social-login-button" href="{% url 'social:begin' 'twitter' %}">
                             <i class="fa fa-twitter"></i> Sign in with Twitter
                         </a>
-                    </div>
-                    <div class="col-sm-4">
-                        <a class="btn btn-block btn-social btn-google-plus" href="{% url 'social:begin' 'google-oauth2' %}">
+                        <a class="btn btn-social btn-google-plus social-login-button" href="{% url 'social:begin' 'google-oauth2' %}">
                             <i class="fa fa-google-plus"></i> Sign in with Google
                         </a>
                     </div>
+
             </div>
         </div>
     </div>
