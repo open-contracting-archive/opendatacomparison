@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.views.generic import (
     ListView,
     DetailView,
@@ -28,11 +29,17 @@ class DatamapAddView(CreateView):
     model = Datamap
 
     def get(self, request, *args, **kwargs):
-        self.dataset = Package.objects.get(pk=self.request.GET.get('dataset'))
+        dataset_id = self.request.GET.get('dataset')
+        if not dataset_id >= 0:
+            raise Http404
+        self.dataset = Package.objects.get(pk=dataset_id)
         return super(DatamapAddView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        self.dataset = Package.objects.get(pk=self.request.POST.get('dataset'))
+        dataset_id = self.request.POST.get('dataset')
+        if not dataset_id >= 0:
+            raise Http404
+        self.dataset = Package.objects.get(pk=dataset_id)
         return super(DatamapAddView, self).post(request, *args, **kwargs)
 
     def get_form(self, form_class):
