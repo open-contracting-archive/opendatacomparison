@@ -18,6 +18,14 @@ TEMPLATE_DEBUG = DEBUG
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 import private_settings
 SECRET_KEY = private_settings.SECRET_KEY
+
+# http://psa.matiasaguirre.net/docs/backends/twitter.html
+SOCIAL_AUTH_TWITTER_KEY = private_settings.SOCIAL_AUTH_TWITTER_KEY
+SOCIAL_AUTH_TWITTER_SECRET = private_settings.SOCIAL_AUTH_TWITTER_SECRET
+
+# http://psa.matiasaguirre.net/docs/backends/google.html#google-oauth2
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = private_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = private_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
 ########## END SECRET CONFIGURATION
 
 
@@ -126,6 +134,8 @@ THIRD_PARTY_APPS = (
     'international',
     'widget_tweaks',
     'django_nose',
+    'social.apps.django_app.default',
+    'django_extensions',
 )
 
 # Apps specific for this project go here.
@@ -181,6 +191,8 @@ if SECURE:
 
 ########## AUTHENTICATION CONFIGURATION
 AUTHENTICATION_BACKENDS = (
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.google.GoogleOAuth2',
     "django.contrib.auth.backends.ModelBackend",
     #"allauth.account.auth_backends.AuthenticationBackend",
 )
@@ -342,6 +354,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'core.context_processors.core_values',
     'core.context_processors.current_path',
     'grid.context_processors.grid_headers',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 
@@ -368,3 +382,4 @@ else:
 ########## Your stuff: Below this line define 3rd party libary settings
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + local_settings.EXTRA_INSTALLED_APPS
+
