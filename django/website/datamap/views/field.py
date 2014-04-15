@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -28,6 +29,12 @@ class AddFieldView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         field_id = kwargs.get('pk')
+
+        user = request.user
+
+        if not user.is_authenticated():
+            return redirect("login")
+
         if field_id:
             self.object = Field.objects.get(id=field_id)
         else:
@@ -73,3 +80,4 @@ class AddFieldView(CreateView):
 
 class EditFieldView(AddFieldView, UpdateView):
     model = Field
+

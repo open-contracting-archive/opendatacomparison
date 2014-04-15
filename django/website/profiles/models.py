@@ -12,7 +12,7 @@ class Profile(BaseModel):
     url = models.URLField(_('Website'), null=True, blank=True)
 
     def __unicode__(self):
-        return self.user
+        return "%s" % self.user
 
     @property
     def can_add_package(self):
