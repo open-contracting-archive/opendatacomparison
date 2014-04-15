@@ -37,12 +37,12 @@
                 <h2>{% trans 'Register' %}</h2>
                     <p>You may register using an existing Twitter or Google Account.</p>
                     <div class="col-sm-4">
-                        <a class="btn btn-block btn-social btn-twitter" href="/login/twitter">
+                        <a class="btn btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}">
                             <i class="fa fa-twitter"></i> Sign in with Twitter
                         </a>
                     </div>
                     <div class="col-sm-4">
-                        <a class="btn btn-block btn-social btn-google-plus" href="/login/google-oauth2">
+                        <a class="btn btn-block btn-social btn-google-plus" href="{% url 'social:begin' 'google-oauth2' %}">
                             <i class="fa fa-google-plus"></i> Sign in with Google
                         </a>
                     </div>
