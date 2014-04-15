@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -5,9 +6,10 @@ from datamap.forms import FieldForm, TranslatedFieldForm
 from django.forms.models import inlineformset_factory
 
 from datamap.models import Datamap, TranslatedField, Field
+from braces.views import LoginRequiredMixin
 
 
-class AddFieldView(CreateView):
+class AddFieldView(CreateView, LoginRequiredMixin):
     model = Field
     template_name = 'datamap/field_add.html'
     form_class = FieldForm
@@ -28,6 +30,12 @@ class AddFieldView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         field_id = kwargs.get('pk')
+
+        user = self.request.user
+
+        if not user.is_authenticated() or not user.profile.can_edit_datamap:
+            return redirect("login")
+
         if field_id:
             self.object = Field.objects.get(id=field_id)
         else:
@@ -73,3 +81,4 @@ class AddFieldView(CreateView):
 
 class EditFieldView(AddFieldView, UpdateView):
     model = Field
+
