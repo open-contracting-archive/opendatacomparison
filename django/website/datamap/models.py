@@ -26,10 +26,7 @@ class Concept(BaseModel):
     entity = CharField(_('Entity'), max_length=100, null=True, blank=True)
 
     def __unicode__(self):
-        if self.parent:
-            return u'%s - %s' % (self.parent, self.name)
-        else:
-            return u'%s' % self.name
+        return u'%s' % self.name
 
     class Meta:
         unique_together = ('phase', 'entity')
@@ -71,6 +68,12 @@ class TranslatedField(BaseModel):
     title = CharField(_('Title'), max_length=100)
     description = TextField(_('Description'), blank=True)
     allowable_values = TextField(_('Allowable values'), blank=True)
+
+    class Meta:
+        unique_together = ('field', 'language')
+
+    def __unicode__(self):
+        return u'%s: %s %s' % (self.field, self.language, self.title)
 
     def language_name(self):
         dc = dict(languages)
