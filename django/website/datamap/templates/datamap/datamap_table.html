@@ -1,7 +1,14 @@
 {% load i18n %}
 
 <div class="panel panel-default">
-    <div class="panel-heading">{{ datamap.format }}</div>
+    <div class="panel-heading clearfix">
+        {{ datamap.format }}
+        <div class="pull-right">
+          {% if user.is_authenticated and user.profile.can_edit_datamap %}
+          <a title="add datamap field" href="{% url 'datamap_field_add' datamap.id %}"><span class="glyphicon glyphicon-plus"></span></a>
+          {% endif %}
+        </div>
+    </div>
     <div class="panel-body">
         <p>{{ datamap.notes }}</p>
         <table class="table">
