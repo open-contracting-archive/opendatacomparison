@@ -21,8 +21,9 @@ class Datamap(BaseModel):
 
 class Concept(BaseModel):
     name = CharField(_('Name'), max_length=100)
-    description = TextField(_('Description'), blank=True)
-    parent = ForeignKey('self', null=True, blank=True)
+    description = TextField(_('Description'), null=True, blank=True)
+    phase = CharField(_('Phase'), max_length=100, null=True, blank=True)
+    entity = CharField(_('Entity'), max_length=100, null=True, blank=True)
 
     def __unicode__(self):
         if self.parent:
@@ -31,14 +32,18 @@ class Concept(BaseModel):
             return u'%s' % self.name
 
     class Meta:
-        unique_together = ("parent", "name")
+        unique_together = ('phase', 'entity')
 
 
 class Field(BaseModel):
     datamap = ForeignKey(Datamap, related_name='fields')
     fieldname = CharField(_('Field Name'), max_length=100)
+    englishname = CharField(_('English Name'), max_length=100, null=True, blank=True)
+    formattedname = CharField(_('Formatted Name'), max_length=100, null=True, blank=True)
+    standardname = CharField(_('Standard Name'), max_length=100, null=True, blank=True)
     concept = ForeignKey(Concept, null=True, blank=True)
     mapsto = ManyToManyField('self', null=True, blank=True)
+    datatype_notes = TextField(_('Datatype Notes'), null=True, blank=True)
     datatype = CharField(_('Type'),
                          max_length=30,
                          choices=(
