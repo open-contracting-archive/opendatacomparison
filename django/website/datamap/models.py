@@ -38,7 +38,6 @@ class Concept(BaseModel):
 class Field(BaseModel):
     datamap = ForeignKey(Datamap, related_name='fields')
     fieldname = CharField(_('Field Name'), max_length=100)
-    englishname = CharField(_('English Name'), max_length=100, null=True, blank=True)
     formattedname = CharField(_('Formatted Name'), max_length=100, null=True, blank=True)
     standardname = CharField(_('Standard Name'), max_length=100, null=True, blank=True)
     concept = ForeignKey(Concept, null=True, blank=True)
