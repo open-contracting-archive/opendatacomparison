@@ -336,6 +336,7 @@ if DEBUG is False:
         '.',
         'www.',
         'fen-vz-ocds-stage.fen.aptivate.org',
+        'ocds.aptivate.org',
     ]
     ########## END SITE CONFIGURATION
 
