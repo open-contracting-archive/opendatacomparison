@@ -1,5 +1,3 @@
-before_script:
-  - mysql -e 'create database opendatacomparison;'
 language: python
 python:
   - "2.7"
@@ -7,7 +5,6 @@ install:
   - "deactivate"
   - "pip install virtualenv"
   - "python deploy/bootstrap.py"
-  - "python deploy/tasks.py deploy:dev -n"
 # command to run tests, e.g. python setup.py test
 script:
-  - "python django/website/manage.py test"
+  - "python django/tasks.py run_tests"
