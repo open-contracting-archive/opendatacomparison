@@ -7,4 +7,4 @@ install:
   - "python deploy/bootstrap.py"
 # command to run tests, e.g. python setup.py test
 script:
-  - "python django/tasks.py run_tests"
+  - "python deploy/tasks.py run_tests"
