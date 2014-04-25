@@ -1,3 +1,5 @@
+before_script:
+  - mysql -e 'CREATE DATABASE travis CHARACTER SET utf8;'
 language: python
 python:
   - "2.7"
