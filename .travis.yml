@@ -5,6 +5,12 @@ install:
   - "deactivate"
   - "pip install virtualenv"
   - "python deploy/bootstrap.py"
+  - echo 'SECRET_KEY = "test"' >> ../django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_TWITTER_KEY = "test"' >> ../django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_TWITTER_SECRET = "test"' >> ../django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "test"' >> ../django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "test"' >> ../django/website/private_settings.py
+  - ln -s local_settings.py.travis ../django/website/local_settings.py 
 # command to run tests, e.g. python setup.py test
 script:
   - "python deploy/tasks.py run_tests"
