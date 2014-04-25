@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import (
     CharField,
@@ -16,7 +17,7 @@ class Datamap(BaseModel):
     format = ForeignKey(Format)
 
     def __unicode__(self):
-        return u'%s - %s' % (self.dataset, self.format)
+        return '%s - %s' % (self.dataset, self.format)
 
 
 class Concept(BaseModel):
@@ -26,10 +27,7 @@ class Concept(BaseModel):
     entity = CharField(_('Entity'), max_length=100, null=True, blank=True)
 
     def __unicode__(self):
-        if self.parent:
-            return u'%s - %s' % (self.parent, self.name)
-        else:
-            return u'%s' % self.name
+        return '%s' % self.name
 
     class Meta:
         unique_together = ('phase', 'entity')
@@ -59,7 +57,7 @@ class Field(BaseModel):
         unique_together = ('datamap', 'fieldname')
 
     def __unicode__(self):
-        return u'%s: %s' % (self.datamap, self.fieldname)
+        return '%s: %s' % (self.datamap, self.fieldname)
 
 
 class TranslatedField(BaseModel):
