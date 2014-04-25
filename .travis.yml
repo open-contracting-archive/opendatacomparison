@@ -1,3 +1,5 @@
+before_script:
+  - echo '\n' > /root/mysql_root_password
 language: python
 python:
   - "2.7"
