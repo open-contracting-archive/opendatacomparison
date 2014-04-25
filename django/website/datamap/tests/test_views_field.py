@@ -295,7 +295,6 @@ class EditFieldWithTranslationsTest(TestCase):
         desired_html_snippet_1 = ' id="id_translations-0-title" maxlength="100" name="translations-0-title" type="text" value="Ⓣⓨⓟⓔ ⓨⓞⓤⓡ ⓣⓔⓧⓣ ⓗⓔⓡⓔ    " />'  # nopep8
         response = self.view(self.get, **self.kwargs)
         response.render()
-        print response.content
         self.assertContains(response, desired_html_snippet_1)
 
     def test_when_two_translated_fields_shows_all_tab_headers(self):

@@ -1,18 +1,17 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Permission
+from django.test.utils import override_settings
 
-from grid.models import Grid, Element, Feature, GridPackage
+from core.tests.data import STOCK_PASSWORD
 from package.models import Package
 
-from grid.tests.data import GridTestCase
-from core.tests.data import STOCK_PASSWORD
+from grid.models import Grid, Element, Feature, GridPackage
+from .data import GridTestCase
 
 
+@override_settings(RESTRICT_GRID_EDITORS=False)
 class FunctionalGridTest(GridTestCase):
-    def setUp(self):
-        super(FunctionalGridTest, self).setUp()
-        settings.RESTRICT_GRID_EDITORS = False
 
     def test_grid_list_view(self):
         url = reverse('grids')
@@ -185,14 +184,14 @@ class FunctionalGridTest(GridTestCase):
 
         # Test form post for existing grid package
         response = self.client.post(url, {
-            'package': self.gridpackage2.id,
+            'package': self.gridpackage2.package.id,
         })
         self.assertContains(response,
                             '&#39;Supertester&#39; is already in this grid.')
         # Test form post for new grid package
         count = GridPackage.objects.count()
         response = self.client.post(url, {
-            'package': self.gridpackage4.id,
+            'package': self.gridpackage4.package.id,
         }, follow=True)
         self.assertEqual(GridPackage.objects.count(), count + 1)
         self.assertContains(response, 'Another Test')
@@ -421,10 +420,10 @@ class GridFeaturePermissionTest(GridTestCase):
         self.assertEqual(response.status_code, 302)
 
 
+@override_settings(RESTRICT_GRID_EDITORS=True)
 class GridElementPermissionTest(GridTestCase):
     def setUp(self):
         super(GridElementPermissionTest, self).setUp()
-        settings.RESTRICT_GRID_EDITORS = True
         self.test_edit_url = reverse('edit_element',
                                      kwargs={'feature_id': self.feature1.id,
                                              'package_id': self.gridpackage1.id
