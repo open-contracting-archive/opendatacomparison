@@ -1,3 +1,6 @@
+[![Build
+Status](https://travis-ci.org/open-contracting/opendatacomparison.svg?branch=master)](https://travis-ci.org/open-contracting/opendatacomparison)
+
 opendatacomparison
 ==================
 
