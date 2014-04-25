@@ -1,5 +1,5 @@
 before_script:
-  - echo '\n' > /root/mysql_root_password
+  - mysql -e 'create database opendatacomparison;'
 language: python
 python:
   - "2.7"
