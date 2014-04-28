@@ -6,4 +6,4 @@ A Django application for comparing datsets, built on Open Comparison
 
 ### Documentation
 Documentation, including installation, can be found at:
-[http://open-contracting.github.io/pages/docs/opendatacomparison.html)](http://open-contracting.github.io/pages/docs/opendatacomparison.html)
+[http://open-contracting.github.io/pages/docs/opendatacomparison.html](http://open-contracting.github.io/pages/docs/opendatacomparison.html)
