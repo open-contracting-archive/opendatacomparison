@@ -147,6 +147,7 @@ LOCAL_APPS = (
     'profiles',
     'publisher',
     'datamap',
+    'downloads',
 )
 
 ########## END APP CONFIGURATION
