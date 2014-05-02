@@ -17,4 +17,6 @@ install:
 script:
   - "python deploy/tasks.py run_tests:--nologcapture,--with-coverage"
 after_success:
-    - coveralls -d django/website/.coverage
+  - cd django/website
+  - source .ve/bin/activate
+  - coveralls
