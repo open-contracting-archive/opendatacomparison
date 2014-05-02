@@ -18,3 +18,4 @@ reports/*
 *.sql.gz
 .coverage
 *htmlcov*
+*cover*
