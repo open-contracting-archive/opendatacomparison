@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^profiles/', include('profiles.urls')),
     url(r'^publishers/', include('publisher.urls')),
     url(r'^datamap/', include('datamap.urls')),
+    url(r'^download/', include('downloads.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

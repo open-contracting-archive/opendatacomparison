@@ -92,7 +92,47 @@
 
 
   <div class="col-md-6">
+    <!-- start Downloads panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left">{% trans "Downloads" %}</h3>
+        <div class="pull-right">
+          {% comment %}
+          {% if user.is_authenticated and user.profile.can_edit_datamap %}
+          <a title="add download" href="{% url 'download_add' %}?dataset={{ package.pk }}"><span class="glyphicon glyphicon-plus"></span></a>
+          {% endif %}
+          {% endcomment %}
+        </div>
+      </div>
+      <div class="panel-body">
+        <ul>
+        {% for download in package.downloads.all %}
+        <li><a href="{% url 'download' download.id %}" title="Download dataset - {{ download.title }} ({{ download.format }})">Download Dataset - {{ download.title }} ({{download.format}})</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <!-- end Downloads panel -->
 
+    <!-- start Datamaps panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left">{% trans "Datamaps" %}</h3>
+        <div class="pull-right">
+          {% if user.is_authenticated and user.profile.can_add_datamap %}
+          <a title="add datamap" href="{% url 'datamap_add' %}?dataset={{ package.pk }}"><span class="glyphicon glyphicon-plus"></span></a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="panel-body">
+        <ul>
+        {% for datamap in package.datamaps.all %}
+            <li><a href="{% url 'datamap' datamap.id %}" title="{{ datamap }}">{{ datamap.format }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <!-- end Datamaps panel -->
     <!-- start Grids panel -->
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
@@ -113,23 +153,6 @@
       </div>
     </div>
     <!-- end Grids panel -->
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        <h3 class="panel-title pull-left">{% trans "Datamaps" %}</h3>
-        <div class="pull-right">
-          {% if user.is_authenticated and user.profile.can_add_datamap %}
-          <a title="add datamap" href="{% url 'datamap_add' %}?dataset={{ package.pk }}"><span class="glyphicon glyphicon-plus"></span></a>
-          {% endif %}
-        </div>
-      </div>
-      <div class="panel-body">
-        <ul>
-        {% for datamap in package.datamaps.all %}
-            <li><a href="{% url 'datamap' datamap.id %}" title="{{ datamap }}">{{ datamap.format }}</a></li>
-        {% endfor %}
-        </ul>
-      </div>
-  </div>
 </div>
 {% endblock %}
 
