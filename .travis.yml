@@ -19,4 +19,4 @@ script:
 after_success:
   - cd django/website
   - source .ve/bin/activate
-  - coveralls
+  - coveralls -d .coverage
