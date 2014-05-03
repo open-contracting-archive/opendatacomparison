@@ -15,7 +15,7 @@ install:
   - mysql -e 'CREATE DATABASE travis CHARACTER SET utf8;'
 # command to run tests, e.g. python setup.py test
 script:
-    - "python deploy/tasks.py run_tests:--nologcapture,--with-coverage,-v2 -v"
+    - "python deploy/tasks.py run_tests:--nologcapture,--with-coverage,-v1 -v"
 after_success:
   - cd django/website
   - source .ve/bin/activate
