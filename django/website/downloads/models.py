@@ -18,7 +18,7 @@ class Link(BaseModel):
     notes = TextField(blank=True)
 
     def __unicode__(self):
-        return self.title
+        return '%s - %s (%s)' % (self.format, self.title, self.dataset)
 
     def record_click(self, session_key, username):
         click = Click.objects.create(link=self,
