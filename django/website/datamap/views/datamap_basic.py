@@ -31,7 +31,7 @@ class DatamapAddView(LoginRequiredMixin, CreateView):
     model = Datamap
 
     def dispatch(self, request, *args, **kwargs):
-        user = self.request.user
+        user = request.user
         if user.is_authenticated() and not user.profile.can_edit_package:
             return HttpResponseForbidden("permission denied")
         else:
@@ -39,14 +39,14 @@ class DatamapAddView(LoginRequiredMixin, CreateView):
                          self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        dataset_id = self.request.GET.get('dataset')
+        dataset_id = request.GET.get('dataset')
         if not dataset_id >= 0:
             raise Http404
         self.dataset = Package.objects.get(pk=dataset_id)
         return super(DatamapAddView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        dataset_id = self.request.POST.get('dataset')
+        dataset_id = request.POST.get('dataset')
         if not dataset_id >= 0:
             raise Http404
         self.dataset = Package.objects.get(pk=dataset_id)
@@ -73,7 +73,7 @@ class DatamapEditView(LoginRequiredMixin, UpdateView):
     model = Datamap
 
     def dispatch(self, request, *args, **kwargs):
-        user = self.request.user
+        user = request.user
         if user.is_authenticated() and not user.profile.can_edit_datamap:
             return HttpResponseForbidden("permission denied")
         else:

@@ -32,7 +32,7 @@ class AddBasicFieldViewTest(TestCase):
         # Drop privileges to test it breaks
         self.get.user = AnonymousUser()
         response = self.view(self.get, dm=str(datamap.id))
-        desired_url = "/accounts/login/"
+        desired_url = "/accounts/login/?next=/"
 
         # Should redirect to the login page when there is no authenticated user
         self.assertEqual(response.status_code, 302)
