@@ -73,3 +73,6 @@ class TranslatedField(BaseModel):
     def language_name(self):
         dc = dict(languages)
         return dc.get(self.language)
+
+    def __unicode__(self):
+        return '%s: %s' % (self.field, self.language)

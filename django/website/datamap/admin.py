@@ -1,9 +1,5 @@
 from django.contrib import admin
-from nested_inlines.admin import (
-    NestedModelAdmin,
-    NestedStackedInline,
-    NestedTabularInline,
-)
+from reversion.admin import VersionAdmin
 from .models import (
     Field,
     TranslatedField,
@@ -12,26 +8,19 @@ from .models import (
 )
 
 
-class TranslatedFieldInline(NestedTabularInline):
-    model = TranslatedField
-    extra = 1
+class DatamapAdmin(VersionAdmin):
+    search_fields = ('dataset__title', 'format__title')
 
 
-class FieldAdmin(NestedStackedInline):
-    model = Field
-    inlines = [
-        TranslatedFieldInline,
-    ]
+class FieldAdmin(VersionAdmin):
+    search_fields = ('fieldname',)
 
 
-class DatamapAdmin(NestedModelAdmin):
-    inlines = [FieldAdmin, ]
-
-
-class FieldAdminStandalone(admin.ModelAdmin):
-    inlines = [TranslatedFieldInline, ]
+class TranslatedFieldAdmin(VersionAdmin):
+    search_fields = ('language', 'field__fieldname')
 
 
 admin.site.register(Concept)
 admin.site.register(Datamap, DatamapAdmin)
-admin.site.register(Field, FieldAdminStandalone)
+admin.site.register(Field, FieldAdmin)
+admin.site.register(TranslatedField, TranslatedFieldAdmin)

@@ -11,7 +11,7 @@ from package.models import (
 
 class TranslatedPackageAdmin(VersionAdmin):
     list_display = ("package", "language", "title")
-    search_fields = ("package", "language", "title")
+    search_fields = ("package__title", "language", "title")
 
 
 class TranslatedPackageInline(admin.StackedInline):
