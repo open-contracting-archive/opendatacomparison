@@ -155,6 +155,7 @@ LOCAL_APPS = (
 
 ########## MIDDLEWARE CONFIGURATION
 MIDDLEWARE_CLASSES = (
+    'reversion.middleware.RevisionMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

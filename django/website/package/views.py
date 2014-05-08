@@ -100,10 +100,12 @@ class PackageUpdateView(LoginRequiredMixin,
         else:
             return super(PackageUpdateView, self).dispatch(*args, **kwargs)
 
-    def form_valid(self, form):
+    def forms_valid(self, form, inlines):
         modified_package = form.save()
         modified_package.last_modified_by = self.request.user
         modified_package.save()
+        for formset in inlines:
+            formset.save()
         messages.add_message(self.request,
                              messages.INFO,
                              'Package updated successfully')
