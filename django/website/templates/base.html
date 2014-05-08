@@ -49,7 +49,7 @@
                 <li><a href="{% url 'packages' %}">{% trans "Datasets" %}</a></li>
                 <li><a href="{% url 'grids' %}">{% trans "Grids" %}</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile_detail' user.profile %}">{{ request.user.username|capfirst }}</a></li>
+                    <li><a href="{% url 'profile_detail' user.username %}">{{ request.user.username|capfirst }}</a></li>
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'admin:index' %}">{% trans "Admin" %}</a></li>
                     {% endif %}
