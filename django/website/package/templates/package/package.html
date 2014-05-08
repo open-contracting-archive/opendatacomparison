@@ -17,7 +17,12 @@
     <ol class="breadcrumb">
         <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
         <li><a href="{% url 'packages' %}">{% trans "datasets" %}</a></li> 
-        <li class="active">{{ package.title }} <a href="{% url 'edit_package' package.slug %}"><span class="glyphicon glyphicon-pencil"></span></a></li>
+        <li class="active">
+            {{ package.title }} 
+            {% if user.is_authenticated and user.profile.can_edit_package %}
+                <a href="{% url 'edit_package' package.slug %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
+        </li>
     </ol>
   
   <div class="col-md-6">
