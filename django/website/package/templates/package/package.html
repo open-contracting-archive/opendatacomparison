@@ -110,9 +110,12 @@
         </div>
       </div>
       <div class="panel-body">
+        <p>Click to download the data:</p>
         <ul>
         {% for download in package.downloads.all %}
-        <li><a href="{% url 'download' download.id %}" title="Download dataset - {{ download.title }} ({{ download.format }})">Download Dataset - {{ download.title }} ({{download.format}})</a></li>
+        <li><a href="{% url 'download' download.id %}?source={{ download.url }}" title="Download dataset - {{ download.title }} ({{ download.format }})">
+            {{ download.title }} ({{download.format}})
+        </a></li>
         {% endfor %}
         </ul>
       </div>
