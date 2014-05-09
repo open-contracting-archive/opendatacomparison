@@ -356,7 +356,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # Your stuff: custom template context processers go here
     'core.context_processors.core_values',
     'core.context_processors.current_path',
-    'grid.context_processors.grid_headers',
+    'publisher.context_processors.publisher_headers',
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
 )
