@@ -1,5 +1,6 @@
 from mock import Mock
 
+from django.contrib.sessions.backends.db import SessionStore
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
 from django.test.client import RequestFactory
@@ -31,7 +32,17 @@ class TestGetDownloadView(TestCase):
         request.user = Mock()
         request.user.is_authenticated = lambda: False
         request.session = Mock()
-        request.session.session_key = 'test'
+        view(request, pk=link.id)
+        click = Click.objects.get(link=link)
+        self.assertEqual(click.username, '**anonymous**')
+
+    def test_when_no_session_works(self):
+        link = LinkFactory(url='http://correct.com')
+        view = GetDownloadView.as_view()
+        request = RequestFactory().get('/')
+        request.user = Mock()
+        request.user.is_authenticated = lambda: False
+        request.session = SessionStore()
         view(request, pk=link.id)
         click = Click.objects.get(link=link)
         self.assertEqual(click.username, '**anonymous**')

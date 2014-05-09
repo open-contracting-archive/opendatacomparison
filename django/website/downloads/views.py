@@ -13,7 +13,10 @@ class GetDownloadView(RedirectView):
             self.username = request.user.username
         else:
             self.username = '**anonymous**'
-        self.session_key = request.session.session_key
+        session = request.session
+        if not session.session_key:
+            session.save()
+        self.session_key = session.session_key
         return super(GetDownloadView, self).dispatch(request, *args, **kwargs)
 
     def get_redirect_url(self, *args, **kwargs):
