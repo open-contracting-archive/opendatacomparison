@@ -36,7 +36,7 @@ class AddBasicFieldViewTest(TestCase):
 
         # Should redirect to the login page when there is no authenticated user
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, desired_url)
+        self.assertTrue(response.url.find(desired_url) > -1)
 
         # Gibe privledges to test that it work
         self.get.user = self.user
@@ -45,7 +45,6 @@ class AddBasicFieldViewTest(TestCase):
         # Make sure we get a rendered page
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.template_name, ['datamap/field_add.html'])
-
 
     def test_url_passes_datamap_id_to_add_field_view(self):
         view = resolve('/datamap/14/field/edit/')
