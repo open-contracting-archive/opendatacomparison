@@ -51,6 +51,7 @@ class PackageListView(ListView):
     def get_queryset(self):
         packages = Package.objects.select_related('publisher', 'category')
         packages = packages.annotate(ucount=Count('usage'))
+        packages = packages.annotate(downloadcount=Count('downloads'))
         return packages
 
 

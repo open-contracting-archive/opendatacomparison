@@ -31,7 +31,7 @@
                 <td>{{ publisher.country }} - {{ publisher.country_name }}</td>
               <td><a href="{% url 'publisher' publisher.slug %}">{{ publisher.name }}</a></td>
               <td>{{ publisher.description|truncatewords:25 }}</td>
-              <td>{{ publisher.datasets.count }}</td>
+              <td>{{ publisher.datasetscount }}</td>
               <td>{{ publisher.url|urlize }}</td>
             </tr>
           {% endfor %}
