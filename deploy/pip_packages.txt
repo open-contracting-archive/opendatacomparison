@@ -21,6 +21,8 @@ django-extra-views==0.6.4
 django-widget-tweaks
 django-countries==2.1.2
 python-social-auth==0.1.23
+markdown
+django-filter
 
 # Testing toolbar
 django-debug-toolbar

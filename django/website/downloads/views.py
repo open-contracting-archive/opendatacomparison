@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic.base import RedirectView
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from .models import Link
+from .serializers import LinkSerializer
 
 
 class GetDownloadView(RedirectView):
@@ -24,3 +26,13 @@ class GetDownloadView(RedirectView):
         link.record_click(session_key=self.session_key,
                           username=self.username)
         return link.url
+
+
+class LinkViewSet(ReadOnlyModelViewSet):
+    queryset = Link.objects.all()
+    serializer_class = LinkSerializer
+
+
+class CsvLinkViewSet(ReadOnlyModelViewSet):
+    queryset = Link.objects.filter(format__title='CSV')
+    serializer_class = LinkSerializer

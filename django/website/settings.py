@@ -136,6 +136,7 @@ THIRD_PARTY_APPS = (
     'django_nose',
     'social.apps.django_app.default',
     'django_extensions',
+    'rest_framework',
 )
 
 # Apps specific for this project go here.
@@ -148,6 +149,7 @@ LOCAL_APPS = (
     'publisher',
     'datamap',
     'downloads',
+    'api',
 )
 
 ########## END APP CONFIGURATION
@@ -386,3 +388,7 @@ else:
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + local_settings.EXTRA_INSTALLED_APPS
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'PAGINATE_BY': 50,
+}

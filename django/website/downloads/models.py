@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.db.models import (
     ForeignKey,
     URLField,
@@ -17,6 +19,9 @@ class Link(BaseModel):
     format = ForeignKey(Format)
     notes = TextField(blank=True)
 
+    class Meta:
+        ordering = '?'
+
     def __unicode__(self):
         return '%s - %s (%s)' % (self.format, self.title, self.dataset)
 
@@ -25,6 +30,13 @@ class Link(BaseModel):
                                      session_key=session_key,
                                      username=username)
         return click
+
+    def get_absolute_url(self):
+        return reverse('download', args=[str(self.id)])
+
+    def get_fully_qualified_url(self):
+        site = Site.objects.get_current()
+        return 'http://%s%s' % (site.domain, self.get_absolute_url())
 
 
 class Click(BaseModel):
