@@ -18,8 +18,8 @@ class Command(BaseCommand):
     help = 'Parses a datamap CSV and adds it to the database'
 
     required_keys = set([
-        'original_name',
-        'data_type',
+        'name__en_US',
+        'concept',
     ])
 
     datamap = None
@@ -56,23 +56,14 @@ class Command(BaseCommand):
 
     def insert_row(self, row_dict):
         if not self.check_required_keys(row_dict.keys()):
-            raise CommandError("CSV is missing required keys.")
+            raise CommandError("CSV is missing required keys: %s" % self.required_keys)
 
-        phase = row_dict.get('phase', None)  # not required
-        entity = row_dict.get('entity', None)  # not required
-        concept_name = "_".join([item for item in (phase.capitalize(), entity.capitalize()) if item])
+        concept_name = row_dict['concept'].upper()
+        concept, created = Concept.objects.get_or_create(name=concept_name)
 
-        concept, created = Concept.objects.get_or_create(phase=phase, entity=entity)
-
-        concept.name = concept_name
-        concept.phase = phase
-        concept.entity = entity
-        concept.save()
-
-        original_name = row_dict.get('original_name')
+        original_name = row_dict.get('name__en_US')
         field, created = Field.objects.get_or_create(datamap=self.datamap, fieldname=original_name)
         field.fieldname = original_name  # required
-        field.formattedname = row_dict.get('formatted_name', '')  # not required
         field.standardname = row_dict.get('standard_name', '')  # not required
         field.concept = concept
         field.datatype = row_dict.get('data_type')  # required
@@ -80,10 +71,12 @@ class Command(BaseCommand):
 
         trans_langs_keys = self.detect_translated_languages_and_keys(row_dict.keys())
         for language, keys in trans_langs_keys.iteritems():
-            trans_field, created = TranslatedField.objects.get_or_create(field=field, language=language)
+            trans_field, created = TranslatedField.objects.get_or_create(field=field,
+                                                                         language=language,
+                                                                         title=original_name)
 
             for key_name, orig_key in keys:
-                if key_name == 'title':
+                if key_name == 'name':
                     trans_field.title = row_dict[orig_key]
                 elif key_name == 'description':
                     trans_field.description = row_dict[orig_key]

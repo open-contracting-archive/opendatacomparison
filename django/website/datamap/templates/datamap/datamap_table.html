@@ -21,7 +21,6 @@
                     <th>{% trans 'Title' %}</th>
                     <th>{% trans 'Description' %}</th>
                     <th>{% trans 'Allowable Values' %}</th>
-                    <th>{% trans 'MapsTo' %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +40,6 @@
                         <td>{{ fieldtrans.title }}</td>
                         <td>{{ fieldtrans.description }}</td>
                         <td>{{ fieldtrans.allowable_values|truncatechars:40 }}</td>
-                        <td>{{ field.mapsto.all|truncatechars:40 }}</td>
                     </tr>
                 {% endfor %}
                 {% endfor %}
