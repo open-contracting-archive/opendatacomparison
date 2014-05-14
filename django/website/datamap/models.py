@@ -70,6 +70,12 @@ class TranslatedField(BaseModel):
     description = TextField(_('Description'), blank=True)
     allowable_values = TextField(_('Allowable values'), blank=True)
 
+    class Meta:
+        unique_together = ('field', 'language')
+
+    def __unicode__(self):
+        return u'%s: %s %s' % (self.field, self.language, self.title)
+
     def language_name(self):
         dc = dict(languages)
         return dc.get(self.language)
