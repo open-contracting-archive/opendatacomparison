@@ -23,14 +23,9 @@ class Datamap(BaseModel):
 class Concept(BaseModel):
     name = CharField(_('Name'), max_length=100)
     description = TextField(_('Description'), null=True, blank=True)
-    phase = CharField(_('Phase'), max_length=100, null=True, blank=True)
-    entity = CharField(_('Entity'), max_length=100, null=True, blank=True)
 
     def __unicode__(self):
         return '%s' % self.name
-
-    class Meta:
-        unique_together = ('phase', 'entity')
 
 
 class Field(BaseModel):
