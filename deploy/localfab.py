@@ -22,6 +22,10 @@ def deploy(revision=None, keep=None, full_rebuild=True):
       5)
     * full_rebuild is whether to do a full rebuild of the virtualenv
     """
+    ## Add to force correct python
+    env.python_bin = path.join('/', 'usr', 'bin', 'python')
+
+    ## Normal deploy method follows
     require('server_project_home', provided_by=env.valid_envs)
 
     # this really needs to be first - other things assume the directory exists

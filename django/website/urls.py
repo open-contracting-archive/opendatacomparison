@@ -21,12 +21,15 @@ urlpatterns = patterns('',
     url(r'^profiles/', include('profiles.urls')),
     url(r'^publishers/', include('publisher.urls')),
     url(r'^datamap/', include('datamap.urls')),
+    url(r'^download/', include('downloads.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include('api.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/profile/$', ProfileRedirectView.as_view()),
 

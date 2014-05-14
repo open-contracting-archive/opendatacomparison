@@ -9,6 +9,10 @@ from package.models import (
     Format,
 )
 
+class TranslatedPackageAdmin(VersionAdmin):
+    list_display = ("package", "language", "title")
+    search_fields = ("package__title", "language", "title")
+
 
 class TranslatedPackageInline(admin.StackedInline):
     model = TranslatedPackage
@@ -44,5 +48,6 @@ class PackageExampleAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, VersionAdmin)
 admin.site.register(Package, PackageAdmin)
+admin.site.register(TranslatedPackage, TranslatedPackageAdmin)
 admin.site.register(Version, VersionLocalAdmin)
 admin.site.register(Format)

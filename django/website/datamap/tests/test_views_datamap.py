@@ -6,6 +6,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 
 from package.tests.factories import FormatFactory, DatasetFactory
+from profiles.tests.factories import UserFactory
 from datamap.models import Datamap
 from .factories import DatamapFactory
 
@@ -19,17 +20,18 @@ class DatamapAddViewTest(TestCase):
         self.datamap = DatamapFactory()
         self.format = FormatFactory()
         self.notes = u'Unit test'
+        self.plain_user = UserFactory()
         super(DatamapAddViewTest, self).setUp()
 
     def test_no_datamap_id_is_404(self):
+        self.get.user = self.plain_user
+        self.post.user = self.plain_user
         self.assertRaises(Http404, self.view, self.get)
         self.assertRaises(Http404, self.view, self.post)
 
-    def test_add_datamap_access_denied_when_anonymous(self):
-        pass
-
     def test_add_datamap_view_has_form_fields(self):
         get_request = RequestFactory().get('/datamap/edit/?dataset=%s' % self.dataset.id)
+        get_request.user = self.plain_user
 
         # Snippets we're testing for
         # - basic breadcrumb
@@ -56,6 +58,7 @@ class DatamapAddViewTest(TestCase):
                   'format': '',
                   'notes': ''}
         )
+        post_request.user = self.plain_user
         # Do the post
         response = self.view(post_request)
         response.render()
@@ -70,6 +73,7 @@ class DatamapAddViewTest(TestCase):
                   'format': unicode(self.format.id),
                   'notes': self.notes}
         )
+        post_request.user = self.plain_user
         # Do the post
         response = self.view(post_request)
 

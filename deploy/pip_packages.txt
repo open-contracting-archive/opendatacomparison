@@ -1,5 +1,5 @@
 # for deploy - you probably should pin to a commit
--e git+git://github.com/aptivate/dye.git@7bb8c13351c6b7ca037e79225caa733d78ea8518#egg=dye
+-e git+git://github.com/aptivate/dye.git@ab95e3d3e2c42d7701f824c1019ddba8536db8f2#egg=dye
 
 # core django
 Django==1.6.2
@@ -21,6 +21,8 @@ django-extra-views==0.6.4
 django-widget-tweaks
 django-countries==2.1.2
 python-social-auth==0.1.23
+markdown
+django-filter
 
 # Testing toolbar
 django-debug-toolbar
@@ -29,3 +31,4 @@ factory_boy
 mock
 needle
 django-nose==1.2
+coveralls

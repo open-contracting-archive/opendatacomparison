@@ -1,12 +1,19 @@
 from django.conf import settings
 from django.contrib.auth.models import User, Permission
 from django.core.urlresolvers import reverse
+from django.test import TestCase
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from package.models import Category, Package
 
 from core.tests.data import STOCK_PASSWORD
+from downloads.tests.factories import LinkFactory
+from profiles.tests.factories import UserFactory
+
+from package.models import Category, Package
+from package.views import PackageDetailView
 from .data import PackageTestCase
+from .factories import DatasetFactory
 
 
 @override_settings(RESTRICT_PACKAGE_EDITORS=False)
@@ -177,3 +184,20 @@ class PackagePermissionTest(PackageTestCase):
         self.user.user_permissions.add(edit_package_perm)
         response = self.client.get(self.test_edit_url)
         self.assertEqual(response.status_code, 200)
+
+
+class TestPackageDownloads(TestCase):
+
+    def test_package_detail_view_shows_related_downloads(self):
+        dataset_1 = DatasetFactory()
+        dataset_2 = DatasetFactory()
+        link_1 = LinkFactory(dataset=dataset_1)
+        link_2 = LinkFactory(dataset=dataset_1)
+        link_3 = LinkFactory(dataset=dataset_2)
+        request = RequestFactory().get('/')
+        request.user = UserFactory()
+        view = PackageDetailView.as_view()
+        response = view(request, pk=dataset_1.id)
+        self.assertContains(response, link_1.title)
+        self.assertContains(response, link_2.title)
+        self.assertNotContains(response, link_3.title)

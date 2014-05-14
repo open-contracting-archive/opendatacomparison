@@ -41,7 +41,7 @@
             </div>
             <div class="panel-body">
                 <p>
-                {% with publisher.datasets.all as packages %}
+                {% with datasets as packages %}
                 {% include "package/package_table.html" %}
                 {% endwith %}
                 </p>

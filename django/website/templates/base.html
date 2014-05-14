@@ -49,7 +49,7 @@
                 <li><a href="{% url 'packages' %}">{% trans "Datasets" %}</a></li>
                 <li><a href="{% url 'grids' %}">{% trans "Grids" %}</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile_detail' user.profile %}">{{ request.user.username|capfirst }}</a></li>
+                    <li><a href="{% url 'profile_detail' user.username %}">{{ request.user.username|capfirst }}</a></li>
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'admin:index' %}">{% trans "Admin" %}</a></li>
                     {% endif %}
@@ -74,14 +74,15 @@
 
 <div id="myrotatingnav" class="rotatingnav slide">
   <div class="rotatingnav-inner">
-  {% for grid_chunk in grid_headers %}
+ 
+  {% for publisher_chunk in publisher_headers %}
     <div class="item">
-      {% for tab in grid_chunk %}
+      {% for tab in publisher_chunk %}
           {% if tab %}
-              <a href="{% url 'grid' tab.slug %}" title="{{ tab.description }}">{{ tab.title|truncatechars:"17" }}</a><br />
+              <a href="{% url 'publisher' tab.slug %}" title="{{ tab.name }}">{{ tab.name|truncatechars:"17" }}</a><br />
           {% endif %}
           {% if forloop.parentloop.last and forloop.last %}
-          <a class="gridnav-name" href="{% url 'grids' %}">{% trans "&raquo; all grids..." %}</a>
+          <a class="publishernav-name" href="{% url 'publishers' %}">{% trans "&raquo; all publishers..." %}</a>
           {% endif %}
       {% endfor %}
     </div>

@@ -5,29 +5,44 @@
     <div class="col-sm-4 col-lg-4">
       <h2><i>Open Data Comparison is a directory of open data sets, enabling comparison and assessment.</i></h2>
       <p>It is being built & used by the Open Contracting Data Standards project.</p>
-      <p class="text-danger"> This site is in BETA. Expect things to be slightly strange and to change!</p>
       <p><b>{{ package_count }}</b> {% trans "datasets and counting!" %}</p>
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
-          <h3 class="panel-title pull-left">{% trans "Add datasets and grids" %}</h3>
+          <h3 class="panel-title pull-left">{% trans "Add datasets" %}</h3>
         </div>
         <div class="panel-body">
           <p>
-            {% trans "Know of any datasets not listed here?  Add them now!  It's quick and easy." %}
+            {% trans "Know of any datasets not listed here?  We appreciate contributions." %}
           </p>
           <p>
             <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add dataset »" %}</a>
-          </p>
-          <p>
-            {% trans "Or add a grid comparing the features of datasets." %}
-          </p>
-          <p>
-            <a class="btn btn-default" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
           </p>
         </div>
       </div>
     </div>
     
+    <div class="col-sm-4 col-lg-4">
+      <h2>{% trans "Latest " %} <a href="{% url 'publishers' %}">{% trans "Publishers" %}</a></h2>
+    
+      <div class="list-group">
+        {% for publisher in latest_publishers %}
+          <a href="{% url 'publisher' publisher.slug %}" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ publisher.name }}</h4>
+
+            <p class="list-group-item-text">
+              {% with publisher.description|truncatewords:25 as short %}
+                {% if publisher.description|length > short|length %}
+                  {{ short|slice:"-3" }}...
+                {% else %}
+                  {{ short }}
+                {% endif %}
+              {% endwith %}
+            </p>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
 
     <div class="col-sm-4 col-lg-4">
       <h2>{% trans "Latest " %} <a href="{% url 'packages'  %}">{% trans "Datasets" %}</a></h2>
@@ -45,34 +60,16 @@
                   {{ short }}
                 {% endif %}
               {% endwith %}
+              <br />
+                {% with package.downloads.count as count %}
+                <strong>{{ count }} download link{% if count == 1 %}{% else %}s{% endif %}</strong>
+                {% endwith %}
             </p>
           </a>
         {% endfor %}
       </div>
     </div>
     
-    <div class="col-sm-4 col-lg-4">
-      <h2>{% trans "Latest " %} <a href="{% url 'grids' %}">{% trans "Grids" %}</a></h2>
-    
-      <div class="list-group">
-        {% for grid in latest_grids %}
-          <a href="{{ grid.get_absolute_url }}" class="list-group-item">
-            <h4 class="list-group-item-heading">{{ grid.title }}</h4>
-
-            <p class="list-group-item-text">
-              {% with grid.description|truncatewords:25 as short %}
-                {% if grid.description|length > short|length %}
-                  {{ short|slice:"-3" }}...
-                {% else %}
-                  {{ short }}
-                {% endif %}
-              {% endwith %}
-            </p>
-          </a>
-        {% endfor %}
-      </div>
-    </div>
-
 
 </div><!-- endrow -->
 

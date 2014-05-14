@@ -9,16 +9,42 @@ from package.tests.factories import FormatFactory
 from datamap.views.field import AddFieldView, EditFieldView
 from datamap.forms import FieldForm
 from datamap.models import Field, TranslatedField
+from django.contrib.auth.models import AnonymousUser
 from .factories import DatamapFactory, DatafieldFactory, TranslatedFieldFactory
+
+from profiles.tests.factories import UserFactory
 
 
 class AddBasicFieldViewTest(TestCase):
 
     def setUp(self):
         self.view = AddFieldView.as_view()
+        self.user = UserFactory()
         self.get = RequestFactory().get('/')
+        self.get.user = self.user
         self.datamap = DatamapFactory()
         super(AddBasicFieldViewTest, self).setUp()
+
+    def test_datamap_add_and_edit_requires_login(self):
+        f = FormatFactory(title="Anything")
+        datamap = DatamapFactory(format=f)
+
+        # Drop privileges to test it breaks
+        self.get.user = AnonymousUser()
+        response = self.view(self.get, dm=str(datamap.id))
+        desired_url = "/accounts/login/?next=/"
+
+        # Should redirect to the login page when there is no authenticated user
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.find(desired_url) > -1)
+
+        # Gibe privledges to test that it work
+        self.get.user = self.user
+        response = self.view(self.get, dm=str(datamap.id))
+
+        # Make sure we get a rendered page
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.template_name, ['datamap/field_add.html'])
 
     def test_url_passes_datamap_id_to_add_field_view(self):
         view = resolve('/datamap/14/field/edit/')
@@ -80,6 +106,8 @@ class AddBasicFieldViewTest(TestCase):
                   'datatype': 'Boolean'
                   }
         )
+
+        self.post.user = self.user
         # Do the post
         self.view(self.post, dm=str(self.datamap.id))
         new_field = Field.objects.get(datamap=self.datamap.id)
@@ -95,6 +123,8 @@ class AddBasicFieldViewTest(TestCase):
                   'datatype': 'Boolean'
                   }
         )
+        self.post.user = self.user
+
         # Do the post
         response = self.view(self.post, dm=str(self.datamap.id))
         self.assertEqual(response.url,
@@ -102,6 +132,7 @@ class AddBasicFieldViewTest(TestCase):
 
     def test_post_without_data_returns_form_invalid(self):
         self.post = RequestFactory().post('/', data={})
+        self.post.user = self.user
         # Do the post
         response = self.view(self.post, dm=str(self.datamap.id))
         assert isinstance(response.context_data.get('form'), FieldForm)
@@ -112,7 +143,9 @@ class AddFieldViewWithTranslationsTest(TestCase):
 
     def setUp(self):
         self.view = AddFieldView.as_view()
+        self.user = UserFactory()
         self.get = RequestFactory().get('/')
+        self.get.user = self.user
         self.datamap = DatamapFactory()
         super(AddFieldViewWithTranslationsTest, self).setUp()
 
@@ -145,6 +178,8 @@ class AddFieldViewWithTranslationsTest(TestCase):
                   'translations-1-title': 'Nuevo Nombre',
                   })
         # Do the post
+
+        self.post.user = self.user
         self.view(self.post, dm=str(self.datamap.id))
         transfield = TranslatedField.objects.get(
             field__datamap=self.datamap.id,
@@ -165,6 +200,7 @@ class AddFieldViewWithTranslationsTest(TestCase):
                   'translations-0-language': 'en_US',
                   'translations-0-title': 'New Field Name',
                   })
+        self.post.user = self.user
         # Do the post
         response = self.view(self.post, dm=str(self.datamap.id))
         expected_form_snippet_1 = 'This field is required.'
@@ -183,6 +219,7 @@ class AddFieldViewWithTranslationsTest(TestCase):
                   'translations-0-language': '',  # Missing DATA
                   'translations-0-title': 'New Field Name',
                   })
+        self.post.user = self.user
         # Do the post
         response = self.view(self.post, dm=str(self.datamap.id))
         expected_form_snippet_1 = 'This field is required.'
@@ -195,7 +232,10 @@ class EditBasicFieldViewTest(TestCase):
 
     def setUp(self):
         self.view = EditFieldView.as_view()
+        self.user = UserFactory()
         self.get = RequestFactory().get('/')
+        self.get.user = self.user
+
         self.datafield = DatafieldFactory(fieldname = 'testfield')
         self.kwargs = {'dm' : '%s' % self.datafield.datamap.id,
                        'pk' : '%s' % self.datafield.id}
@@ -229,6 +269,7 @@ class EditBasicFieldViewTest(TestCase):
                   'datatype': 'Boolean',
                   }
         )
+        post.user = self.user
         self.view(post, **self.kwargs)
         changed_field = Field.objects.get(pk=self.datafield.id)
         self.assertEqual(changed_field.fieldname, 'changedfieldname')
@@ -241,7 +282,9 @@ class EditFieldWithTranslationsTest(TestCase):
 
     def setUp(self):
         self.view = EditFieldView.as_view()
+        self.user = UserFactory()
         self.get = RequestFactory().get('/')
+        self.get.user = self.user
         self.transfield = TranslatedFieldFactory(language='bas')
         self.kwargs = {'dm' : '%s' % self.transfield.field.datamap.id,
                        'pk' : '%s' % self.transfield.field.id}
@@ -251,7 +294,6 @@ class EditFieldWithTranslationsTest(TestCase):
         desired_html_snippet_1 = ' id="id_translations-0-title" maxlength="100" name="translations-0-title" type="text" value="Ⓣⓨⓟⓔ ⓨⓞⓤⓡ ⓣⓔⓧⓣ ⓗⓔⓡⓔ    " />'  # nopep8
         response = self.view(self.get, **self.kwargs)
         response.render()
-        print response.content
         self.assertContains(response, desired_html_snippet_1)
 
     def test_when_two_translated_fields_shows_all_tab_headers(self):
@@ -282,6 +324,8 @@ class EditFieldWithTranslationsTest(TestCase):
                   'translations-1-language': 'es',
                   'translations-1-title': 'Nuevo Nombre',
                   })
+
+        post.user = self.user
         # Do the post
         response = self.view(post, **self.kwargs)
         self.assertEqual(response.status_code, 302)  # should be a redirect
@@ -329,6 +373,7 @@ class EditFieldWithTranslationsTest(TestCase):
                   'translations-3-allowable_values': '',
                   'translations-3-description': '',
                   })
+        post.user = self.user
         # Do the post
         response = self.view(post, **self.kwargs)
         self.assertEqual(Field.objects.count(), 1)

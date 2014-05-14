@@ -1,13 +1,15 @@
 from django.views.generic.edit import CreateView, UpdateView
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from datamap.forms import FieldForm, TranslatedFieldForm
 from django.forms.models import inlineformset_factory
+
+from braces.views import LoginRequiredMixin
 
 from datamap.models import Datamap, TranslatedField, Field
 
 
-class AddFieldView(CreateView):
+class AddFieldView(LoginRequiredMixin, CreateView):
     model = Field
     template_name = 'datamap/field_add.html'
     form_class = FieldForm
@@ -27,13 +29,17 @@ class AddFieldView(CreateView):
         return context
 
     def dispatch(self, request, *args, **kwargs):
-        field_id = kwargs.get('pk')
-        if field_id:
-            self.object = Field.objects.get(id=field_id)
+        user = self.request.user
+        if user.is_authenticated() and not user.profile.can_edit_datamap:
+            return HttpResponseForbidden("permission denied")
         else:
-            self.object = None
-        self.datamap = Datamap.objects.get(id=kwargs.get('dm'))
-        return super(AddFieldView, self).dispatch(request, *args, **kwargs)
+            field_id = kwargs.get('pk')
+            if field_id:
+                self.object = Field.objects.get(id=field_id)
+            else:
+                self.object = None
+            self.datamap = Datamap.objects.get(id=kwargs.get('dm'))
+            return super(AddFieldView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         self.form = self.form_class()

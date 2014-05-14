@@ -7,6 +7,8 @@ from package.models import Package, Format, Category
 class CategoryFactory(DjangoModelFactory):
     FACTORY_FOR = Category
 
+    slug = Sequence(lambda n: 'slug{0}'.format(n))
+
 
 class FormatFactory(DjangoModelFactory):
     FACTORY_FOR = Format

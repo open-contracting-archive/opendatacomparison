@@ -1,0 +1,22 @@
+language: python
+python:
+  - "2.7"
+install:
+  - "deactivate"
+  - "pip install virtualenv --user"
+  - "python deploy/bootstrap.py"
+  - echo 'SECRET_KEY = "test"' >> django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_TWITTER_KEY = "test"' >> django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_TWITTER_SECRET = "test"' >> django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "test"' >> django/website/private_settings.py
+  - echo 'SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "test"' >> django/website/private_settings.py
+  - ln -s local_settings.py.travis django/website/local_settings.py 
+  - mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+  - mysql -e 'CREATE DATABASE travis CHARACTER SET utf8;'
+# command to run tests, e.g. python setup.py test
+script:
+    - "python deploy/tasks.py run_tests:--nologcapture,--with-coverage,-v1 -v"
+after_success:
+  - cd django/website
+  - source .ve/bin/activate
+  - coveralls

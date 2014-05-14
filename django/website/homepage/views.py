@@ -7,6 +7,7 @@ from django.views.generic.base import TemplateView
 from grid.models import Grid
 from homepage.models import Dpotw, Gotw, PSA
 from package.models import Category, Package
+from publisher.models import Publisher
 
 
 class HomePageView(TemplateView):
@@ -33,7 +34,7 @@ class HomePageView(TemplateView):
 
         context.update({
             'latest_packages': Package.objects.all().order_by('-created')[:5],
-            'latest_grids': Grid.objects.all().order_by('-created')[:5],
+            'latest_publishers': Publisher.objects.all().order_by('-created')[:5],
             'potw': potw,
             'gotw': gotw,
             'categories': Category.objects.all(),

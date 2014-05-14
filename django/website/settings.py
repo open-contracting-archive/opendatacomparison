@@ -136,6 +136,7 @@ THIRD_PARTY_APPS = (
     'django_nose',
     'social.apps.django_app.default',
     'django_extensions',
+    'rest_framework',
 )
 
 # Apps specific for this project go here.
@@ -147,6 +148,8 @@ LOCAL_APPS = (
     'profiles',
     'publisher',
     'datamap',
+    'downloads',
+    'api',
 )
 
 ########## END APP CONFIGURATION
@@ -154,6 +157,7 @@ LOCAL_APPS = (
 
 ########## MIDDLEWARE CONFIGURATION
 MIDDLEWARE_CLASSES = (
+    'reversion.middleware.RevisionMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -207,7 +211,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ########## Custom user app defaults
 # Select the correct user model
 #AUTH_USER_MODEL = "users.User"
-#LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "home"
 ########## END Custom user app defaults
 
 
@@ -336,6 +340,7 @@ if DEBUG is False:
         '.',
         'www.',
         'fen-vz-ocds-stage.fen.aptivate.org',
+        'ocds.aptivate.org',
     ]
     ########## END SITE CONFIGURATION
 
@@ -353,7 +358,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # Your stuff: custom template context processers go here
     'core.context_processors.core_values',
     'core.context_processors.current_path',
-    'grid.context_processors.grid_headers',
+    'publisher.context_processors.publisher_headers',
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
 )
@@ -383,3 +388,7 @@ else:
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + local_settings.EXTRA_INSTALLED_APPS
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'PAGINATE_BY': 50,
+}

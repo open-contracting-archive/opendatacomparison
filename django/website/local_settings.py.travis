@@ -1,0 +1,30 @@
+import private_settings
+
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
+LOGIN_URL = '/opendatacomparison/accounts/login/'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'travis',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'OPTIONS': {
+            "init_command": "SET storage_engine=INNODB",
+        }
+    }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# used in admin template so we know which site we're looking at
+DEPLOY_ENV = "Production Server"
+
+EXTRA_INSTALLED_APPS = ()
+EXTRA_MIDDLEWARE_CLASSES = ()
+
+# vi: ft=python

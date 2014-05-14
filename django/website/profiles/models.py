@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.utils.translation import ugettext_lazy as _
+from django.utils.text import slugify
 
 from core.models import BaseModel
 
@@ -12,7 +13,7 @@ class Profile(BaseModel):
     url = models.URLField(_('Website'), null=True, blank=True)
 
     def __unicode__(self):
-        return self.user
+        return "%s" % self.user
 
     @property
     def can_add_package(self):
@@ -95,8 +96,13 @@ class Profile(BaseModel):
         return True
 
 
+def slugify_username(sender, instance, **kwargs):
+    instance.username = slugify(instance.username)
+
+
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
+pre_save.connect(slugify_username, sender=User)
 post_save.connect(create_user_profile, sender=User)

@@ -1,24 +1,8 @@
-opendatacomparison
-==================
+[![Build Status](https://travis-ci.org/open-contracting/opendatacomparison.svg?branch=master)](https://travis-ci.org/open-contracting/opendatacomparison)
+[![Coverage Status](https://coveralls.io/repos/open-contracting/opendatacomparison/badge.png)](https://coveralls.io/r/open-contracting/opendatacomparison)
 
-Django application for comparing datsets, built on Open Comparison
+A Django application for comparing datsets, built on Open Comparison
 
-
-install
-=======
-
-To create your database in MySQL with utf-8:
-
-    CREATE DATABASE opendatacomparison CHARACTER SET utf8
-
-Get everything setup on most systems:
-
-    cd deploy
-    ./bootstrap.py
-    ./tasks.py deploy:dev
-
-On OSX, using CLANG for compilation (CLANG throws errors on unexpected arguments by default):
-
-    cd deploy
-    ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future ./bootstrap
-    ./tasks.py deploy:dev
+### Documentation
+Documentation, including installation, can be found at:
+[http://open-contracting.github.io/pages/docs/opendatacomparison.html](http://open-contracting.github.io/pages/docs/opendatacomparison.html)

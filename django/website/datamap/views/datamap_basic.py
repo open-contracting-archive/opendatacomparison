@@ -1,18 +1,20 @@
-from django.http import Http404
+from django.core.urlresolvers import reverse
+from django.http import (
+    Http404,
+    HttpResponseForbidden,
+)
 from django.views.generic import (
     ListView,
     DetailView,
     CreateView, UpdateView)
-from django.core.urlresolvers import reverse
+
 from braces.views import LoginRequiredMixin, JSONResponseMixin
 from extra_views import (
-    CreateWithInlinesView,
-    UpdateWithInlinesView,
     InlineFormSet
 )
 from datamap.models import Datamap, Field
 from datamap.forms import FieldForm
-from package.models import Package, Format
+from package.models import Package
 
 
 class DatamapListView(ListView):
@@ -24,19 +26,27 @@ class FieldInline(InlineFormSet):
     form_class = FieldForm
 
 
-class DatamapAddView(CreateView):
+class DatamapAddView(LoginRequiredMixin, CreateView):
     action = 'Add'
     model = Datamap
 
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated() and not user.profile.can_edit_package:
+            return HttpResponseForbidden("permission denied")
+        else:
+            return super(DatamapAddView,
+                         self).dispatch(request, *args, **kwargs)
+
     def get(self, request, *args, **kwargs):
-        dataset_id = self.request.GET.get('dataset')
+        dataset_id = request.GET.get('dataset')
         if not dataset_id >= 0:
             raise Http404
         self.dataset = Package.objects.get(pk=dataset_id)
         return super(DatamapAddView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        dataset_id = self.request.POST.get('dataset')
+        dataset_id = request.POST.get('dataset')
         if not dataset_id >= 0:
             raise Http404
         self.dataset = Package.objects.get(pk=dataset_id)
@@ -58,10 +68,17 @@ class DatamapAddView(CreateView):
         return reverse('package', kwargs={'slug': self.dataset.slug})
 
 
-class DatamapEditView(UpdateView):
+class DatamapEditView(LoginRequiredMixin, UpdateView):
     action = 'Edit'
-
     model = Datamap
+
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated() and not user.profile.can_edit_datamap:
+            return HttpResponseForbidden("permission denied")
+        else:
+            return super(DatamapEditView,
+                         self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse('datamap', kwargs={'pk': self.object.id})
