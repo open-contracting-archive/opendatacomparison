@@ -6,6 +6,8 @@ from datamap.views.datamap_basic import (
     DatamapEditView,
     DatamapListView,
     DatamapView,
+)
+from datamap.views.plotting import (
     BokehJS,
 )
 from datamap.views.field import (
