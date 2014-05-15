@@ -259,5 +259,4 @@ def get_empty_concept_dict():
 
 
 def get_x_label(datamap):
-    return '%s - %s' % (datamap.dataset.publisher.country,
-                        datamap.dataset.publisher.name)
+    return '%s' % (datamap.dataset.publisher.name.lower())
