@@ -182,7 +182,9 @@ class BokehJS(View):
         return HttpResponse(file_object)
 
 
-def build_plot(x, y, radii, fields_in_concept, datamaps, concepts):
+def build_plot(x, y, radii, fields_in_concept,
+               datamaps, concepts,
+               plot_width=1200, plot_height=800):
     source = ColumnDataSource(
         data=dict(
             x=x,
@@ -199,18 +201,20 @@ def build_plot(x, y, radii, fields_in_concept, datamaps, concepts):
         'tools': "hover",
         'x_range': [get_x_label(datamap) for datamap in datamaps],
         'y_range': concepts,
+        'plot_width': plot_width,
+        'plot_height': plot_height,
     }
 
     rect(x, y, 1, 1,
-        source=source,
-        color='white', # put in background
-        **plot_properties)
+         source=source,
+         color='white',  # put in background
+         **plot_properties)
 
     circle('x', 'y',
-        source=source,
-        size='radii',
-        color='black',
-        **plot_properties)
+           source=source,
+           size='radii',
+           color='black',
+           **plot_properties)
 
     grid().grid_line_color = None
 
