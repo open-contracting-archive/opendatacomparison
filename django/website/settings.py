@@ -392,3 +392,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
     'PAGINATE_BY': 50,
 }
+
+BOKEH_EMBED_JS_DIR = '/tmp/embed/js/'
