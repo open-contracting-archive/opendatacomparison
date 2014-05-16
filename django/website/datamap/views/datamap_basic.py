@@ -48,11 +48,14 @@ class DatamapListView(ListView):
     model = Datamap
 
     def get_queryset(self):
-        return Datamap.objects.all().prefetch_related('dataset',
-                                                      'dataset__publisher',
-                                                      'format',
-                                                      'fields',
-                                                      'fields__concept')
+        queryset = (
+            Datamap.objects
+            .all()
+            .prefetch_related('dataset', 'dataset__publisher', 'format',
+                              'fields', 'fields__concept')
+            .order_by('dataset__publisher__country')
+        )
+        return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super(DatamapListView,

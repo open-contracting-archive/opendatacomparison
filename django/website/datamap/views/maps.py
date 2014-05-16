@@ -3,7 +3,7 @@ import copy
 from collections import OrderedDict
 from django.db.models import Count
 from datamap.models import Datamap, Concept
-from .plotting import build_punchcard, get_x_label
+from .plotting import build_punchcard, get_datamap_label
 
 
 def single_datamap_not_normalized(datamap):
@@ -11,7 +11,7 @@ def single_datamap_not_normalized(datamap):
         _build_data_for_single_datamap(datamap, [], [], [], [])
     return build_punchcard(x, y, radii, fields_in_concept,
                            [datamap], concepts,
-                           plot_width=500)
+                           plot_height=300)
 
 
 def datamaps_not_normalized(datamaps):
@@ -29,10 +29,10 @@ def datamaps_not_normalized(datamaps):
                 concept_dict=copy.deepcopy(empty_concept_dict)
             )
 
-    plot_width = len(datamaps) * 180
+    plot_height = datamaps.count() * 80
     return build_punchcard(x, y, radii, fields_in_concept,
                            datamaps, concepts,
-                           plot_width=plot_width)
+                           plot_height=plot_height)
 
 
 def datamaps_normalized(datamaps):
@@ -49,10 +49,10 @@ def datamaps_normalized(datamaps):
                 concept_dict=copy.deepcopy(empty_concept_dict)
             )
 
-    plot_width = datamaps.count() * 180
+    plot_height = datamaps.count() * 80
     return build_punchcard(x, y, radii, fields_in_concept,
                            datamaps, concepts,
-                           plot_width=plot_width)
+                           plot_height=plot_height)
 
 
 def datamaps_normalized_sorted(datamaps):
@@ -89,10 +89,10 @@ def datamaps_normalized_sorted(datamaps):
                 datamap, x, y, radii, fields_in_concept,
                 normalized=True,
                 concept_dict=copy.deepcopy(empty_sorted_concept_dict))
-    plot_width = len(datamaps) * 180
+    plot_height = datamaps.count() * 80
     return build_punchcard(x, y, radii, fields_in_concept,
                            datamaps, concepts,
-                           plot_width=plot_width)
+                           plot_height=plot_height)
 
 
 def _build_data_for_single_datamap(datamap, x, y, radii, fields_in_concept,
@@ -107,7 +107,7 @@ def _build_data_for_single_datamap(datamap, x, y, radii, fields_in_concept,
 
     for concept, fields in concept_dict.iteritems():
         y.append(concept)
-        x.append(get_x_label(datamap))
+        x.append(get_datamap_label(datamap))
         if normalized:
             radius = (len(fields) / total_fields) * 100
         else:

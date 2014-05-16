@@ -1,3 +1,4 @@
+from math import pi
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.views.generic.base import View
@@ -6,14 +7,15 @@ from django.http import (
     HttpResponse,
 )
 from bokeh.plotting import (
-    figure,
     circle,
-    rect,
+    ColumnDataSource,
     curplot,
-    output_file,
+    figure,
     grid,
     hold,
-    ColumnDataSource,
+    output_file,
+    rect,
+    xaxis,
 )
 from bokeh.objects import HoverTool
 from collections import OrderedDict
@@ -33,15 +35,17 @@ class BokehJS(View):
         return HttpResponse(file_object)
 
 
-def build_punchcard(x, y, radii, fields_in_concept,
+def build_punchcard(datamap_list, concept_list,
+                    radii_list, fields_in_concept_list,
                     datamaps, concepts,
                     plot_width=1200, plot_height=800):
+
     source = ColumnDataSource(
         data=dict(
-            x=x,
-            y=y,
-            radii=radii,
-            fields_in_concept=fields_in_concept,
+            datamap=datamap_list,  # x
+            concept=concept_list,  # y
+            radii=radii_list,
+            fields_in_concept=fields_in_concept_list,
         )
     )
     output_file('')
@@ -49,31 +53,33 @@ def build_punchcard(x, y, radii, fields_in_concept,
     figure()
     plot_properties = {
         'title': None,
-        'tools': "hover",
-        'x_range': [get_x_label(datamap) for datamap in datamaps],
-        'y_range': concepts,
+        'tools': "hover,resize,previewsave",
+        'y_range': [get_datamap_label(datamap) for datamap in datamaps],
+        'x_range': concepts,
         'plot_width': plot_width,
         'plot_height': plot_height,
     }
 
-    rect(x, y, 1, 1,
+    rect('concept', 'datamap',  # x, y
+         1, 1,  # height, width
          source=source,
          color='white',  # put in background
          **plot_properties)
 
-    circle('x', 'y',
-           source=source,
+    circle('concept', 'datamap',  # x, y
            size='radii',
+           source=source,
            color='black',
            **plot_properties)
 
     grid().grid_line_color = None
-
+    x = xaxis()
+    x.major_label_orientation = pi / 4
     hover = [t for t in curplot().tools if isinstance(t, HoverTool)][0]
 
     hover.tooltips = OrderedDict([
-        ("Datamap", "@x"),
-        ("Bucket", "@y"),
+        ("Datamap", "@datamap"),
+        ("Concept", "@concept"),
         ("Fields", "@fields_in_concept"),
     ])
 
@@ -84,5 +90,9 @@ def build_punchcard(x, y, radii, fields_in_concept,
     )
 
 
-def get_x_label(datamap):
-    return '%s' % (datamap.dataset.publisher.name.lower())
+def get_datamap_label(datamap):
+    if datamap.dataset.publisher.country:
+        prefix = datamap.dataset.publisher.country
+    else:
+        prefix = datamap.dataset.publisher.name
+    return '%s - %s' % (prefix, datamap.dataset.title)
