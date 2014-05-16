@@ -1,33 +1,106 @@
+from __future__ import division
+import copy
 from collections import OrderedDict
+from django.db.models import Count
 from datamap.models import Datamap, Concept
-from .plotting import build_plot, get_x_label
+from .plotting import build_punchcard, get_x_label
 
 
 def single_datamap_not_normalized(datamap):
     x, y, radii, fields_in_concept, concepts = \
         _build_data_for_single_datamap(datamap, [], [], [], [])
-    return build_plot(x, y, radii, fields_in_concept, [datamap], concepts)
+    return build_punchcard(x, y, radii, fields_in_concept,
+                           [datamap], concepts,
+                           plot_width=500)
 
 
-def all_datamaps_not_normalized():
+def datamaps_not_normalized(datamaps):
     # Make the lists for the plot
     y = []
     x = []
     radii = []
     fields_in_concept = []
-    datamaps = Datamap.objects.all()
+    empty_concept_dict = get_empty_concept_dict()
     for datamap in datamaps:
         x, y, radii, fields_in_concept, concepts = \
-            _build_data_for_single_datamap(datamap,
-                                           x, y, radii, fields_in_concept)
+            _build_data_for_single_datamap(
+                datamap, x, y, radii, fields_in_concept,
+                normalized=False,
+                concept_dict=copy.deepcopy(empty_concept_dict)
+            )
 
-    return build_plot(x, y, radii, fields_in_concept,
-                      datamaps, concepts)
+    plot_width = len(datamaps) * 180
+    return build_punchcard(x, y, radii, fields_in_concept,
+                           datamaps, concepts,
+                           plot_width=plot_width)
 
 
-def _build_data_for_single_datamap(datamap, x, y, radii, fields_in_concept):
+def datamaps_normalized(datamaps):
+    y = []
+    x = []
+    radii = []
+    fields_in_concept = []
+    empty_concept_dict = get_empty_concept_dict()
+    for datamap in datamaps:
+        x, y, radii, fields_in_concept, concepts = \
+            _build_data_for_single_datamap(
+                datamap, x, y, radii, fields_in_concept,
+                normalized=True,
+                concept_dict=copy.deepcopy(empty_concept_dict)
+            )
+
+    plot_width = datamaps.count() * 180
+    return build_punchcard(x, y, radii, fields_in_concept,
+                           datamaps, concepts,
+                           plot_width=plot_width)
+
+
+def datamaps_normalized_sorted(datamaps):
+    # Make a concept_dict that's ordered by normalized field counts per bucket
     concept_dict = get_empty_concept_dict()
+    for datamap in datamaps:
+        concepts = Concept.objects.filter(field__datamap=datamap)
+        total_concepts = concepts.count()
+        field_counts = (
+            concepts.distinct()
+            .annotate(num_fields=Count('field'))
+            .values_list('name', 'num_fields')
+        )
+        normalized_field_counts = [(x[0], x[1] / total_concepts)
+                                   for x in field_counts]
+        for nfc in normalized_field_counts:
+            concept_dict[nfc[0]].append(nfc[1])
+
+    sorted_concept_dict = OrderedDict(sorted(concept_dict.iteritems(),
+                                             key=lambda x: sum(x[1]),
+                                             reverse=True))
+    empty_sorted_concept_dict = OrderedDict(
+        zip(sorted_concept_dict.keys(),
+            ([] for i in xrange(0, total_concepts)))
+    )
+    # now build the plot
+    y = []
+    x = []
+    radii = []
+    fields_in_concept = []
+    for datamap in datamaps:
+        x, y, radii, fields_in_concept, concepts = \
+            _build_data_for_single_datamap(
+                datamap, x, y, radii, fields_in_concept,
+                normalized=True,
+                concept_dict=copy.deepcopy(empty_sorted_concept_dict))
+    plot_width = len(datamaps) * 180
+    return build_punchcard(x, y, radii, fields_in_concept,
+                           datamaps, concepts,
+                           plot_width=plot_width)
+
+
+def _build_data_for_single_datamap(datamap, x, y, radii, fields_in_concept,
+                                   normalized=False, concept_dict=None):
+    if not concept_dict:
+        concept_dict = get_empty_concept_dict()
     fields = datamap.fields.all()
+    total_fields = len(fields)
     for field in fields:
         concept = field.concept
         concept_dict[concept.name].append(field.fieldname)
@@ -35,7 +108,11 @@ def _build_data_for_single_datamap(datamap, x, y, radii, fields_in_concept):
     for concept, fields in concept_dict.iteritems():
         y.append(concept)
         x.append(get_x_label(datamap))
-        radii.append(len(fields) * 5)
+        if normalized:
+            radius = (len(fields) / total_fields) * 100
+        else:
+            radius = len(fields) * 5
+        radii.append(radius)
         fields_in_concept.append(', '.join(fields))
 
     return (x, y, radii, fields_in_concept, concept_dict.keys())
@@ -43,21 +120,21 @@ def _build_data_for_single_datamap(datamap, x, y, radii, fields_in_concept):
 
 def get_empty_concept_dict():
     """
-    Returns a list of concepts (not yet in the order we want)
+    returns a list of concepts (not yet in the order we want)
         concepts = [
-                "SYSTEM",
-                "DOCUMENT",
-                "TENDER TRACKING",
-                "TENDER FEATURES",
-                "GOODS / SERVICES",
-                "AMOUNT",
-                "BUYER",
-                "SUPPLIER",
-                "AWARD TRACKING",
-                "AWARD FEATURES",
-                "CONTRACT TRACKING",
-                "CONTRACT FEATURES",
-                "ADD ON"
+                "system",
+                "document",
+                "tender tracking",
+                "tender features",
+                "goods / services",
+                "amount",
+                "buyer",
+                "supplier",
+                "award tracking",
+                "award features",
+                "contract tracking",
+                "contract features",
+                "add on"
         ]
     """
     concepts = \

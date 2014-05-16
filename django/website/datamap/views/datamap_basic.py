@@ -20,13 +20,21 @@ from datamap.forms import FieldForm
 from package.models import Package
 
 from .maps import (
-    all_datamaps_not_normalized,
     single_datamap_not_normalized,
+    datamaps_normalized,
+    datamaps_normalized_sorted,
 )
 
 
 class DatamapView(DetailView):
     model = Datamap
+
+    def get_queryset(self):
+        return Datamap.objects.all().prefetch_related('dataset',
+                                                      'format',
+                                                      'fields',
+                                                      'fields__concept',
+                                                      'fields__translations')
 
     def get_context_data(self, *args, **kwargs):
         context = super(DatamapView,
@@ -39,10 +47,19 @@ class DatamapView(DetailView):
 class DatamapListView(ListView):
     model = Datamap
 
+    def get_queryset(self):
+        return Datamap.objects.all().prefetch_related('dataset',
+                                                      'dataset__publisher',
+                                                      'format',
+                                                      'fields',
+                                                      'fields__concept')
+
     def get_context_data(self, *args, **kwargs):
         context = super(DatamapListView,
                         self).get_context_data(*args, **kwargs)
-        context['all_not_normalized'] = all_datamaps_not_normalized
+        datamaps = self.get_queryset()
+        context['all_normalized'] = datamaps_normalized(datamaps)
+        context['all_normalized_sorted'] = datamaps_normalized_sorted(datamaps)
         return context
 
 

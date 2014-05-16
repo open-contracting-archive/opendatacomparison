@@ -33,9 +33,9 @@ class BokehJS(View):
         return HttpResponse(file_object)
 
 
-def build_plot(x, y, radii, fields_in_concept,
-               datamaps, concepts,
-               plot_width=1200, plot_height=800):
+def build_punchcard(x, y, radii, fields_in_concept,
+                    datamaps, concepts,
+                    plot_width=1200, plot_height=800):
     source = ColumnDataSource(
         data=dict(
             x=x,
@@ -72,6 +72,7 @@ def build_plot(x, y, radii, fields_in_concept,
     hover = [t for t in curplot().tools if isinstance(t, HoverTool)][0]
 
     hover.tooltips = OrderedDict([
+        ("Datamap", "@x"),
         ("Bucket", "@y"),
         ("Fields", "@fields_in_concept"),
     ])

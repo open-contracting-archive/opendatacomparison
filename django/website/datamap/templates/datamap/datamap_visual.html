@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div class="panel panel-default">
-    <div class="panel-heading">{% trans 'Datamap Visualization' %}</div>
+    <div class="panel-heading">{% if title %}{{ title }}{% else %}{% trans 'Datamap Visualization' %}{% endif %}</div>
     <div class="panel-body">
         <div class="visualization">
             {{ visual|safe }}
