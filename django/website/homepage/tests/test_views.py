@@ -1,3 +1,4 @@
+from mock import patch
 from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
@@ -5,6 +6,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 
 from core.tests.data import OpenComparisonTestCase
+from datamap.tests.factories import DatamapWithPublisherFactory
 from grid.tests.data import GridTestCase
 from grid.models import Grid
 from homepage.models import Dpotw, Gotw
@@ -13,9 +15,13 @@ from package.models import Package, Category
 from homepage.views import error_500_view
 
 
+@patch('datamap.views.maps.build_punchcard')
 class FunctionalHomepageTest(GridTestCase):
+    def setUp(self):
+        super(FunctionalHomepageTest, self).setUp()
+        DatamapWithPublisherFactory()
 
-    def test_homepage_view(self):
+    def test_homepage_view(self, mock_punchcard):
         url = reverse('home')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
@@ -28,7 +34,7 @@ class FunctionalHomepageTest(GridTestCase):
         self.assertEquals(response.context['package_count'],
                           Package.objects.count())
 
-    def test_packages_on_homepage(self):
+    def test_packages_on_homepage(self, mock_punchcard):
         """
         Latest packages should be listed on the homepage
         """
@@ -41,7 +47,7 @@ class FunctionalHomepageTest(GridTestCase):
             self.assertContains(response, p.title)
             self.assertContains(response, p.description)
 
-    def test_items_of_the_week(self):
+    def test_items_of_the_week(self, mock_punchcard):
         url = reverse('home')
         today = datetime.now()
         yesterday = today - timedelta(days=1)
@@ -67,7 +73,9 @@ class FunctionalHomepageTest(GridTestCase):
 
 class FunctionalHomepageTestWithoutPackages(OpenComparisonTestCase):
 
-    def test_homepage_view(self):
+    @patch('datamap.views.maps.build_punchcard')
+    def test_homepage_view(self, mock_punchcard):
+        DatamapWithPublisherFactory()
         Package.objects.all().delete()
         url = reverse('home')
         response = self.client.get(url)

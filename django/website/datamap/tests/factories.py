@@ -3,7 +3,11 @@ from __future__ import unicode_literals
 from factory import SubFactory
 from factory.django import DjangoModelFactory
 
-from package.tests.factories import FormatFactory, DatasetFactory
+from package.tests.factories import (
+    FormatFactory,
+    DatasetFactory,
+    DatasetWithPublisherFactory,
+)
 
 from datamap.models import Datamap, Field, TranslatedField, Concept
 
@@ -12,6 +16,13 @@ class DatamapFactory(DjangoModelFactory):
     FACTORY_FOR = Datamap
 
     dataset = SubFactory(DatasetFactory)
+    format = SubFactory(FormatFactory)
+
+
+class DatamapWithPublisherFactory(DjangoModelFactory):
+    FACTORY_FOR = Datamap
+
+    dataset = SubFactory(DatasetWithPublisherFactory)
     format = SubFactory(FormatFactory)
 
 

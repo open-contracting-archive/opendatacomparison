@@ -71,7 +71,29 @@
     </div>
     
 
-</div><!-- endrow -->
+  </div><!-- endrow -->
+  <div class="row">
+    <div class="col-sm-12 col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"> 
+                <h3>{% trans 'Datamaps' %}</h3>
+            </div>
+            <div class="panel-body">
+                <p>To analyze existing contracting data, we are producing datamaps where we are trying
+                to categorize all contracting fields into concepts that are common across all datasets.
+                Below is a map of all the datasets that we have currently analyzed. The size of the dots 
+                has been normalized so that datasets are comparable (e.g. if you look at the European OpenTED
+                dataset it has 9x the number of fields compared to UNOPS). The concepts (horizontal-axis) have been
+                sorted so that we see the most the frequently used concepts are shown towards the left, and least 
+                frequently to the right.</p>
+                <div class="visualization">
+                    {{ all_normalized_sorted|safe }}
+                </div>
+            </div>
+        </div>
+
+    </div>  
+  </div><!-- endrow -->
 
   <div class="row">
     <div class="col-sm-4 col-lg-4">

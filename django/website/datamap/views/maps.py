@@ -58,6 +58,8 @@ def datamaps_normalized(datamaps):
 def datamaps_normalized_sorted(datamaps):
     # Make a concept_dict that's ordered by normalized field counts per bucket
     concept_dict = get_empty_concept_dict()
+    concepts = None
+    total_concepts = 0
     for datamap in datamaps:
         concepts = Concept.objects.filter(field__datamap=datamap)
         total_concepts = concepts.count()

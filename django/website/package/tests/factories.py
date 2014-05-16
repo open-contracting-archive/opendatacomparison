@@ -3,6 +3,8 @@ from factory.django import DjangoModelFactory
 
 from package.models import Package, Format, Category
 
+from publisher.tests.factories import PublisherFactory
+
 
 class CategoryFactory(DjangoModelFactory):
     FACTORY_FOR = Category
@@ -25,3 +27,10 @@ class DatasetFactory(DjangoModelFactory):
     category = SubFactory(CategoryFactory)
     machine_readable = False
     slug = Sequence(lambda n: 'slug{0}'.format(n))
+
+
+class DatasetWithPublisherFactory(DatasetFactory):
+    """
+    Note a package is a dataset, slowly moving to new names
+    """
+    publisher = SubFactory(PublisherFactory)

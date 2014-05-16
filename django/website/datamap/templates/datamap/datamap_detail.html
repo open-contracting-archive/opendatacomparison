@@ -14,7 +14,16 @@
         <li class="active">{{ datamap }} <a href="{% url 'datamap_edit' datamap.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></li>
     </ol>
     <div class="col-lg-12"> <!-- Table View-->
-        {% include 'datamap/datamap_visual.html' %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>{% trans 'Visualization of datamap' %}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="visualization">
+                    {{ visual|safe }}
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-lg-12"> <!-- Table View-->
         {% include 'datamap/datamap_table.html' %}
