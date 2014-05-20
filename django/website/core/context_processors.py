@@ -8,8 +8,8 @@ def core_values(request):
     """
 
     data = {
-        'SITE_TITLE': getattr(settings, "SITE_TITLE", "Open Data Comparison"),
-        'FRAMEWORK_TITLE': getattr(settings, "FRAMEWORK_TITLE", "Open Data"),
+        'SITE_TITLE': getattr(settings, "SITE_TITLE", "Contracting Data Comparison"),
+        'FRAMEWORK_TITLE': getattr(settings, "FRAMEWORK_TITLE", "Contracting Data"),
     }
     return data
 
