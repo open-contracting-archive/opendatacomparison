@@ -52,6 +52,7 @@ class PackageListView(ListView):
         packages = Package.objects.select_related('publisher', 'category')
         packages = packages.annotate(ucount=Count('usage'))
         packages = packages.annotate(downloadcount=Count('downloads'))
+        packages = packages.order_by('publisher__country')
         return packages
 
 
