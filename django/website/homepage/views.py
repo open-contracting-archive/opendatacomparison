@@ -3,6 +3,7 @@ from django.views.generic.base import TemplateView
 
 from datamap.models import Datamap
 from datamap.views.maps import datamaps_normalized_sorted
+from downloads.models import Link
 from grid.models import Grid
 from homepage.models import Dpotw, Gotw
 from package.models import Category, Package
@@ -16,6 +17,8 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         package_count = Package.objects.count()
+        publisher_count = Publisher.objects.count()
+        download_count = Link.objects.count()
 
         try:
             potw = Dpotw.objects.latest().package
@@ -46,6 +49,8 @@ class HomePageView(TemplateView):
             'gotw': gotw,
             'categories': Category.objects.all(),
             'package_count': package_count,
+            'publisher_count': publisher_count,
+            'download_count': download_count,
             'all_normalized_sorted': datamaps_normalized_sorted(datamaps)})
         return context
 
