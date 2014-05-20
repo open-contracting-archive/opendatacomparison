@@ -1,3 +1,4 @@
+from pyquery import PyQuery
 from django.conf import settings
 from django.contrib.auth.models import User, Permission
 from django.core.urlresolvers import reverse
@@ -6,14 +7,15 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 
+from international.models import languages
 from core.tests.data import STOCK_PASSWORD
 from downloads.tests.factories import LinkFactory
 from profiles.tests.factories import UserFactory
 
 from package.models import Category, Package
-from package.views import PackageDetailView
+from package.views import PackageDetailView, PackageUpdateView
 from .data import PackageTestCase
-from .factories import DatasetFactory
+from .factories import DatasetFactory, FormatFactory
 
 
 @override_settings(RESTRICT_PACKAGE_EDITORS=False)
@@ -186,7 +188,7 @@ class PackagePermissionTest(PackageTestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class TestPackageDownloads(TestCase):
+class TestPackageDetailView(TestCase):
 
     def test_package_detail_view_shows_related_downloads(self):
         dataset_1 = DatasetFactory()
@@ -201,3 +203,47 @@ class TestPackageDownloads(TestCase):
         self.assertContains(response, link_1.title)
         self.assertContains(response, link_2.title)
         self.assertNotContains(response, link_3.title)
+
+    def test_package_detail_view_shows_list_of_languages(self):
+        dataset = DatasetFactory(languages='ak,am')
+        request = RequestFactory().get('/')
+        request.user = UserFactory()
+        view = PackageDetailView.as_view()
+        response = view(request, pk=dataset.id)
+        self.assertContains(response, 'Akan, Amharic')
+
+
+@override_settings(RESTRICT_PACKAGE_EDITORS=False)
+class TestPackageEditView(TestCase):
+    def test_package_detail_view_contains_multichoice_for_language(self):
+        dataset = DatasetFactory()
+        request = RequestFactory().get('/')
+        request.user = UserFactory()
+        view = PackageUpdateView.as_view()
+        response = view(request, pk=dataset.id)
+        response.render()
+        pq = PyQuery(response.content)
+        language_select = pq('select[name="languages"]')
+        assert language_select.length > 0
+        # Is languages a multi-select
+        self.assertEqual(language_select[0].attrib['multiple'], 'multiple')
+        # Does it contain the correct number of options
+        self.assertEqual(len(language_select.children()), len(languages))
+
+    def test_package_update_has_languages_selected(self):
+        dataset = DatasetFactory(languages='ak,am')
+        request = RequestFactory().get('/')
+        request.user = UserFactory()
+        view = PackageUpdateView.as_view()
+        response = view(request, pk=dataset.id)
+        response.render()
+        pq = PyQuery(response.content)
+        language_select = pq('select[name="languages"]')
+        assert language_select.length > 0
+        # Is languages a multi-select
+        self.assertEqual(language_select[0].attrib['multiple'], 'multiple')
+        # Does it contain the correct number of selected options
+        selected_langs = language_select.children()('[selected="selected"]')
+        self.assertEqual(selected_langs.length, 2)
+        self.assertEqual(selected_langs[0].values(), ['ak', 'selected'])
+        self.assertEqual(selected_langs[1].values(), ['am', 'selected'])

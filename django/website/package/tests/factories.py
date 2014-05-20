@@ -15,6 +15,7 @@ class CategoryFactory(DjangoModelFactory):
 class FormatFactory(DjangoModelFactory):
     FACTORY_FOR = Format
 
+    title = Sequence(lambda n: 'formatname{0}'.format(n))
     slug = Sequence(lambda n: 'slug{0}'.format(n))
 
 

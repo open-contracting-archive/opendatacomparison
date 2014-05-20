@@ -1,6 +1,7 @@
 from django import template
 from django.utils.text import Truncator
 
+from international.models import languages_english as languages
 from package.context_processors import used_packages_list
 
 register = template.Library()
@@ -59,3 +60,10 @@ def truncatecharsbrute(value, arg):
     return Truncator(value).chars(length, truncate='')
 
 
+@register.filter
+def listlanguages(value):
+    if len(value) > 0:
+        langs = [langtup[1] for langtup in languages if langtup[0] in value]
+        return ', '.join(langs)
+    else:
+        return ''

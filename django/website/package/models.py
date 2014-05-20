@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from multiselectfield import MultiSelectField
 from distutils.version import LooseVersion as versioner
 
 from core.models import BaseModel
@@ -9,7 +10,7 @@ from publisher.models import Publisher
 
 from package.utils import normalize_license
 
-from international.models import languages
+from international.models import languages as langlist
 
 
 class Category(BaseModel):
@@ -100,6 +101,11 @@ class Package(BaseModel):
         help_text='Is the dataset available in a machine readable, format - json, csv, xml, API',  # nopep8
         blank=True)
     formats = models.ManyToManyField(Format)
+    languages = MultiSelectField(_('Languages in dataset'),
+                                 max_length=100,
+                                 blank=True,
+                                 choices=langlist)
+
     nesting_depth = models.IntegerField(
         _('Nesting Depth'),
         help_text='How deep is the nesting of the data?',
@@ -141,13 +147,13 @@ class TranslatedPackage(BaseModel):
     package = models.ForeignKey(Package, related_name='translations')
     language = models.CharField(_('Language'),
                                 max_length=10,
-                                choices=languages,
+                                choices=langlist,
                                 default='en_US')
     title = models.CharField(_('Title'), max_length='100')
     description = models.TextField(_('Description'), blank=True)
 
     def language_name(self):
-        dc = dict(languages)
+        dc = dict(langlist)
         return dc.get(self.language)
 
 

@@ -87,6 +87,9 @@
             <dt>{% trans "Last updated" %}</dt>
             <dd>{{ package.modified }}</dd>
 
+            <dt>{% trans "Languages in dataset" %}</dt>
+            <dd>{{ package.languages|listlanguages }}</dd>
+
         </dl>
     </div>
     <!-- end Description panel -->

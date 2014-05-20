@@ -24,6 +24,7 @@ python-social-auth==0.1.23
 markdown
 django-filter
 bokeh
+django-multiselectfield
 
 # Testing toolbar
 django-debug-toolbar
@@ -33,3 +34,4 @@ mock
 needle
 django-nose==1.2
 coveralls
+pyquery

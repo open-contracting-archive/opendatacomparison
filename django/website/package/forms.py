@@ -1,4 +1,6 @@
 from floppyforms import ModelForm, ModelMultipleChoiceField
+from multiselectfield import MultiSelectFormField
+from international.models import languages as langlist
 
 from core.widgets import BetterSelectMultiple
 
@@ -26,18 +28,32 @@ class PackageForm(ModelForm):
             'style': 'width: 30%',
         }),
     )
+    languages = MultiSelectFormField(
+        required=False,
+        choices=langlist,
+        widget=BetterSelectMultiple(attrs={
+            'data-add': '&darr; Add',
+            'data-remove': '&uarr; Remove',
+            'size': 3,
+            'style': 'width: 30%',
+        }),
+    )
 
     def __init__(self, *args, **kwargs):
-            super(PackageForm, self).__init__(*args, **kwargs)
-            self.fields['category'].help_text = package_help_text()
-            self.fields['url'].required = True
+        super(PackageForm, self).__init__(*args, **kwargs)
+        self.fields['category'].help_text = package_help_text()
+        self.fields['url'].required = True
 
     def clean_slug(self):
         return self.cleaned_data['slug'].lower()
 
     class Meta:
         model = Package
-        exclude = ['usage', 'created_by', 'last_modified_by']
+        exclude = ['usage',
+                   'created_by',
+                   'last_modified_by',
+                   'nesting_depth',
+                   'nesting']
 
 
 class DocumentationForm(ModelForm):
