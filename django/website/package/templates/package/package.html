@@ -84,11 +84,9 @@
             <dt>{% trans "Formats" %}</dt>
             <dd>{% for format in package.formats.all %}{{ format.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
 
-            <dt>{% trans "Nesting depth" %}</dt>
-            <dd>{{ package.get_nesting_depth_display }}</dd>
+            <dt>{% trans "Last updated" %}</dt>
+            <dd>{{ package.modified }}</dd>
 
-            <dt>{% trans "Nesting description" %}</dt>
-            <dd>{{ package.nesting }}</dd>
         </dl>
     </div>
     <!-- end Description panel -->
