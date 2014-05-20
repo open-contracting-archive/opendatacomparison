@@ -13,13 +13,11 @@
         <li class="active">{% trans "datamaps" %}</li> 
     </ol>
     <div class="col-lg-12">
-        {% with visual=all_normalized title="All normalized" %}
-        {% include 'datamap/datamap_visual.html' %}
-        {% endwith %}
+        <h3>{% trans 'All datamaps (normalized)' %}</h3>
+        {{ all_normalized|safe }}
 
-        {% with visual=all_normalized_sorted title="All normalized - sorted" %}
-        {% include 'datamap/datamap_visual.html' %}
-        {% endwith %}
+        <h3>{% trans 'All datamaps (normalized) - sorted by frequency' %}</h3>
+        {{ all_normalized_sorted|safe }}
 
         <ul>
         {% for datamap in object_list %}
