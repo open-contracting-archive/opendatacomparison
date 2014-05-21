@@ -2,7 +2,7 @@ from __future__ import division
 import copy
 from collections import OrderedDict
 from django.db.models import Count
-from datamap.models import Datamap, Concept
+from datamap.models import Concept
 from .plotting import build_punchcard, get_datamap_label
 
 
@@ -111,7 +111,10 @@ def _build_data_for_single_datamap(datamap, x, y, radii, fields_in_concept,
         y.append(concept)
         x.append(get_datamap_label(datamap))
         if normalized:
-            radius = (len(fields) / total_fields) * 100
+            if total_fields == 0:
+                radius = 0
+            else:
+                radius = (len(fields) / total_fields) * 100
         else:
             radius = len(fields) * 5
         radii.append(radius)
