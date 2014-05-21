@@ -106,6 +106,19 @@ class Package(BaseModel):
                                  blank=True,
                                  choices=langlist)
 
+    contracting_phases = (
+        ('planning', 'Planning'),
+        ('tender', 'Tender / Bid'),
+        ('award', 'Award'),
+        ('contract', 'Contract'),
+        ('performance', 'Performance'),
+    )
+
+    contracting_phases = MultiSelectField(_('Contracting phases'),
+                                          max_length=100,
+                                          blank=True,
+                                          choices=contracting_phases)
+
     nesting_depth = models.IntegerField(
         _('Nesting Depth'),
         help_text='How deep is the nesting of the data?',

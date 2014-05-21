@@ -64,10 +64,6 @@
             <dt>{% trans "Category" %}</dt>
             <dd> <a href="{% url 'category' package.category.slug %}">{{ package.category }}</a> </dd>
 
-            <dt>{% trans "# Using This" %}</dt>
-            <dd> {{ package.usage.count }} &nbsp; {% with package as package %} {% usage_button %} {% endwith %} </dd>
-
-
             <dt>{% trans "Link" %}</dt>
             <dd>{{ package.url|urlizetrunc:40 }}</dd>
 
@@ -89,6 +85,9 @@
 
             <dt>{% trans "Languages in dataset" %}</dt>
             <dd>{{ package.languages|listlanguages }}</dd>
+
+            <dt>{% trans "Phases covered" %}</dt>
+            <dd>{{ package.contracting_phases|join:", "|capfirst }}</dd>
 
         </dl>
     </div>
