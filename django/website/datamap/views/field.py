@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.db.models import Count
 from datamap.forms import FieldForm, TranslatedFieldForm
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect, HttpResponseForbidden
@@ -18,7 +19,7 @@ class FieldListView(ListView):
 
     def get_context_data(self):
         context = super(FieldListView, self).get_context_data()
-        context['concepts'] = Concept.objects.all().order_by('name')
+        context['concepts'] = Concept.objects.all().order_by('name').annotate(num_fields=Count('field'))
         return context
 
 

@@ -17,7 +17,7 @@
       <ul>
       <li><a href="{% url 'field_list' %}">See all fields</a></li>
       {% for concept in concepts %}
-      <li><a href="{% url 'field_by_concept' concept.id %}">See for {{ concept.name }}</a></li>
+      <li><a href="{% url 'field_by_concept' concept.id %}">See for {{ concept.name }} ({{ concept.num_fields }})</a></li>
       {% endfor %}
       </ul>
       <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
