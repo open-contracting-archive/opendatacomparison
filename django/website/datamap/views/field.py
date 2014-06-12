@@ -1,12 +1,36 @@
-from django.views.generic.edit import CreateView, UpdateView
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponseForbidden
 from datamap.forms import FieldForm, TranslatedFieldForm
 from django.forms.models import inlineformset_factory
+from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView
 
 from braces.views import LoginRequiredMixin
 
-from datamap.models import Datamap, TranslatedField, Field
+from datamap.models import Datamap, TranslatedField, Field, Concept
+
+
+class FieldListView(ListView):
+    model = Field
+
+    def get_queryset(self):
+        return Field.objects.all().prefetch_related('datamap', 'concept')
+
+    def get_context_data(self):
+        context = super(FieldListView, self).get_context_data()
+        context['concepts'] = Concept.objects.all().order_by('name')
+        return context
+
+
+class FieldByConceptListView(FieldListView):
+    def get(self, request, *args, **kwargs):
+        self.concept = kwargs.get('pk')
+        return super(FieldByConceptListView,
+                     self).get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(FieldByConceptListView, self).get_queryset()
+        return qs.filter(concept=self.concept)
 
 
 class AddFieldView(LoginRequiredMixin, CreateView):

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Datamaps" %}{% endblock %}
+
+{% block body %}
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
+        <li><a href="{% url 'datamap_list' %}">{% trans "datamaps" %}</a></li> 
+        <li class="active">{% trans "fields" %}</li> 
+    </ol>
+      <h2>{% trans "Fields" %}</h2>
+      <ul>
+      <li><a href="{% url 'field_list' %}">See all fields</a></li>
+      {% for concept in concepts %}
+      <li><a href="{% url 'field_by_concept' concept.id %}">See for {{ concept.name }}</a></li>
+      {% endfor %}
+      </ul>
+      <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+      <table class="order-table table">
+        <thead>
+          <tr>
+            <th>{% trans "Concept" %}</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Link to Datamap" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for field in object_list %}
+            <tr>
+              <td><a href="{% url 'field_by_concept' field.concept.id %}">{{ field.concept }}</a></td>
+              <td>{{ field.fieldname }}</td>
+              <td><a href="{% url 'datamap' field.datamap.id %}">{{ field.datamap }}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<script>
+(function(document) {
+    'use strict';
+
+    var LightTableFilter = (function(Arr) {
+
+        var _input;
+
+        function _onInputEvent(e) {
+            _input = e.target;
+            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+            Arr.forEach.call(tables, function(table) {
+                Arr.forEach.call(table.tBodies, function(tbody) {
+                    Arr.forEach.call(tbody.rows, _filter);
+                });
+            });
+        }
+
+        function _filter(row) {
+            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+        }
+
+        return {
+            init: function() {
+                var inputs = document.getElementsByClassName('light-table-filter');
+                Arr.forEach.call(inputs, function(input) {
+                    input.oninput = _onInputEvent;
+                });
+            }
+        };
+    })(Array.prototype);
+
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+            LightTableFilter.init();
+        }
+    });
+
+})(document);
+</script>
+{% endblock %}
