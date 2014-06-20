@@ -70,7 +70,7 @@ test_cmd = ' manage.py test -v0 ' + ' '.join(django_apps)
 
 # production server - if commented out then the production task will abort
 host_list = {
-    'production':      ['ocds01.external.aptivate.org'],
+    'production':      ['ocds.open-contracting.org'],
     'staging':      ['fen-vz-ocds-stage.fen.aptivate.org'],
 }
 
