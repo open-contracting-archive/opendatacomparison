@@ -391,7 +391,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + local_settings.EX
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
-    'PAGINATE_BY': 50,
+    'PAGINATE_BY': 500,
+    'MAX_PAGINATE_BY': 5000,
+    'PAGINATE_BY_PARAM': 'page_size',
 }
 
 BOKEH_EMBED_JS_DIR = '/tmp/embed/js/'
