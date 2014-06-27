@@ -29,10 +29,11 @@ class GetDownloadView(RedirectView):
 
 
 class LinkViewSet(ReadOnlyModelViewSet):
-    queryset = Link.objects.all()
+    queryset = Link.objects.all().prefetch_related('format', 'dataset')
     serializer_class = LinkSerializer
 
 
 class CsvLinkViewSet(ReadOnlyModelViewSet):
-    queryset = Link.objects.filter(format__title='CSV')
+    queryset = Link.objects.filter(
+        format__title='CSV').prefetch_related('format', 'dataset')
     serializer_class = LinkSerializer
