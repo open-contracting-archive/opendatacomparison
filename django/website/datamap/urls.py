@@ -26,7 +26,7 @@ urlpatterns = patterns(
     url(r'^edit/$', DatamapAddView.as_view(), name='datamap_add',),
     url(r'^bokeh/$', View.as_view(), name='bokeh',),
     url(r'^bokeh/(?P<uuid>.+).embed.js', BokehJS.as_view(), name='bokehjs',),
-    url(r'^field$', FieldListView.as_view(), name='field_list',),
+    url(r'^field/$', FieldListView.as_view(), name='field_list',),
     url(r'^field/(?P<pk>\d+)/$', FieldByConceptListView.as_view(), name='field_by_concept',),
     url(r'^$', DatamapListView.as_view(), name='datamap_list',),
 )
