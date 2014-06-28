@@ -135,7 +135,7 @@
       <div class="panel-body">
         <ul>
         {% for datamap in package.datamaps.all %}
-            <li><a href="{% url 'datamap' datamap.id %}" title="{{ datamap }}">{{ datamap.format }}</a></li>
+        <li><a href="{% url 'datamap' datamap.id %}" title="{{ datamap }}">{{ datamap.format }}</a> - {{ datamap.notes }}</li>
         {% endfor %}
         </ul>
       </div>

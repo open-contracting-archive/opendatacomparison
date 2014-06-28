@@ -21,7 +21,7 @@
 
         <ul>
         {% for datamap in object_list %}
-        <li><a href="{% url 'datamap' datamap.pk %}">{{ datamap.dataset }} - {{ datamap.format }}</a></li>
+        <li><a href="{% url 'datamap' datamap.pk %}">{{ datamap.dataset.publisher.country }} - {{ datamap.dataset.publisher.name }} - {{ datamap.dataset }} - {{ datamap.format }}</a></li>
         {% endfor %}
         </ul>
 
