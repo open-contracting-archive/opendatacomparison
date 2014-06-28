@@ -11,7 +11,11 @@
         <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
         <li><a href="{% url 'packages' %}">{% trans "datasets" %}</a></li> 
         <li><a href="{% url 'package' package.slug %}">{{ package.title }}</a></li>
-        <li class="active">{{ datamap }} <a href="{% url 'datamap_edit' datamap.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></li>
+        <li class="active">{{ datamap }}
+            {% if request.user.is_authenticated and request.user.profile.can_edit_datamap %}
+            <a href="{% url 'datamap_edit' datamap.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
+        </li>
     </ol>
     <div class="col-lg-12"> <!-- Table View-->
         <div class="panel panel-default">
