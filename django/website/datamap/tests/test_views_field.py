@@ -8,7 +8,7 @@ from django.test.client import RequestFactory
 from package.tests.factories import FormatFactory
 from datamap.views.field import AddFieldView, EditFieldView
 from datamap.forms import FieldForm
-from datamap.models import Field, TranslatedField
+from datamap.models import Field, TranslatedField, Concept
 from django.contrib.auth.models import AnonymousUser
 from .factories import DatamapFactory, DatafieldFactory, TranslatedFieldFactory
 
@@ -23,6 +23,7 @@ class AddBasicFieldViewTest(TestCase):
         self.get = RequestFactory().get('/')
         self.get.user = self.user
         self.datamap = DatamapFactory()
+        self.concept = Concept.objects.create(name='Concept')
         super(AddBasicFieldViewTest, self).setUp()
 
     def test_datamap_add_and_edit_requires_login(self):
@@ -100,6 +101,7 @@ class AddBasicFieldViewTest(TestCase):
         self.post = RequestFactory().post(
             '/',
             data={'fieldname': 'newfieldname',
+                  'concept': self.concept.id,
                   'translations-TOTAL_FORMS': u'0',
                   'translations-INITIAL_FORMS': u'0',
                   'translations-MAX_NUM_FORMS': u'',
@@ -113,10 +115,11 @@ class AddBasicFieldViewTest(TestCase):
         new_field = Field.objects.get(datamap=self.datamap.id)
         self.assertEqual(new_field.fieldname, 'newfieldname')
 
-    def test_successful_post_returns_to_datamap_page(self):
+    def test_successful_post_returns_to_field_page(self):
         self.post = RequestFactory().post(
             '/',
             data={'fieldname': 'newfieldname',
+                  'concept': self.concept.id,
                   'translations-TOTAL_FORMS': u'0',
                   'translations-INITIAL_FORMS': u'0',
                   'translations-MAX_NUM_FORMS': u'',
@@ -127,8 +130,11 @@ class AddBasicFieldViewTest(TestCase):
 
         # Do the post
         response = self.view(self.post, dm=str(self.datamap.id))
+        new_field = Field.objects.get()
         self.assertEqual(response.url,
-                         reverse('datamap', kwargs={'pk': self.datamap.id}))
+                         reverse('datamap_field',
+                                 kwargs={'pk': new_field.id,
+                                         'dm': self.datamap.id}))
 
     def test_post_without_data_returns_form_invalid(self):
         self.post = RequestFactory().post('/', data={})
@@ -165,9 +171,11 @@ class AddFieldViewWithTranslationsTest(TestCase):
         self.assertContains(response, expected_form_snippet)
 
     def test_post_with_translated_field_adds_new_translated_fields(self):
+        concept = Concept.objects.create(name='Concept')
         self.post = RequestFactory().post(
             '/',
             data={'fieldname': 'newfieldname',
+                  'concept': concept.id,
                   'datatype': 'Boolean',
                   'translations-TOTAL_FORMS': u'2',
                   'translations-INITIAL_FORMS': u'0',
@@ -236,9 +244,9 @@ class EditBasicFieldViewTest(TestCase):
         self.get = RequestFactory().get('/')
         self.get.user = self.user
 
-        self.datafield = DatafieldFactory(fieldname = 'testfield')
-        self.kwargs = {'dm' : '%s' % self.datafield.datamap.id,
-                       'pk' : '%s' % self.datafield.id}
+        self.datafield = DatafieldFactory(fieldname='testfield')
+        self.kwargs = {'dm': '%s' % self.datafield.datamap.id,
+                       'pk': '%s' % self.datafield.id}
         super(EditBasicFieldViewTest, self).setUp()
 
     def test_url_passes_datamap_and_field_id_to_add_field_view(self):
@@ -263,6 +271,7 @@ class EditBasicFieldViewTest(TestCase):
         post = RequestFactory().post(
             '/',
             data={'fieldname': 'changedfieldname',
+                  'concept': self.datafield.concept.id,
                   'translations-TOTAL_FORMS': u'0',
                   'translations-INITIAL_FORMS': u'0',
                   'translations-MAX_NUM_FORMS': u'',
@@ -286,8 +295,8 @@ class EditFieldWithTranslationsTest(TestCase):
         self.get = RequestFactory().get('/')
         self.get.user = self.user
         self.transfield = TranslatedFieldFactory(language='bas')
-        self.kwargs = {'dm' : '%s' % self.transfield.field.datamap.id,
-                       'pk' : '%s' % self.transfield.field.id}
+        self.kwargs = {'dm': '%s' % self.transfield.field.datamap.id,
+                       'pk': '%s' % self.transfield.field.id}
         super(EditFieldWithTranslationsTest, self).setUp()
 
     def test_edit_field_view_has_translatedfield_populated(self):
@@ -297,8 +306,7 @@ class EditFieldWithTranslationsTest(TestCase):
         self.assertContains(response, desired_html_snippet_1)
 
     def test_when_two_translated_fields_shows_all_tab_headers(self):
-        transfield_2 = TranslatedFieldFactory(field=self.transfield.field,
-                                              language='da')
+        TranslatedFieldFactory(field=self.transfield.field, language='da')
 
         tab_1 = '<a class="lang-tab" href="#tabs-translations-0" id="translations-0">ba</a>'  # nopep8
         tab_2 = '<a class="lang-tab" href="#tabs-translations-1" id="translations-1">da</a>'  # nopep8
@@ -313,6 +321,7 @@ class EditFieldWithTranslationsTest(TestCase):
         post = RequestFactory().post(
             '/',
             data={'fieldname': 'newfieldname',
+                  'concept': self.transfield.field.concept.id,
                   'datatype': 'Boolean',
                   'translations-TOTAL_FORMS': u'2',
                   'translations-INITIAL_FORMS': u'2',
@@ -328,7 +337,11 @@ class EditFieldWithTranslationsTest(TestCase):
         post.user = self.user
         # Do the post
         response = self.view(post, **self.kwargs)
-        self.assertEqual(response.status_code, 302)  # should be a redirect
+        self.assertEqual(
+            response.status_code,
+            302,  # get_success_url is a rediret
+            msg="Did not get to success_url, something went wrong"
+        )
         transfield_2 = TranslatedField.objects.get(id=transfield_2.id)
         self.assertEqual(transfield_2.language, 'es')
 
@@ -337,7 +350,7 @@ class EditFieldWithTranslationsTest(TestCase):
         self.assertEqual(TranslatedField.objects.count(), 1)
         post = RequestFactory().post(
             '/',
-            data={'concept': self.transfield.field.concept,
+            data={'concept': self.transfield.field.concept.id,
                   'fieldname': self.transfield.field.fieldname,
                   'datatype': self.transfield.field.datatype,
 
@@ -375,6 +388,6 @@ class EditFieldWithTranslationsTest(TestCase):
                   })
         post.user = self.user
         # Do the post
-        response = self.view(post, **self.kwargs)
+        self.view(post, **self.kwargs)
         self.assertEqual(Field.objects.count(), 1)
         self.assertEqual(TranslatedField.objects.count(), 2)
