@@ -3,7 +3,7 @@ from django.db.models import Count
 from datamap.forms import FieldForm, TranslatedFieldForm
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect, HttpResponseForbidden
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from braces.views import LoginRequiredMixin
@@ -19,7 +19,9 @@ class FieldListView(ListView):
 
     def get_context_data(self):
         context = super(FieldListView, self).get_context_data()
-        context['concepts'] = Concept.objects.all().order_by('name').annotate(num_fields=Count('field'))
+        context['concepts'] = \
+            Concept.objects.all()\
+            .order_by('name').annotate(num_fields=Count('field'))
         return context
 
 
@@ -104,3 +106,11 @@ class AddFieldView(LoginRequiredMixin, CreateView):
 
 class EditFieldView(AddFieldView, UpdateView):
     model = Field
+
+
+class FieldView(EditFieldView):
+    template_name = 'datamap/field.html'
+
+    def post(self, request, *args, **kwargs):
+        # We don't want post doing anything, so send it to get
+        return super(FieldView, self).get(request, *args, **kwargs)
