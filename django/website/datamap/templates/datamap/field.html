@@ -14,7 +14,12 @@
             <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
             <li><a href="{% url 'datamap_list' %}">{% trans "datamaps" %}</a></li> 
             <li><a href="{% url 'datamap' datamap.id %}">{{ datamap }}</a></li> 
-            <li class="active">{% if field.pk %}{% trans "edit field " %}{{ field.fieldname }}{% else %}{% trans "add field " %}{% endif %}</li>
+            <li class="active">
+                {{ field.fieldname }}
+                {% if request.user.is_authenticated and request.user.profile.can_edit_datamap %}
+                <a title="edit field" href="{% url 'datamap_field_edit' datamap.id field.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                {% endif %}
+            </li>
         </ol>
 
         <div class="datamap-field-edit-form clearfix">

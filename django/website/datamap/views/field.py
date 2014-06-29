@@ -46,7 +46,8 @@ class AddFieldView(LoginRequiredMixin, CreateView):
                                           can_delete=False)
 
     def get_success_url(self):
-        return reverse('datamap', kwargs={'pk': self.datamap.id})
+        return reverse('datamap_field', kwargs={'dm': self.datamap.id,
+                                                'pk': self.object.id})
 
     def get_context_data(self, *args, **kwargs):
         context = super(AddFieldView, self).get_context_data(*args, **kwargs)
@@ -108,8 +109,38 @@ class EditFieldView(AddFieldView, UpdateView):
     model = Field
 
 
-class FieldView(EditFieldView):
+class FieldView(UpdateView):
+    model = Field
     template_name = 'datamap/field.html'
+    form_class = FieldForm
+    formset_class = inlineformset_factory(Field,
+                                          TranslatedField,
+                                          form=TranslatedFieldForm,
+                                          can_delete=False)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(FieldView, self).get_context_data(*args, **kwargs)
+        context.update({'datamap': self.datamap})
+        if hasattr(self, 'formset'):
+            context.update({'formset': self.formset})
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        field_id = kwargs.get('pk')
+        if field_id:
+            self.object = Field.objects.get(id=field_id)
+        else:
+            self.object = None
+        self.datamap = Datamap.objects.get(id=kwargs.get('dm'))
+        return super(FieldView, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        self.form = self.form_class()
+        if self.object:
+            self.formset = self.formset_class(instance=self.object)
+        else:
+            self.formset = self.formset_class()
+        return super(FieldView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         # We don't want post doing anything, so send it to get

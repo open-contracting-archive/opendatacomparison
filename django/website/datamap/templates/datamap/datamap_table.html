@@ -29,8 +29,7 @@
                     <tr>
                         {% if forloop.first %}
                         <td>
-                            {% if request.user.is_authenticated %}<a href="{% url 'datamap_field_edit' datamap.id field.id %}">{{ field.fieldname }}</a>
-                            {% else %}<a href="{% url 'datamap_field' datamap.id field.id %}">{{ field.fieldname }}</a>{% endif %}
+                            <a href="{% url 'datamap_field' datamap.id field.id %}">{{ field.fieldname }}</a>
                         </td>
                         <td>{{ field.concept }}</td>
                         <td>{{ field.datatype }}</td>
