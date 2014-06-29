@@ -14,7 +14,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>{% trans 'Fieldname' %}</th>
+                    <th>{% trans 'Standardized Fieldname' %}</th>
                     <th>{% trans 'Concept' %}</th>
                     <th>{% trans 'Type' %}</th>
                     <th>{% trans 'Language' %}</th>
@@ -29,7 +29,7 @@
                     <tr>
                         {% if forloop.first %}
                         <td>
-                            <a href="{% url 'datamap_field' datamap.id field.id %}">{{ field.fieldname }}</a>
+                            <a href="{% url 'datamap_field' datamap.id field.id %}">{{ field.standardname }}</a>
                         </td>
                         <td>{{ field.concept }}</td>
                         <td>{{ field.datatype }}</td>
