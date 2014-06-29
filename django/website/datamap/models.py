@@ -32,7 +32,7 @@ class Field(BaseModel):
     datamap = ForeignKey(Datamap, related_name='fields')
     fieldname = CharField(_('Field Name'), max_length=100)
     standardname = CharField(_('Standard Name'), max_length=100, null=True, blank=True)
-    concept = ForeignKey(Concept, null=True, blank=True)
+    concept = ForeignKey(Concept)
     mapsto = ManyToManyField('self', null=True, blank=True)
     datatype_notes = TextField(_('Datatype Notes'), null=True, blank=True)
     datatype = CharField(_('Type'),
