@@ -4,39 +4,39 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Fields" %}{% endblock %}
+{% block head_title %}{% trans "Fields with Allowable" %}{% endblock %}
 
 {% block body %}
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="{% url 'home' %}">{% trans "home" %}</a></li> 
         <li><a href="{% url 'datamap_list' %}">{% trans "datamaps" %}</a></li> 
-        <li class="active">{% trans "fields" %}</li> 
+        <li class="active">{% trans "fields with allowable values" %}</li> 
     </ol>
-      <h2>{% trans "Fields" %}</h2>
+      <h2>{% trans "Fields with Allowable values" %}</h2>
       <ul>
-      <li><a href="{% url 'field_list' %}">See all fields</a></li>
+      <li><a href="{% url 'field_allowable_list' %}">See all fields</a></li>
       {% for concept in concepts %}
-      <li><a href="{% url 'field_by_concept' concept.id %}">See for {{ concept.name }} ({{ concept.num_fields }})</a></li>
+      <li><a href="{% url 'field_allowable_by_concept' concept.id %}">See for {{ concept.name }} ({{ concept.num_fields }})</a></li>
       {% endfor %}
       </ul>
       <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
       <table class="order-table table">
         <thead>
           <tr>
+            <th>{% trans "Datamap" %}</th>
             <th>{% trans "Concept" %}</th>
             <th>{% trans "Standardized Fieldname" %}</th>
-            <th>{% trans "Fieldname" %}</th>
-            <th>{% trans "Datamap" %}</th>
+            <th>{% trans "Allowable Values" %}</th>
           </tr>
         </thead>
         <tbody>
           {% for field in object_list %}
             <tr>
+              <td><a href="{% url 'datamap' field.datamap.id %}" title="{{ field.datamap}}">{{ field.datamap.dataset.publisher.country }}</a></td>
               <td><a href="{% url 'field_by_concept' field.concept.id %}" title="View only fields in this concept">{{ field.concept }}</a></td>
               <td>{{ field.standardname }}</td>
-              <td><a href="{% url 'datamap_field' field.datamap.id field.id %}"i title="Go to Field Details">{{ field.fieldname }}</a></td>
-              <td><a href="{% url 'datamap' field.datamap.id %}" title="Go to Datamap">{{ field.datamap }}</a></td>
+              <td>{% for detail in field.translations.all %}{{ detail.allowable_values}}{% endfor %}</td>
             </tr>
           {% endfor %}
         </tbody>
@@ -87,3 +87,4 @@
 })(document);
 </script>
 {% endblock %}
+

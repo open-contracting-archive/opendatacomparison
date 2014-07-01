@@ -11,11 +11,13 @@ from datamap.views.plotting import (
     BokehJS,
 )
 from datamap.views.field import (
-    FieldView,
     FieldListView,
+    FieldAllowableListView,
     FieldByConceptListView,
+    FieldAllowableByConceptListView,
+    FieldView,
     AddFieldView,
-    EditFieldView
+    EditFieldView,
 )
 
 urlpatterns = patterns(
@@ -30,5 +32,7 @@ urlpatterns = patterns(
     url(r'^bokeh/(?P<uuid>.+).embed.js', BokehJS.as_view(), name='bokehjs',),
     url(r'^field/$', FieldListView.as_view(), name='field_list',),
     url(r'^field/(?P<pk>\d+)/$', FieldByConceptListView.as_view(), name='field_by_concept',),
+    url(r'^fieldallowable/$', FieldAllowableListView.as_view(), name='field_allowable_list',),
+    url(r'^fieldallowable/(?P<pk>\d+)/$', FieldAllowableByConceptListView.as_view(), name='field_allowable_by_concept',),
     url(r'^$', DatamapListView.as_view(), name='datamap_list',),
 )

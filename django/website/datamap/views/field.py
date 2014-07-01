@@ -25,6 +25,10 @@ class FieldListView(ListView):
         return context
 
 
+class FieldAllowableListView(FieldListView):
+    template_name = 'datamap/field_allowable_list.html'
+
+
 class FieldByConceptListView(FieldListView):
     def get(self, request, *args, **kwargs):
         self.concept = kwargs.get('pk')
@@ -34,6 +38,10 @@ class FieldByConceptListView(FieldListView):
     def get_queryset(self):
         qs = super(FieldByConceptListView, self).get_queryset()
         return qs.filter(concept=self.concept)
+
+
+class FieldAllowableByConceptListView(FieldByConceptListView):
+    template_name = 'datamap/field_allowable_list.html'
 
 
 class AddFieldView(LoginRequiredMixin, CreateView):
