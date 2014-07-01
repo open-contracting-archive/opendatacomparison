@@ -34,7 +34,7 @@
           {% for field in object_list %}
             <tr>
               <td><a href="{% url 'datamap' field.datamap.id %}" title="{{ field.datamap}}">{{ field.datamap.dataset.publisher.country }}</a></td>
-              <td><a href="{% url 'field_by_concept' field.concept.id %}" title="View only fields in this concept">{{ field.concept }}</a></td>
+              <td><a href="{% url 'field_allowable_by_concept' field.concept.id %}" title="View only fields in this concept">{{ field.concept }}</a></td>
               <td>{{ field.standardname }}</td>
               <td>{% for detail in field.translations.all %}{{ detail.allowable_values}}{% endfor %}</td>
             </tr>
