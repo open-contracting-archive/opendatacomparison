@@ -3,7 +3,8 @@ from django.db.models import Count
 from datamap.forms import FieldForm, TranslatedFieldForm
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponseRedirect, HttpResponseForbidden
-from django.views.generic import ListView, DetailView
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from braces.views import LoginRequiredMixin
@@ -71,10 +72,10 @@ class AddFieldView(LoginRequiredMixin, CreateView):
         else:
             field_id = kwargs.get('pk')
             if field_id:
-                self.object = Field.objects.get(id=field_id)
+                self.object = get_object_or_404(Field, id=field_id)
             else:
                 self.object = None
-            self.datamap = Datamap.objects.get(id=kwargs.get('dm'))
+            self.datamap = get_object_or_404(Datamap, id=kwargs.get('dm'))
             return super(AddFieldView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
@@ -136,10 +137,10 @@ class FieldView(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         field_id = kwargs.get('pk')
         if field_id:
-            self.object = Field.objects.get(id=field_id)
+            self.object = get_object_or_404(Field, id=field_id)
         else:
             self.object = None
-        self.datamap = Datamap.objects.get(id=kwargs.get('dm'))
+        self.datamap = get_object_or_404(Datamap, id=kwargs.get('dm'))
         return super(FieldView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
