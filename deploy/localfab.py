@@ -22,11 +22,8 @@ def deploy(revision=None, keep=None, full_rebuild=True):
       5)
     * full_rebuild is whether to do a full rebuild of the virtualenv
     """
-    ## Add to force correct python
-    env.python_bin = path.join('/', 'usr', 'bin', 'python')
-
-    ## Normal deploy method follows
     require('server_project_home', provided_by=env.valid_envs)
+    env.python_bin = path.join('/', 'usr', 'bin', 'python')
 
     # this really needs to be first - other things assume the directory exists
     fablib._create_dir_if_not_exists(env.server_project_home)
@@ -90,17 +87,19 @@ def link_webserver_conf(maintenance=False):
     require('vcs_root_dir', provided_by=env.valid_envs)
     if env.webserver is None:
         return
+    # TODO: if you want to deploy this separate to opencontracting then
+    # you need to uncomment various lines below
     # create paths in the vcs checkout
     vcs_config_stub = path.join(env.vcs_root_dir, env.webserver, env.environment)
     vcs_config_live = vcs_config_stub + '.conf'
     vcs_config_include = vcs_config_stub + '_include.conf'
 
     # create paths in the webserver config
-    webserver_conf = fablib._webserver_conf_path()
+    webserver_conf = _webserver_conf_path()
     webserver_include = _webserver_include_path()
 
     # ensure the includes dir exists
-    webserver_include_dir = '/etc/httpd/conf.d/includes/'
+    webserver_include_dir = '/etc/apache2/sites-available/includes'
     fablib._create_dir_if_not_exists(webserver_include_dir)
 
     # ensure the main file is linked properly
@@ -136,6 +135,22 @@ def _webserver_include_path():
     if key in webserver_conf_dir:
         return path.join(webserver_conf_dir[key],
             '%s_%s.conf' % (env.project_name, env.environment))
+    else:
+        utils.abort('webserver %s is not supported (linux type %s)' %
+                (env.webserver, fablib._linux_type()))
+
+
+def _webserver_conf_path():
+    require('webserver', 'project_name', provided_by=env.valid_envs)
+    webserver_conf_dir = {
+        'apache_redhat': '/etc/httpd/conf.d',
+        'apache_debian': '/etc/apache2/sites-available',
+    }
+    key = env.webserver + '_' + fablib._linux_type()
+
+    if key in webserver_conf_dir:
+        return path.join(webserver_conf_dir[key],
+            '%s.conf' % (env.environment))
     else:
         utils.abort('webserver %s is not supported (linux type %s)' %
                 (env.webserver, fablib._linux_type()))
