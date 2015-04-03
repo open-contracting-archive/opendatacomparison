@@ -281,6 +281,9 @@ def update_recursive(dest, source):
         else:
             dest[k] = deepcopy(source[k])
 
+# Define this here so it can be set by local_settings, or if not we set it later
+ALLOWED_HOSTS = None
+
 ########## LOCAL_SETTINGS
 # tasks.py expects to find local_settings.py so the database stuff is there
 #--------------------------------
@@ -331,7 +334,7 @@ else:
 ##### which is set in LOCAL_SETTINGS
 
 
-if DEBUG is False:
+if DEBUG is False and ALLOWED_HOSTS is None:
     ########## SITE CONFIGURATION
     # Hosts/domain names that are valid for this site
     # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
