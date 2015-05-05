@@ -2,7 +2,7 @@
 -e git+git://github.com/aptivate/dye.git@ab95e3d3e2c42d7701f824c1019ddba8536db8f2#egg=dye
 
 # core django
-Django==1.6.2
+Django==1.6.11
 pytz==2013.9
 MySQL-python==1.2.5
 South==0.8.4
