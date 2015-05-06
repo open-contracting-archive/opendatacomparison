@@ -18,6 +18,11 @@ from os import path
 import sys
 import site
 
+try:
+    os.makedirs(os.path.join('/tmp/embed/js/'))
+except OSError:
+    pass
+
 vcs_root_dir = path.abspath(path.join(path.dirname(__file__), '..'))
 
 # add deploy dir to path so we can import project_settings
